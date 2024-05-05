@@ -30,6 +30,7 @@
                     <th class="text-center">ESCRIBE</th>
                     <th class="text-center">HABLA</th>
                     <th class="text-center">COMPRENDE</th>
+                    <th class="text-center">ESTATUS</th>
                     <th class="text-center">ACCIONES</th>
                 </tr>
             </thead>

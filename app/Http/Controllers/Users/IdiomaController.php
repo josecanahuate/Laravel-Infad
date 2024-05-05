@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Users;
 use App\Models\Idioma;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreIdioma;
 
 class IdiomaController extends Controller
 {
@@ -22,8 +23,8 @@ class IdiomaController extends Controller
     }
 
 
-    public function store(Request $request)
-    //public function store(StoreIdiomas $request)
+    /* public function store(Request $request) */
+    public function store(StoreIdioma $request)
     {
         $idioma = new Idioma([
             'institucion' => $request->institucion,
@@ -49,9 +50,14 @@ class IdiomaController extends Controller
 
     public function update(Request $request, Idioma $idioma)
     {
-/*         $request->validate([
-
-        ]); */
+         $request->validate([
+            'institucion' => 'required|string|max:255',
+            'idioma' => 'required',
+            'lee_nivel' => 'required',
+            'escribe_nivel' => 'required',
+            'habla_nivel' => 'required',
+            'comprende_nivel' => 'required',
+        ]);
 
         // Actualizar la experiencia laboral
         $idioma->update([

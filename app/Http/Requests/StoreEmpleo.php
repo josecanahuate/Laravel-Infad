@@ -35,16 +35,16 @@ class StoreEmpleo extends FormRequest
     public function messages(): array
     {
         return [
-            'empresa.required' => "El nombre de la empresa es requerido",
-            'empresa.max' => "El nombre de la empresa es muy largo",
-            'cargo.required' => "El cargo es requerido",
-            'cargo.string' => "el campo cargo solo puede contener letras",
-            'fecha_inicio.required' => "La fecha de inicio es requerida",
-            'fecha_inicio.date' => "la fecha de inicio debe ser de tipo fecha",
-            'fecha_fin.date' => "la fecha de fin debe ser de tipo fecha",
-            'fecha_fin.after_or_equal' => 'La fecha de fin debe ser posterior a la fecha actual',
-            'pais.required' => "El pais es requerido",
-            'pais.string' => "el campo pais solo puede contener letras",
+            'empresa.required' => "Se requiere especificar el nombre de la empresa.",
+            'empresa.max' => "El nombre de la empresa excede la longitud máxima permitida.",
+            'cargo.required' => "Es necesario especificar el cargo.",
+            'cargo.string' => "El campo 'cargo' solo puede contener caracteres alfabéticos.",
+            'fecha_inicio.required' => "Se requiere proporcionar la fecha de inicio.",
+            'fecha_inicio.date' => "La fecha de inicio debe ser de tipo fecha.",
+            'fecha_fin.date' => "La fecha de fin debe ser de tipo fecha.",
+            'fecha_fin.after_or_equal' => 'La fecha de fin debe ser posterior o igual a la fecha actual.',
+            'pais.required' => "Se requiere especificar el país.",
+            'pais.string' => "El campo 'país' solo puede contener caracteres alfabéticos.",
             /* 'estatus.in' => "Status must be 'pending', 'accepted' or 'rejected'", */
         ];
     }

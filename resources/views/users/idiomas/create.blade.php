@@ -28,28 +28,29 @@
               @enderror
             </div>
             
-            <div class="form-group col-md-4 mb-3" data-select2-id="29">
-                <label for="idioma">Seleccione un Idioma</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('idioma') }}">
-                <option selected="selected" data-select2-id="3">Alabama</option>
-                <option data-select2-id="36">Alaska</option>
-                <option data-select2-id="37">California</option>
-                <option data-select2-id="38">Delaware</option>
-                <option data-select2-id="39">Tennessee</option>
-                <option data-select2-id="40">Texas</option>
-                <option data-select2-id="41">Washington</option>
+              <div class="form-group col-md-4 mb-3">
+                <label for="idioma">Idioma</label>
+                <select class="form-control" id="idioma" name="idioma" value="{{ old('idioma') }}">
+                    <option value="Español">Español</option>
+                    <option value="Inglés">Inglés</option>
+                    <option value="Chino">Chino</option>
+                    <option value="Francés">Francés</option>
+                    <option value="Alemán">Alemán</option>
+                    <option value="Italiano">Italiano</option>
+                    <option value="Portugués">Portugués</option>
+                    <option value="Japonés">Japonés</option>
+                    <option value="Coreano">Coreano</option>
+                    <option value="Ruso">Ruso</option>
+                    <option value="Árabe">Árabe</option>
                 </select>
                 @error('idioma')
-                <span class="text-danger">{{ $message }}</span>
+                    <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
-
+            
               <div class="form-group col-md-4 mb-3" data-select2-id="29">
                 <label for="lee_nivel">Nivel de Lectura</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('lee_nivel') }}">
-   {{--                  @foreach($idiomas as $idioma)
-                    <option value="{{$idioma->nivel}}">{{$idioma->nivel}}</option>
-                    @endforeach --}}
+                <select class="form-control select2 select2-hidden-accessible" id="lee_nivel" name="lee_nivel" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('lee_nivel') }}">
                     <option value="Basico">Básico</option>
                     <option value="Intermedio">Intermedio</option>
                     <option value="Avanzado">Avanzado</option>
@@ -63,10 +64,7 @@
             <div class="row">
                 <div class="form-group col-md-4 mb-3" data-select2-id="29">
                     <label for="escribe_nivel">Nivel de Escritura</label>
-                    <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('escribe_nivel') }}">
-                           {{--                  @foreach($idiomas as $idioma)
-                    <option value="{{$idioma->nivel}}">{{$idioma->nivel}}</option>
-                    @endforeach --}}
+                    <select class="form-control select2 select2-hidden-accessible" id="escribe_nivel" name="escribe_nivel" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('escribe_nivel') }}">
                         <option value="Basico">Básico</option>
                         <option value="Intermedio">Intermedio</option>
                         <option value="Avanzado">Avanzado</option>
@@ -78,10 +76,7 @@
 
                 <div class="form-group col-md-4 mb-3" data-select2-id="29">
                     <label for="habla_nivel">Nivel Hablado</label>
-                    <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('habla_nivel') }}">
-                           {{--                  @foreach($idiomas as $idioma)
-                    <option value="{{$idioma->nivel}}">{{$idioma->nivel}}</option>
-                    @endforeach --}}
+                    <select class="form-control select2 select2-hidden-accessible" id="habla_nivel" name="habla_nivel" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('habla_nivel') }}">
                         <option value="Basico">Básico</option>
                         <option value="Intermedio">Intermedio</option>
                         <option value="Avanzado">Avanzado</option>
@@ -93,10 +88,7 @@
 
                 <div class="form-group col-md-4 mb-3" data-select2-id="29">
                     <label for="comprende_nivel">Nivel de Comprension</label>
-                    <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('comprende_nivel') }}">
-                           {{--                  @foreach($idiomas as $idioma)
-                    <option value="{{$idioma->nivel}}">{{$idioma->nivel}}</option>
-                    @endforeach --}}
+                    <select class="form-control select2 select2-hidden-accessible" id="comprende_nivel" name="comprende_nivel"  style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('comprende_nivel') }}">
                         <option value="Basico">Básico</option>
                         <option value="Intermedio">Intermedio</option>
                         <option value="Avanzado">Avanzado</option>
@@ -106,6 +98,10 @@
                     @enderror
                 </div>
                 </div>
+
+  {{--               <div class="row">
+                        AGREGAR FILE UPLOAD
+                </div> --}}
 
             <div class="row justify-content-center text-center mt-5">
                 <div class="col-12">

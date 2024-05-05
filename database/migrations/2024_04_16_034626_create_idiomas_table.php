@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('institucion')->nullable();
-            $table->string('idioma');
-            $table->string('lee_nivel'); // Puede ser básico, intermedio, avanzado, etc.
-            $table->string('escribe_nivel'); // Puede ser básico, intermedio, avanzado, etc.
-            $table->string('habla_nivel'); // Puede ser básico, intermedio, avanzado, etc.
-            $table->string('comprende_nivel'); // Puede ser básico, intermedio, avanzado, etc.
+            $table->enum('idioma', ['Español', 'Inglés', 'Chino', 'Francés', 'Alemán', 'Italiano', 'Portugués', 'Japonés', 'Coreano', 'Ruso', 'Árabe']);
+            $table->enum('lee_nivel', ['Basico', 'Intermedio', 'Avanzado']);
+            $table->enum('escribe_nivel', ['Basico', 'Intermedio', 'Avanzado']);
+            $table->enum('habla_nivel', ['Basico', 'Intermedio', 'Avanzado']);
+            $table->enum('comprende_nivel', ['Basico', 'Intermedio', 'Avanzado']);
             $table->string('ruta')->nullable(); // ruta img diploma
             $table->timestamps();
         });
