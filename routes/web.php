@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Users\DatosPersonalesController;
-use App\Http\Controllers\Users\UserDatosController;
+use App\Http\Controllers\DatoPersonalController;
+use App\Http\Controllers\Users\ExperienciaLaboralController;
+use App\Http\Controllers\Users\IdiomaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,9 +10,14 @@ Route::get('/', function () {
 });
 
 
+Route::resource('experiencia-laboral', ExperienciaLaboralController::class)->except('show')->names('users.empleos');
+Route::resource('idiomas', IdiomaController::class)->except('show')->names('users.idiomas');
+
+
+//rutas protegidas
 Route::middleware(['auth'])->group(function () {
-    Route::get('/datos/edit/{dato}', [UserDatosController::class, 'edit'])->name('users.datos.edit');
-    Route::put('/datos/update/{user}', [UserDatosController::class, 'update'])->name('users.datos.update');
+     //Route::get('/datos/edit/{dato}', [DatoPersonalController::class, 'edit'])->name('users.datos.edit');
+    //Route::put('/datos/update/{user}', [DatoPersonalController::class, 'update'])->name('users.datos.update');
 });
 
 Route::middleware([

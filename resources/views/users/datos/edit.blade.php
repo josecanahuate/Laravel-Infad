@@ -7,9 +7,9 @@
 @stop
 
 @section('content')
-@if (session ('info'))
+@if (session ('success'))
     <div class="alert alert-success">
-        <strong>{{ session ('info') }}</strong>
+        <strong>{{ session ('success') }}</strong>
     </div>
 @endif
 

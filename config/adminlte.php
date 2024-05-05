@@ -315,18 +315,18 @@ return [
         ],
         [
             'text' => 'Datos Personales',
-            'route' => 'users.datos.edit',
+            /* 'route' => 'users.datos.edit', */
             'icon' => 'far fa-fw fa-file',
         ],
         
         [
             'text' => 'Experiencia Laboral',
-            'url' => 'admin/pages',
+            'route' => 'users.empleos.index',
             'icon' => 'far fa-fw fa-file',
         ],
         [
             'text' => 'Idiomas',
-            'url' => 'admin/pages',
+            'route' => 'users.idiomas.index',
             'icon' => 'far fa-fw fa-file',
         ],
 
