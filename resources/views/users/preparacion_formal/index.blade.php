@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Experiencia idioma')
+@section('title', 'Preparacion Formal')
 
 @section('content_header')
-{{-- @can('users.idiomas.create')
+{{-- @can('users.preparacion_formal.create')
 <a class="btn btn-primary float-right" href="{{route('admin.tags.create')}}">Nuevo Empleo</a>
 @endcan --}}
-<a class="btn btn-primary float-right" href="{{route('users.idiomas.create')}}">Nuevo Idioma</a>
-    <h1>Lista de idiomas</h1>
+<a class="btn btn-primary float-right" href="{{route('users.preparacion_formal.create')}}">Nuevo Registro</a>
+    <h1>Preparación Formal</h1>
 @stop
 
 @section('content')
@@ -20,52 +20,37 @@
 
 <div class="card">
     <div class="card-body">
-        <table class="table table-striped table-bordered" id="idiomas" style="width:100%">
+        <table class="table table-striped table-bordered" id="preparacionformal" style="width:100%">
             <thead>
                 <tr>
                     <th class="text-center">ID</th>
-                    <th class="text-center">INSTITUCION</th>
-                    <th class="text-center">IDIOMA</th>
-                    <th class="text-center">LEE</th>
-                    <th class="text-center">ESCRIBE</th>
-                    <th class="text-center">HABLA</th>
-                    <th class="text-center">COMPRENDE</th>
+                    <th class="text-center">TITULO</th>
+                    <th class="text-center">AÑO</th>
+                    <th class="text-center">PAIS</th>
+                    <th class="text-center">MODALIDAD</th>
+                    <th class="text-center">ESTADO</th>
                     <th class="text-center">ESTATUS</th>
                     <th class="text-center">ACCIONES</th>
                 </tr>
             </thead>
         
             <tbody>
-                @foreach ($idiomas as $idioma)
+                @foreach ($formales as $formal)
                     <tr>
-                        <td class="text-center">{{$idioma->id}}</td>
-                        <td class="text-center">{{$idioma->institucion}}</td>
-                        <td class="text-center">{{$idioma->idioma}}</td>
-                        <td class="text-center">{{$idioma->lee_nivel}}</td>
-                        <td class="text-center">{{$idioma->escribe_nivel}}</td>
-                        <td class="text-center">{{$idioma->habla_nivel}}</td>
-                        <td class="text-center">{{$idioma->comprende_nivel}}</td>
+                        <td class="text-center">{{$formal->id}}</td>
+                        <td class="text-center">{{$formal->titulo}}</td>
+                        <td class="text-center">{{$formal->ano_titulo}}</td>
+                        <td class="text-center">{{$formal->pais}}</td>
+                        <td class="text-center">{{$formal->modalidad}}</td>
+                        <td class="text-center">{{$formal->estatus_prepformal}}</td>
                         <td class="text-center"><span class="badge bg-warning">Pendiente</span></a></td>
-                        {{--<td>
-                            <span class="badge bg-warning">Pendiente</span></a>
-                             @if ($idioma->active)
-                            <a href="{{route('devices.switch', $device->id) }}">
-                            <span class="badge bg-success">Activo</span></a>
-                            @elseif ()
-                            <a href="{{route('devices.switch', $device->id) }}">
-                            <span class="badge bg-danger">Inactivo</span></a>
-                            @else
-                            <a href="{{route('devices.switch', $device->id) }}">
-                            <span class="badge bg-danger">Inactivo</span></a>
-                            @endif 
-                          </td>--}}
-                        <td> <!-- Nueva celda para acciones -->
+                        <td>
                             <div class="d-flex justify-content-center">
-                                {{-- @can('users.idiomas.edit') --}}
-                                    <a class="btn btn-primary btn-sm mr-2" href="{{route('users.idiomas.edit', $idioma)}}">EDITAR</a>
+                                {{-- @can('users.preparacionformal.edit') --}}
+                                <a class="btn btn-primary btn-sm mr-2" href="{{ route('users.preparacion_formal.edit', $formal) }}">EDITAR</a>
                                 {{-- @endcan --}}
-                                {{-- @can('.idiomas.destroy') --}}
-                                <form id="delete-form" action="{{ route('users.idiomas.destroy', $idioma) }}" method="POST">
+                                {{-- @can('.preparacionformal.destroy') --}}
+                                <form id="delete-form" action="{{ route('users.preparacion_formal.destroy', $formal) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete()">BORRAR</button>
@@ -100,7 +85,7 @@
     
     <script>
         $(document).ready(function() {
-            $('#idiomas').DataTable( {
+            $('#preparacionformal').DataTable( {
                 responsive: true,
                 autoWidth: true,
                 language: {

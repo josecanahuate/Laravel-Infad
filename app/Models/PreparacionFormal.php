@@ -9,8 +9,9 @@ class PreparacionFormal extends Model
 {
     use HasFactory;
 
+    protected $table = 'preparacion_formal';
     protected $fillable = [
-        'id_grado_academico',
+        /* 'id_grado_academico', */
         'estatus',
         'titulo',
         'ano_titulo',
@@ -19,7 +20,7 @@ class PreparacionFormal extends Model
         'modalidad',
         'institucion_superior',
         'financiamiento',
-        'ruta',
+        /* 'ruta', */
     ];
 
     public function user()

@@ -309,7 +309,7 @@ return [
         [
             'text' => 'Dashboard',
             'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fas fa-fw fa-tachometer-alt',
             'label' => 'Nuevo',
             'label_color' => 'danger',
         ],
@@ -322,32 +322,34 @@ return [
         [
             'text' => 'Experiencia Laboral',
             'route' => 'users.empleos.index',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fa fa-fw fa-briefcase',
         ],
         [
             'text' => 'Idiomas',
             'route' => 'users.idiomas.index',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fa fa-fw fa-language',
         ],
 
         [
             'text' => 'Form. Academica',
-            'icon' => 'fas fa-fw fa-share',
+            'icon' => 'fa fa-fw fa-bars',
             'submenu' => [
                 [
                     'text' => 'Prep. Formal',
-                    'url' => '#',
+                    'route' => 'users.preparacion_formal.index',
+                    'icon' => 'fa fa-fw fa-graduation-cap',
                 ],
                 [
                     'text' => 'Prep. Constante',
-                    'url' => '#',
+                    'route' => 'users.preparacion_constante.index',
+                    'icon' => 'fa fa-fw fa-university',
                 ],
             ],
         ],
 
         [
             'text' => 'Formación',
-            'icon' => 'fas fa-fw fa-share',
+            'icon' => 'fa fa-fw fa-bars',
             'submenu' => [
                 [
                     'text' => 'Part. en Congresos',

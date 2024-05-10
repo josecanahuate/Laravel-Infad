@@ -13,17 +13,18 @@ return new class extends Migration
     {
         Schema::create('preparacion_formal', function (Blueprint $table) {
             $table->id();
-            //$table->foreignId('user_id')->constrained('users')->onDelete('cascade'); //si esta en ondelete se elimina todo lo referente a ese usuario            
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); //si esta en ondelete se elimina todo lo referente a ese usuario            
             //$table->foreignId('id_grado_academico')->constrained('grados_academicos_preparacion_formal')->onDelete('cascade');            
-            $table->string('estatus', 20);
+            $table->enum('estatus_prepformal', ['Cursando Actualmente', 'Completo']);
             $table->string('titulo', 120);
-            $table->string('ano_titulo', 120);
-            $table->string('pais', 120);
-            $table->string('tipo', 120);
-            $table->string('modalidad', 120);
+            $table->string('ano_titulo', 120)->nullable();
+            $table->string('pais', 120)->nullable();
+            $table->enum('tipo', ['Nacional', 'Extranjero']);
+            $table->enum('modalidad', ['Presencial', 'Virtual', 'Semi-presencial']);
             $table->string('institucion_superior', 120);
-            $table->string('financiamiento', 120);
-            $table->string('ruta', 150);
+            $table->enum('financiamiento', ['Recursos Propios', 'Beca', 'Financiamiento']);
+            $table->string('ruta', 150)->nullable();
+            /* $table->enum('estatus', ['pendiente', 'aprobado', 'rechazado'])->default('pendiente'); */
             $table->timestamps();
         });
     }

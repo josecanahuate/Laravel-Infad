@@ -9,14 +9,16 @@ class PreparacionConstante extends Model
 {
     use HasFactory;
 
+    protected $table = 'preparacion_constante';
     protected $fillable = [
         'titulo',
         'centro_estudio',
         'modalidad',
         'pais',
-        'fecha',
         'duracion',
-        'ruta',
+        'ano_titulo',
+        'estatus_prepconstante'
+       /*  'ruta', */
     ];
     
     public function user()

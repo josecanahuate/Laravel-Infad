@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('habla_nivel', ['Basico', 'Intermedio', 'Avanzado']);
             $table->enum('comprende_nivel', ['Basico', 'Intermedio', 'Avanzado']);
             $table->string('ruta')->nullable(); // ruta img diploma
+            /* $table->enum('estatus', ['pendiente', 'aprobado', 'rechazado'])->default('pendiente'); */
             $table->timestamps();
         });
     }

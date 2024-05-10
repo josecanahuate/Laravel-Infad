@@ -8,60 +8,90 @@ use App\Http\Controllers\Controller;
 
 class PreparacionConstanteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
-    {   //solo recuperar los registros del id logeado
-        $preparacion_const = PreparacionConstante::all();
-        //return view('users.preparacion_constante.index', compact('preparacion_const'));
+    {
+        $constantes = PreparacionConstante::where('user_id', auth()->id())->get();
+        return view('users.preparacion_constante.index', compact('constantes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        return view('users.preparacion_constante.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'centro_estudio' => 'required',
+            'modalidad' => 'required|in:Presencial,Virtual,Semi-presencial',
+            'pais' => 'required|string|max:255',
+            'estatus_prepconstante' => 'required|in:Cursando Actualmente,Completo',
+            'duracion' => 'required',
+            'ano_titulo' => 'nullable',
+            /* 'ruta' => 'required' */
+        ]);
+
+
+        $preparacionconstante = new PreparacionConstante([
+            'titulo' => $request->titulo,
+            'centro_estudio' => $request->centro_estudio,
+            'modalidad' => $request->modalidad,
+            'pais' => $request->pais,
+            'estatus_prepconstante' => $request->estatus_prepconstante,
+            'duracion' => $request->duracion,
+            'ano_titulo' => $request->ano_titulo,
+            /* 'ruta' => $request->ruta */
+        ]);
+        $preparacionconstante->user_id = auth()->id();
+        $preparacionconstante->save();
+
+        return redirect()->route('users.preparacion_constante.index')->with('success', 'Registro creado con éxito!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+    public function edit(PreparacionConstante $preparacion_constante)
     {
-        //
+    return view('users.preparacion_constante.edit', compact('preparacion_constante'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, PreparacionConstante $preparacion_constante)
     {
-        //
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'centro_estudio' => 'required',
+            'modalidad' => 'required|in:Presencial,Virtual,Semi-presencial',
+            'pais' => 'required|string|max:255',
+            'estatus_prepconstante' => 'required|in:Cursando Actualmente,Completo',
+            'duracion' => 'required',
+            'ano_titulo' => 'nullable'
+            /* 'ruta' => 'required' */
+        ]);
+
+        $preparacion_constante->update([
+            'titulo' => $request->titulo,
+            'centro_estudio' => $request->centro_estudio,
+            'modalidad' => $request->modalidad,
+            'pais' => $request->pais,
+            'estatus_prepconstante' => $request->estatus_prepconstante,
+            'duracion' => $request->duracion,
+            'ano_titulo' => $request->ano_titulo,
+            /* 'ruta' => $request->ruta */
+        ]);
+
+        return redirect()->route('users.preparacion_constante.index')->with('success', 'Registro actualizado con éxito!!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(PreparacionConstante $preparacion_constante)
     {
-        //
+        $preparacion_constante->delete();
+        return redirect()->route('users.preparacion_constante.index')->with('success', 'Registro eliminado.');
     }
 }
