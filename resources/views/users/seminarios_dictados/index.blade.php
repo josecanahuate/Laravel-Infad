@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Experiencia Laboral')
+@section('title', 'Seminarios Dictados')
 
 @section('content_header')
-{{-- @can('users.empleos.create')
-<a class="btn btn-primary float-right" href="{{route('admin.tags.create')}}">Nuevo Empleo</a>
+{{-- @can('users.preparacion_formal.create')
+<a class="btn btn-primary float-right" href="{{route(users.seminarios_dictados.create')}}">Nuevo Empleo</a>
 @endcan --}}
-<a class="btn btn-primary float-right" href="{{route('users.empleos.create')}}">Nuevo Empleo</a>
-    <h1>Lista de Empleos</h1>
+<a class="btn btn-primary float-right" href="{{route('users.seminarios_dictados.create')}}">Nuevo Registro</a>
+    <h1>Seminarios Dictados</h1>
 @stop
 
 @section('content')
@@ -20,48 +20,35 @@
 
 <div class="card">
     <div class="card-body">
-        <table class="table table-striped table-bordered" id="empleos" style="width:100%">
+        <table class="table table-striped table-bordered" id="seminarios" style="width:100%">
             <thead>
                 <tr>
                     <th class="text-center">ID</th>
-                    <th class="text-center">EMPRESA</th>
-                    <th class="text-center">CARGO</th>
+                    <th class="text-center">TITULO</th>
                     <th class="text-center">PAIS</th>
-                    <th class="text-center">ESTADO</th>
+                    <th class="text-center">LUGAR</th>
+                    <th class="text-center">PARTICIPACION</th>
                     <th class="text-center">ESTATUS</th>
                     <th class="text-center">ACCIONES</th>
                 </tr>
             </thead>
-        
+
             <tbody>
-                @foreach ($experiencias as $labor)
+                @foreach ($seminarios as $seminario)
                     <tr>
-                        <td class="text-center">{{$labor->id}}</td>
-                        <td class="text-center">{{$labor->empresa}}</td>
-                        <td class="text-center">{{$labor->cargo}}</td>
-                        <td class="text-center">{{$labor->pais}}</td>
-                        <td class="text-center">{{$labor->estatus_empleo}}</td>
+                        <td class="text-center">{{$seminario->id}}</td>
+                        <td class="text-center">{{$seminario->titulo}}</td>
+                        <td class="text-center">{{$seminario->pais}}</td>
+                        <td class="text-center">{{$seminario->lugar}}</td>
+                        <td class="text-center">{{$seminario->tipo_participacion}}</td>
                         <td class="text-center"><span class="badge bg-warning">Pendiente</span></a></td>
-                        {{--<td>
-                            <span class="badge bg-warning">Pendiente</span></a>
-                             @if ($labor->active)
-                            <a href="{{route('devices.switch', $device->id) }}">
-                            <span class="badge bg-success">Activo</span></a>
-                            @elseif ()
-                            <a href="{{route('devices.switch', $device->id) }}">
-                            <span class="badge bg-danger">Inactivo</span></a>
-                            @else
-                            <a href="{{route('devices.switch', $device->id) }}">
-                            <span class="badge bg-danger">Inactivo</span></a>
-                            @endif --}}
-                          </td>
-                        <td> <!-- Nueva celda para acciones -->
+                        <td>
                             <div class="d-flex justify-content-center">
-                                {{-- @can('users.empleos.edit') --}}
-                                    <a class="btn btn-primary btn-sm mr-2" href="{{route('users.empleos.edit', $labor)}}">EDITAR</a>
+                                {{-- @can('users.preparacionformal.edit') --}}
+                                <a class="btn btn-primary btn-sm mr-2" href="{{ route('users.seminarios_dictados.edit', $seminario) }}">EDITAR</a>
                                 {{-- @endcan --}}
-                                {{-- @can('.empleos.destroy') --}}
-                                <form id="delete-form" action="{{ route('users.empleos.destroy', $labor) }}" method="POST">
+                                {{-- @can('.preparacionformal.destroy') --}}
+                                <form id="delete-form" action="{{ route('users.seminarios_dictados.destroy', $seminario) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete()">BORRAR</button>
@@ -96,7 +83,7 @@
     
     <script>
         $(document).ready(function() {
-            $('#empleos').DataTable( {
+            $('#seminarios').DataTable( {
                 responsive: true,
                 autoWidth: true,
                 language: {

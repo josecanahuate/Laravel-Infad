@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('participacion_congresos', function (Blueprint $table) {
             $table->id();
-            //$table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('titulo', 150)->nullable();
-            $table->string('fecha_inicio', 15)->nullable();
-            $table->string('fecha_fin', 15)->nullable();
+            $table->date('fecha_inicio', 15)->nullable();
+            $table->date('fecha_fin', 15)->nullable();
             $table->string('lugar_congreso', 180)->nullable();
             $table->string('pais', 120)->nullable();
-            $table->string('publicacion_proceeding', 180)->nullable();
-            //$table->foreignId('id_tipo_participacion')->constrained('tipo_participaciones')->onDelete('cascade');
-            $table->string('ruta', 200);
+            $table->enum('publicacion_proceeding', ['Presentado y Aceptado', 'Presentado pero no Aceptado', 'No Presentado', 'Provisional']);
+            $table->enum('tipo_participaciones', ['Presentador Principal', 'Asistente', 'Coordinador', 'Organizador', 'Evaluador']);
+            //$table->string('ruta', 200);
             $table->timestamps();
         });
     }

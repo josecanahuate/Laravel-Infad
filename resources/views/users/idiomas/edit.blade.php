@@ -43,11 +43,6 @@
             </div>
               <div class="form-group col-md-4 mb-3" data-select2-id="29">
                 <label for="lee_nivel">Nivel de Lectura</label>
-   {{--              <select class="form-control select2 select2-hidden-accessible" value="{{ $idioma->lee_nivel }}" id="lee_nivel" name="lee_nivel" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                    <option value="Basico" {{ $idioma->lee_nivel == 'Basico' ? 'selected' : '' }}>Básico</option>
-                    <option value="Intermedio" {{ $idioma->lee_nivel == 'Intermedio' ? 'selected' : '' }}>Intermedio</option>
-                    <option value="Avanzado" {{ $idioma->lee_nivel == 'Avanzado' ? 'selected' : '' }}>Avanzado</option>
-                </select> --}}
                 <select class="form-control select2 select2-hidden-accessible" id="lee_nivel" name="lee_nivel" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
                     @foreach(['Basico', 'Intermedio', 'Avanzado'] as $nivel)
                         <option value="{{ $nivel }}" {{ $idioma->lee_nivel == $nivel ? 'selected' : '' }}>{{ $nivel }}</option>

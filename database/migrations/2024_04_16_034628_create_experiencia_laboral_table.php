@@ -16,10 +16,33 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('empresa');
             $table->string('cargo');
+            $table->enum('estatus_empleo', ['Terminado', 'Actualmente laborando']);
+            $table->enum('sector_empresa', [
+                'Tecnología',
+                'Salud',
+                'Educación',
+                'Finanzas',
+                'Manufactura',
+                'Comercio minorista',
+                'Agricultura',
+                'Construcción',
+                'Energía',
+                'Medios de comunicación',
+                'Servicios profesionales',
+                'Bienes raíces',
+                'Transporte',
+                'Hotelería y turismo',
+                'Entretenimiento',
+                'Consultoría',
+                'ONGs y organizaciones sin fines de lucro',
+                'Gobierno y sector público',
+                'Investigación y desarrollo (I+D)',
+                'Otros (especificar)'
+            ]);
+            
             $table->date('fecha_inicio');
             $table->date('fecha_fin')->nullable();
             $table->string('pais')->nullable();
-            /* $table->enum('estatus', ['pendiente', 'aprobado', 'rechazado'])->default('pendiente'); */
             $table->timestamps();
         });
     }

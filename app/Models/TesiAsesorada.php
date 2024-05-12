@@ -9,13 +9,15 @@ class TesiAsesorada extends Model
 {
     use HasFactory;
 
+
+    protected $table = 'tesis_asesoradas';
     protected $fillable = [
         'titulo',
         'fecha_sustentacion',
         'pais',
         'publicacion_revista',
         'financiacion_externa',
-        'ruta'
+        /* 'ruta' */
     ];
     
     public function user()
@@ -23,9 +25,10 @@ class TesiAsesorada extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+
     public function areasInvestigacion()
     {
-        return $this->belongsToMany(AreaInvestigacionTesiAsesorada::class, 'area_investigaciones_tesis_asesoradas', 'id_tesis_asesorada', 'id_area_investigacion');
+    return $this->belongsToMany(AreaInvestigacionTesiAsesorada::class, 'area_investigaciones_tesis_asesoradas', 'id_tesis_asesorada', 'id_area_investigacion');
     }
 
     public function estatus()

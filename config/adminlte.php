@@ -342,7 +342,7 @@ return [
                 [
                     'text' => 'Prep. Constante',
                     'route' => 'users.preparacion_constante.index',
-                    'icon' => 'fa fa-fw fa-university',
+                    'icon' => 'fa fa-fw fa-university'
                 ],
             ],
         ],
@@ -353,19 +353,23 @@ return [
             'submenu' => [
                 [
                     'text' => 'Part. en Congresos',
-                    'url' => '#',
+                    'route' => 'users.participacion_congreso.index',
+                    'icon' => 'fa fa-fw fa-university'
                 ],
                 [
                     'text' => 'Tesis Asesoradas',
-                    'url' => '#',
+                    'route' => 'users.tesis_asesoradas.index',
+                    'icon' => 'fa fa-fw fa-university'
                 ],
                 [
                     'text' => 'Seminarios Dictados',
-                    'url' => '#',
+                    'route' => 'users.seminarios_dictados.index',
+                    'icon' => 'fa fa-fw fa-university'
                 ],
                 [
                     'text' => 'Proyectos Inscritos',
-                    'url' => '#',
+                    'route' => 'users.proyectos_inscritos.index',
+                    'icon' => 'fa fa-fw fa-university'
                 ],
                 [
                     'text' => 'Otras Publicaciones',

@@ -9,10 +9,14 @@ class SeminarioDictado extends Model
 {
     use HasFactory;
 
+    protected $table = 'seminarios_dictados';
     protected $fillable = [
+        'institucion',
         'titulo',
+        'facilitador',
         'fecha_ini',
         'fecha_fin',
+        'modalidad',
         'pais',
         'lugar',
         'horas',
@@ -22,7 +26,7 @@ class SeminarioDictado extends Model
     
     public function user()
     {
-    return $this->belongsTo(User::class, 'user_id', 'id');
+    return $this->belongsTo(User::class, 'user_id');
     }
 
     public function programaAdscribe()

@@ -157,7 +157,15 @@
                             information about the plugin.
                         </div>
                     </div>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="form-group">
+                    <label>Textarea Disabled</label>
+                    <textarea class="form-control" rows="3" placeholder="En este campo apareceran los comentarios del admin con instrucciones de porque le rechazaron el formualrio al usuario o mensaje 'aprobado' " disabled="" style="resize: none;"></textarea>
+                    </div>
                 </div>
             </div>
 

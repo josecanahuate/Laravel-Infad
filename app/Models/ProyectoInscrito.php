@@ -9,6 +9,7 @@ class ProyectoInscrito extends Model
 {
     use HasFactory;
 
+    protected $table = 'proyectos_inscritos';
     protected $fillable = [
         'titulo_investigacion',
         'sector_pertenece',
@@ -19,7 +20,7 @@ class ProyectoInscrito extends Model
         'monto_asignado',
         'sitio_web',
         'enlace_video',
-        'ruta',
+        /* 'ruta', */
     ];
     
     

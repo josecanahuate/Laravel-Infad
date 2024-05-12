@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>Editar Preparacion Formal</h1>
 @stop
-{{-- <a class="btn btn-primary mr-3" href="{{route('users.preparacion_formal.inidiomasdex')}}">Volver</a> --}}
+{{-- <a class="btn btn-primary mr-3" href="{{route('users.preparacion_formal.index')}}">Volver</a> --}}
 
 @section('content')
 

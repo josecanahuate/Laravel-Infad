@@ -38,6 +38,8 @@ class ExperienciaLaboralController extends Controller
         $experiencia = new ExperienciaLaboral([
             'empresa' => $request->empresa,
             'cargo' => $request->cargo,
+            'estatus_empleo' => $request->estatus_empleo,
+            'sector_empresa' => $request->sector_empresa,
             'fecha_inicio' => $request->fecha_inicio,
             'fecha_fin' => $request->fecha_fin,
             'pais' => $request->pais
@@ -48,13 +50,6 @@ class ExperienciaLaboralController extends Controller
         return redirect()->route('users.empleos.index')->with('success', 'Empleo creado con éxito!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ExperienciaLaboral $experienciaLaboral)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -72,9 +67,11 @@ class ExperienciaLaboralController extends Controller
         $request->validate([
             'empresa' => 'required|max:255',
             'cargo' => 'required|string',
+            'estatus_empleo' => 'required|in:Concluido,Actualmente laborando',
+            'sector_empresa' => 'required',
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'date|after_or_equal:fecha_inicio',
-            'pais' => 'required|string',
+            'pais' => 'string'
             /* 'estatus' => 'required|string|in:pendiente,aprobado,rechazado', */
         ]);
 
@@ -82,6 +79,8 @@ class ExperienciaLaboralController extends Controller
         $experienciaLaboral->update([
             'empresa' => $request->empresa,
             'cargo' => $request->cargo,
+            'estatus_empleo' => $request->estatus_empleo,
+            'sector_empresa' => $request->sector_empresa,
             'fecha_inicio' => $request->fecha_inicio,
             'fecha_fin' => $request->fecha_fin,
             'pais' => $request->pais

@@ -9,6 +9,7 @@ class ParticipacionCongreso extends Model
 {
     use HasFactory;
 
+    protected $table = 'participacion_congresos';
     protected $fillable = [
         'titulo',
         'fecha_inicio',
@@ -16,22 +17,19 @@ class ParticipacionCongreso extends Model
         'lugar_congreso',
         'pais',
         'publicacion_proceeding',
-        'ruta',
+        'tipo_participaciones',
+        /* 'ruta' */
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id');
     }
+
 
     public function programaAdscribe()
     {
         return $this->belongsTo(ProgramaAdscribe::class, 'id_programa_adscribe');
-    }
-
-    public function tipoParticipacion()
-    {
-        return $this->belongsTo(TipoParticipacion::class, 'id_tipo_participacion');
     }
 }
 

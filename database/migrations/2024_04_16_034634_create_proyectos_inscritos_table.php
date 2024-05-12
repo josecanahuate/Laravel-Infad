@@ -13,21 +13,22 @@ return new class extends Migration
     {
         Schema::create('proyectos_inscritos', function (Blueprint $table) {
             $table->id();
-            ////$table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('titulo_investigacion');
             $table->string('sector_pertenece');
             //$table->foreignId('id_area_investigacion')->constrained('area_investigaciones_proyectos_inscritos')->onDelete('cascade');
-            $table->string('linea_investigacion')->nullable();
+            $table->string('linea_investigacion')->nullable(); //enum
             //$table->foreignId('id_programa_adscribe')->constrained('programa_adscribe')->onDelete('cascade');
-            $table->string('periodo_vigencia')->nullable(); //colocar placeholder formato "2022-2023"
-            $table->string('estado_actual');
+            $table->year('periodo_vigencia_ini')->nullable();
+            $table->year('periodo_vigencia_fin')->nullable();
+            $table->enum('estado_actual', ['Cursando Actualmente', 'Completo']);
             $table->string('entidad_financiera')->nullable();
-            $table->string('monto_asignado')->nullable();
+            $table->integer('monto_asignado')->nullable();
             //$table->foreignId('id_sede_ejecutora')->constrained('sede_ejecutora')->onDelete('cascade');
             //$table->foreignId('idfacultadej')->constrained('facultad_ejecutora')->onDelete('cascade');
             $table->string('sitio_web')->nullable()->url();
             $table->string('enlace_video')->nullable()->url();            
-            $table->string('ruta')->nullable();
+            //$table->string('ruta')->nullable();
             //$table->foreignId('id_sede')->constrained('sedes')->onDelete('cascade'); //revisar
             $table->timestamps();
         });

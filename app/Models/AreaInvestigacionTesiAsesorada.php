@@ -19,3 +19,5 @@ class AreaInvestigacionTesiAsesorada extends Model
 }
 
 }
+
+

@@ -14,12 +14,13 @@ class ExperienciaLaboral extends Model
     protected $fillable = [
         'empresa',
         'cargo',
+        'estatus_empleo',
+        'sector_empresa',
         'fecha_inicio',
         'fecha_fin',
-        'pais',
+        'pais'
     ];
     
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

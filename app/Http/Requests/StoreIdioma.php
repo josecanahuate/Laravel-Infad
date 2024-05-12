@@ -28,7 +28,6 @@ class StoreIdioma extends FormRequest
             'escribe_nivel' => 'required',
             'habla_nivel' => 'required',
             'comprende_nivel' => 'required',
-            /* 'estatus' => 'required|string|in:pendiente,aprobado,rechazado', */
         ];
     }
 
@@ -44,20 +43,19 @@ class StoreIdioma extends FormRequest
             'escribe_nivel.required' => "El nivel de escritura es requerido",
             'habla_nivel.required' => "El nivel de habla es requerido",
             'comprende_nivel.required' => "El nivel de comprensión es requerido",
-            /* 'estatus.in' => "Status must be 'pending', 'accepted' or 'rejected'", */
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'institucion' => 'institución',
-            'idioma' => 'idioma',
-            'lee_nivel' => 'nivel de lectura',
-            'escribe_nivel' => 'nivel de escritura',
-            'habla_nivel' => 'nivel de habla',
-            'comprende_nivel' => 'nivel de comprensión'
-        ];
+            'institucion' => 'Institución',
+            'idioma' => 'Idioma',
+            'lee_nivel' => 'Nivel de lectura',
+            'escribe_nivel' => 'Nivel de escritura',
+            'habla_nivel' => 'Nivel de habla',
+            'comprende_nivel' => 'Nivel de comprensión'
+        ];        
     }
 
 }

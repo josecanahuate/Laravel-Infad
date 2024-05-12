@@ -19,14 +19,29 @@
             @csrf
             @method('PUT')
         <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
               <label for="empresa">Empresa</label>
               <input type="text" name="empresa" class="form-control" id="empresa" value="{{ $experienciaLaboral->empresa }}">
               @error('empresa')
               <span class="text-danger">{{ $message }}</span>
               @enderror
             </div>
-            <div class="col-md-6 mb-3">
+
+            <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
+                <label for="sector_empresa">Sector Empresa</label>
+                <select class="form-control select2 select2-hidden-accessible" id="sector_empresa" name="sector_empresa" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" 
+                value="{{ $experienciaLaboral->sector_empresa }}">
+                    @foreach(['Tecnología', 'Salud', 'Educación', 'Finanzas', 'Manufactura', 'Comercio minorista', 'Agricultura', 'Construcción', 'Energía', 'Medios de comunicación', 'Servicios profesionales', 'Bienes raíces', 'Transporte', 'Hotelería y turismo', 'Entretenimiento', 'Consultoría', 'ONGs y organizaciones sin fines de lucro', 'Gobierno y sector público', 'Investigación y desarrollo (I+D)', 'Otros'] as $sectores)
+                    <option value="{{ $sectores }}" {{ $experienciaLaboral->sector_empresa == $sectores ? 'selected' : '' }}>{{ $sectores }}</option>
+                    @endforeach
+                </select>
+                @error('sector_empresa')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+            
+
+            <div class="col-md-4 mb-3">
               <label for="cargo">Cargo</label>
               <input type="text" name="cargo" class="form-control" id="cargo" value="{{ $experienciaLaboral->cargo }}">
               @error('cargo')
@@ -36,8 +51,20 @@
             </div>
 
             <div class="row">
-                {{-- autocompletar pais para evitar errores de escritura --}}
-                <div class="col-md-4 mb-3">
+                <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
+                    <label for="estatus_empleo">Estado</label>
+                    <select class="form-control select2 select2-hidden-accessible" id="estatus_empleo" name="estatus_empleo" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true"
+                    value="{{ $experienciaLaboral->estatus_empleo }}">
+                        @foreach(['Concluido', 'Actualmente laborando'] as $estatus)
+                        <option value="{{ $estatus }}" {{ $experienciaLaboral->estatus_empleo == $estatus ? 'selected' : '' }}>{{ $estatus }}</option>
+                        @endforeach
+                    </select>
+                    @error('estatus_empleo')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-lg-3 col-md-3 mb-3">
                   <label for="pais">País</label>
                   <input type="text" name="pais" class="form-control" id="pais" value="{{ $experienciaLaboral->pais }}">
                   @error('pais')
@@ -45,14 +72,14 @@
                   @enderror
                 </div>
 
-                <div class="col-md-4 mb-3">
+                <div class="col-lg-3 col-md-3 mb-3">
                   <label for="fechainicio">Fecha Inicio</label>
                   <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" value="{{ $experienciaLaboral->fecha_inicio }}" name="fecha_inicio" id="fecha_inicio">
                   @error('fecha_inicio')
                   <span class="text-danger">{{ $message }}</span>
                   @enderror
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-lg-3 col-md-3 mb-3">
                     <label for="fechafinal">Fecha Final</label>
                     <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" value="{{ $experienciaLaboral->fecha_fin }}" name="fecha_fin" id="fecha_inicio">
                     @error('fecha_fin')

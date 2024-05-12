@@ -103,7 +103,6 @@ class User extends Authenticatable
     return $this->hasMany(ParticipacionCongreso::class);
     }
 
-
     //relacion users a preparacionConstante
     public function preparacionConstantes()
     {
