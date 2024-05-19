@@ -39,10 +39,9 @@ return new class extends Migration
                 'Investigación y desarrollo (I+D)',
                 'Otros (especificar)'
             ]);
-            
             $table->date('fecha_inicio');
-            $table->date('fecha_fin')->nullable();
-            $table->string('pais')->nullable();
+            $table->date('fecha_fin');
+            $table->string('pais');
             $table->timestamps();
         });
     }

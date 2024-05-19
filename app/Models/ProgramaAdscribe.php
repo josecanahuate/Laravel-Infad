@@ -16,7 +16,6 @@ class ProgramaAdscribe extends Model
         return $this->hasMany(ProyectoInscrito::class, 'id_programa_adscribe');
     }
 
-
     public function tesisAsesoradas()
     {
         return $this->hasMany(TesiAsesorada::class, 'id_programa_adscribe');

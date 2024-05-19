@@ -5,62 +5,79 @@ namespace App\Http\Controllers\Users;
 use App\Models\OtraPublicacion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AreaInvestigacion;
 
 class OtraPublicacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //solo recuperar los registros del id logeado
+        $publicaciones = OtraPublicacion::where('user_id', auth()->id())->get();
+        return view('users.otras_publicaciones.index', compact('publicaciones'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+    
     public function create()
     {
-        //
+        return view('users.otras_publicaciones.create');
     }
+    
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        //
+
+        //$otraspublicaciones = OtraPublicacion::create($request->all());
+        
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'fecha' => 'required|date',
+            'isbn' => 'nullable|string',
+            'editorial' => 'string'
+        ]);
+
+        $otraspublicaciones = new OtraPublicacion([
+            'titulo' => $request->titulo,
+            'fecha' => $request->fecha,
+            'isbn' => $request->isbn,
+            'editorial' => $request->editorial
+
+            //PARA CAMPOS RELACIONADOS QUE SE RECUPERAN EN EL FORMULARIO
+/*             $departamento = Departamento::find($request->departamento_id); // Suponiendo que el campo de selección se llama "departamento_id"
+            $modelo->departamento()->associate($departamento); // Asociar el departamento al modelo */
+        ]);
+
+        $otraspublicaciones->user_id = auth()->id();
+        $otraspublicaciones->save();
+
+        
+        return redirect()->route('users.otras_publicaciones.index')->with('success', 'Registro creado con éxito!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(OtraPublicacion $otraPublicacion)
+
+    public function edit(OtraPublicacion $otras_publicacione)
     {
-        //
+    return view('users.otras_publicaciones.edit', compact('otras_publicacione'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(OtraPublicacion $otraPublicacion)
+
+    public function update(Request $request, OtraPublicacion $otras_publicacione)
     {
-        //
+
+        $otras_publicacione->update([
+            'titulo' => $request->titulo,
+            'fecha' => $request->fecha,
+            'isbn' => $request->isbn,
+            'editorial' => $request->editorial
+        ]);
+
+        return redirect()->route('users.otras_publicaciones.index')->with('success', 'Registro actualizado con éxito!!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, OtraPublicacion $otraPublicacion)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(OtraPublicacion $otraPublicacion)
+    public function destroy(OtraPublicacion $otras_publicacione)
     {
-        //
+        $otras_publicacione->delete();
+        return redirect()->route('users.otras_publicaciones.index')->with('success', 'Registro eliminado.');
     }
 }

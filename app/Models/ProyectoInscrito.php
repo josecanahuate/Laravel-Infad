@@ -23,32 +23,22 @@ class ProyectoInscrito extends Model
         /* 'ruta', */
     ];
     
-    
-    public function areasInvestigacion()
-    {
-        return $this->belongsToMany(AreaInvestigacionProyectoInscrito::class, 'proyecto_inscrito_area_investigacion', 'id_proyecto_inscrito', 'id_area_investigacion');
-    }
 
     public function categorias()
     {
         return $this->belongsToMany(Categoria::class, 'proyecto_inscrito_categoria', 'id_proyecto_inscrito', 'id_categoria');
     }
 
-    public function facultadEjecutora()
+    public function facultad()
     {
-        return $this->belongsTo(FacultadEjecutora::class, 'idfacultadej');
+    return $this->belongsTo(Facultades::class, 'id_facultad');
     }
 
     public function programaAdscribe()
     {
         return $this->belongsTo(ProgramaAdscribe::class, 'id_programa_adscribe');
     }
-    
-    public function sedeEjecutora()
-    {
-        return $this->belongsTo(SedeEjecutora::class, 'id_sede_ejecutora');
-    }
-    
+        
     public function user()
     {
     return $this->belongsTo(User::class, 'user_id');

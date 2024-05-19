@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PartConstanteStore extends FormRequest
+class UpdatePartConstante extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ class PartConstanteStore extends FormRequest
             'pais' => 'required|string|max:255',
             'estatus_prepconstante' => 'required|in:Cursando Actualmente,Completo',
             'duracion' => 'required',
-            'ano_titulo' => 'required|date_format:Y',
+            'ano_titulo' => 'nullable|date_format:Y',
             /* 'ruta' => 'required|file|max:5120', */ // Máximo 5MB
         ];
     }
@@ -48,7 +48,6 @@ class PartConstanteStore extends FormRequest
             'estatus_prepconstante.required' => 'El estatus de la preparación constante es requerido.',
             'estatus_prepconstante.in' => 'El estatus de la preparación constante seleccionado no es válido.',
             'duracion.required' => 'La duración es requerida.',
-            'titulo.required' => 'El año del título es requerido.',
             'ano_titulo.date_format' => 'El año del título debe tener el formato YYYY.',
  /*            'ruta.required' => 'El archivo es requerido.',
             'ruta.file' => 'El archivo debe ser de tipo archivo.',

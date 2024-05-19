@@ -19,48 +19,30 @@
         <form method="POST" action="{{route('users.tesis_asesoradas.store') }}">
         @csrf
         <div class="row">                        
-                <div class="col-lg-5 col-md-5 mb-3">
+                <div class="col-lg-12 col-md-12 mb-3">
                     <label for="titulo">Título</label>
                     <input type="text" name="titulo" class="form-control" id="titulo" value="{{ old('titulo') }}" placeholder="Inserte el Título">
                     @error('titulo')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                   </div>
+            </div>
 
-                  <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
-                    <label for="tipo_participaciones">Area de Investigación</label>
-                    <select class="form-control select2 select2-hidden-accessible" id="tipo_participaciones" name="tipo_participaciones" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('tipo_participaciones') }}">
+            <div class="row">
+                <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
+                    <label for="id_area_investigacion">Area de Investigación</label>
+                    <select class="form-control select2 select2-hidden-accessible" id="id_area_investigacion" name="id_area_investigacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_area_investigacion') }}">
                         <option disabled selected>Seleccione una opción</option>
-                        <option value="Agroindustria">Agroindustria</option>
-                        <option value="Biotecnología">Biotecnología</option>
-                        <option value="Energía y Ambiente">Energía y Ambiente</option>
-                        <option value="Infraestructura">Infraestructura</option>
-                        <option value="Logística y Transporte">Logística y Transporte</option>
-                        <option value="Robótica, Automatización e Inteligencia Artificial">Robótica, Automatización e Inteligencia Artificial</option>
-                        <option value="Procesos Manufactura y Ciencia de los Materiales">Procesos Manufactura y Ciencia de los Materiales</option>
-                        <option value="Tecnologías de la Información y Comunicaciones">Tecnologías de la Información y Comunicaciones</option>
-                        <option value="Astronomía (Astrofísica)">Astronomía (Astrofísica)</option>
-                        <option value="Educación en Ingeniería">Educación en Ingeniería</option>
-                        <option value="Gestión Empresarial, Emprendimiento e Innovación">Gestión Empresarial, Emprendimiento e Innovación</option>
+                        @foreach ($areas as $area)
+                        <option value="{{$area->id}}">{{$area->nombreainvest}}</option>
+                        @endforeach
                     </select>
-                    @error('tipo_participaciones')
+                    @error('id_area_investigacion')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <div class="col-lg-3 col-md-3 mb-3">
-                    <label for="pais">País</label>
-                    <input type="text" name="pais" class="form-control" id="pais" value="{{ old('pais') }}" placeholder="Inserte el País">
-                    @error('pais')
-                    <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                  </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <label for="fecha_sustentacion">Fecha de Sustentación</label>
                     <input type="date" class="form-control datetimepicker-input" value="{{ old('fecha_sustentacion') }}" data-target-input="nearest" name="fecha_sustentacion" id="fecha_sustentacion">
                     @error('fecha_sustentacion')
@@ -68,23 +50,58 @@
                     @enderror
                   </div>
                   
-                <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
+                <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
                     <label for="tipo_participaciones">Grado Académico</label>
                     <select class="form-control select2 select2-hidden-accessible" id="tipo_participaciones" name="tipo_participaciones" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('tipo_participaciones') }}">
                         <option disabled selected>Seleccione una opción</option>
-                        <option value="Presentador Principal">Presentador Principal</option>
-                        <option value="Asistente">Asistente</option>
-                        <option value="Coordinador">Coordinador</option>
-                        <option value="Organizador">Organizador</option>
-                        <option value="Evaluador">Evaluador</option>
+     {{--                    @foreach ($areas as $area)
+                        <option value="{{$area->id}}">{{$area->nombreainvest}}</option>
+                        @endforeach --}}
+
+
+                        
+                        {{-- COLOCAR DE FORMA DINAMICA --}}
+{{--                         <option value="Licenciatura">Licenciatura</option>
+                        <option value="Maestria">Maestria</option>
+                        <option value="Doctorado">Doctorado</option> --}}
+
+
                     </select>
                     @error('tipo_participaciones')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+                </div>
 
 
-                  <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
+                <div class="row">
+                    <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
+                        <label for="tipo_participaciones">Unidad / Facultad</label>
+                        <select class="form-control select2 select2-hidden-accessible" id="tipo_participaciones" name="tipo_participaciones" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('tipo_participaciones') }}">
+                            <option disabled selected>Seleccione una opción</option>
+     {{--                        @foreach ($unidades as $unidad)
+                            <option value="{{$unidad->id}}">{{$unidad->nombre}}</option>
+                            @endforeach --}}
+       {{--                      Facultad de Ing. Civil
+                            Facultad de Ing. Eléctrica
+                            Facultad de Ing. Industrial
+                            Facultad de Ing. Mecánica
+                            Facultad de Ing. de Sistemas Computacionales --}}
+                        </select>
+                        @error('tipo_participaciones')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 mb-3">
+                        <label for="pais">País</label>
+                        <input type="text" name="pais" class="form-control" id="pais" value="{{ old('pais') }}" placeholder="Inserte el País">
+                        @error('pais')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                      </div>
+
+                <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
                     <label for="publicacion_revista">Publicación en Revista</label>
                     <select class="form-control select2 select2-hidden-accessible" id="publicacion_revista" name="publicacion_revista" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('publicacion_revista') }}">
                         <option disabled selected>Seleccione una opción</option>
@@ -107,7 +124,7 @@
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                </div>
+            </div>
 
             
                     <div class="row">

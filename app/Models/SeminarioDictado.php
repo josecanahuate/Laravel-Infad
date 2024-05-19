@@ -34,11 +34,6 @@ class SeminarioDictado extends Model
     return $this->belongsTo(ProgramaAdscribe::class, 'id_programa_adscribe');
     }
 
-    public function sedeEjecutora()
-    {
-    return $this->belongsTo(SedeEjecutora::class, 'id_sede_ejecutora');
-    }
-
     public function sede()
     {
         return $this->belongsTo(Sede::class, 'id_sede');

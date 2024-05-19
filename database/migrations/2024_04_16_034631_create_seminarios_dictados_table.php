@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('seminarios_dictados', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('institucion')->nullable();
-            $table->string('titulo')->nullable();
+            $table->string('institucion');
+            $table->string('titulo');
             $table->string('facilitador')->nullable();
-            $table->date('fecha_ini')->nullable();
-            $table->date('fecha_fin')->nullable();
-            $table->string('pais')->nullable();
+            $table->date('fecha_ini');
+            $table->date('fecha_fin');
+            $table->string('pais');
             $table->enum('modalidad', ['Presencial', 'Virtual', 'Semi-presencial']);
-            $table->string('lugar')->nullable();
-            $table->integer('horas')->nullable();
+            $table->string('lugar');
+            $table->integer('horas');
             $table->enum('tipo_participacion', ['Presentador Principal', 'Asistente', 'Coordinador', 'Organizador', 'Evaluador']);
             /* $table->string('ruta'); */
             $table->timestamps();

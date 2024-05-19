@@ -9,6 +9,8 @@ class Idioma extends Model
 {
     use HasFactory;
 
+    protected $table = 'idiomas';
+
     protected $fillable = [
         'institucion',
         'idioma',
@@ -16,12 +18,12 @@ class Idioma extends Model
         'escribe_nivel',
         'habla_nivel',
         'comprende_nivel',
-        'ruta',
+        'ruta'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }

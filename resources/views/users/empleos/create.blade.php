@@ -3,9 +3,9 @@
 @section('title', 'Empleos')
 
 @section('content_header')
-    <h1>Listar Empleos Anteriores</h1>
+    <h1>Experiencia Laboral</h1>
 @stop
-{{-- <a class="btn btn-primary mr-3" href="{{route('users.empleos.index')}}">Volver</a> --}}
+
 
 @section('content')
 
@@ -15,7 +15,7 @@
     </div>
 @endif
     <p>Welcome to this beautiful admin panel.</p>
-    <div class="container">
+    <div class="container mt-2">
         <form method="POST" action="{{route('users.empleos.store') }}">
         @csrf
         <div class="row">

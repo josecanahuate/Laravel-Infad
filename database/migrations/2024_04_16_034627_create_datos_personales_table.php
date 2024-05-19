@@ -38,11 +38,11 @@ return new class extends Migration
             $table->string('imgprofile');
             $table->timestamps();
 
-            $table->foreign('id_sede')->references('idsede')->on('sedes')->onDelete('cascade');
+            $table->foreign('id_sede')->references('idsede')->on('sedes'); // sedes
             $table->foreign('id_facultad')->references('idfacultad')->on('facultades');
             $table->foreign('id_categoria')->references('idcategoria')->on('categorias');
-            $table->foreign('id_area_investigacion')->references('idareainv')->on('area_investigaciones_tesis_asesoradas');
-            $table->foreign('id_funcion_principal')->references('idfuncionprincipal')->on('funcion_principal');        
+            $table->foreign('id_area_investigacion')->references('id_areainv')->on('areas_investigacion');
+            $table->foreign('id_funcion_principal')->references('idfuncionprincipal')->on('funcion_principal');  
         });
     }
 

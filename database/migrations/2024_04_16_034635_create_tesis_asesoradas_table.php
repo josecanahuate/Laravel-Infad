@@ -14,17 +14,21 @@ return new class extends Migration
         Schema::create('tesis_asesoradas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->unsignedBigInteger('id_area_investigacion');
+            $table->unsignedBigInteger('id_facultad');
+            $table->unsignedBigInteger('id_grado_academico');
             $table->string('titulo')->nullable();
-            $table->date('fecha_sustentacion')->nullable();
-            //$table->foreignId('id_area_investigacion')->constrained('area_investigaciones_tesis_asesoradas')->onDelete('cascade');
-            //$table->foreignId('id_unidad_facultad')->constrained('unidad_facultad')->onDelete('cascade');
-            //$table->foreignId('id_grado_academico')->constrained('grado_academico')->onDelete('cascade');
+            $table->date('fecha_sustentacion');
             $table->string('pais');
             $table->enum('publicacion_revista', ['No', 'Si']);
             $table->enum('financiacion_externa', ['No', 'Si']);
             //$table->string('ruta');
             $table->timestamps();
-        });
+
+            $table->foreign('id_area_investigacion')->references('id_areainv')->on('areas_investigacion');  //area investigacion
+            $table->foreign('id_facultad')->references('idfacultad')->on('facultades'); // facultades
+            $table->foreign('id_grado_academico')->references('idgradoacademico')->on('grado_academico'); // grado academico
+        }); 
     }
 
     /**

@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Seminarios Dictados')
+@section('title', 'Proyectos Inscritos')
 
 @section('content_header')
-    <h1>Seminarios Dictados</h1>
+    <h1>Proyectos Inscritos</h1>
 @stop
-{{-- <a class="btn btn-primary mr-3" href="{{route('users.seminarios_dictados.index')}}">Volver</a> --}}
+{{-- <a class="btn btn-primary mr-3" href="{{route('users.proyectos_inscritos.index')}}">Volver</a> --}}
 
 @section('content')
 
@@ -16,106 +16,175 @@
 @endif
     <p>Welcome to this beautiful admin panel.</p>
     <div class="container">
-        <form method="POST" action="{{route('users.seminarios_dictados.store') }}">
+        <form method="POST" action="{{route('users.proyectos_inscritos.store') }}">
         @csrf
-        <div class="row">           
-            <div class="col-lg-6 col-md-6 mb-3">
-                <label for="titulo">Título</label>
-                <input type="text" name="titulo" class="form-control" id="titulo" value="{{ old('titulo') }}" placeholder="Inserte el Título">
-                @error('titulo')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-              </div>
-
-              <div class="col-lg-6 col-md-6 mb-3">
-                <label for="institucion">Institución</label>
-                <input type="text" name="institucion" class="form-control" id="institucion" value="{{ old('institucion') }}" placeholder="Inserte la Institucion">
-                @error('institucion')
+        <div class="row">        
+            
+            <div class="col-lg-12 col-md-12 mb-3">
+                <label for="titulo_investigacion">Título de la Investigación</label>
+                <input type="text" name="titulo_investigacion" class="form-control" id="titulo_investigacion" value="{{ old('titulo_investigacion') }}" placeholder="Inserte el Título de la Investigación">
+                @error('titulo_investigacion')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
             </div>{{-- end row --}}
 
             <div class="row">
-                <div class="col-lg-3 col-md-3 mb-3">
-                    <label for="facilitador">Facilitador</label>
-                    <input type="text" name="facilitador" class="form-control" id="facilitador" value="{{ old('facilitador') }}" placeholder="Inserte el Facilitador">
-                    @error('facilitador')
+              <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
+                <label for="sector_pertenece">Sector al que Pertenece</label>
+                <select class="form-control select2 select2-hidden-accessible" id="sector_pertenece" name="sector_pertenece" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('sector_pertenece') }}">
+                    <option disabled selected>Seleccione una opción</option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+                @error('sector_pertenece')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+                <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
+                    <label for="id_area_investigacion">Área de Investigación</label>
+                    <select class="form-control select2 select2-hidden-accessible" id="id_area_investigacion" name="id_area_investigacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_area_investigacion') }}">
+                        <option disabled selected>Seleccione una opción</option>
+                        @foreach ($areas as $area)
+                        <option value="{{$area->id}}">{{$area->nombreainvest}}</option>
+                        @endforeach
+                    </select>
+                    @error('id_area_investigacion')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
-                  </div>
+                </div>
 
-                  <div class="col-md-3 mb-3">
-                    <label for="fecha_ini">Fecha Inicio</label>
-                    <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="fecha_ini" id="fecha_ini" value="{{ old('fecha_ini') }}">
-                    @error('fecha_ini')
+                {{-- LINEA DE INVESTIGACION - TRAER DE LA BD - AL SELECCIONAR AREA SE DEBE MOSTRAR UNICAMENTE LA LINEA QUE LE CORRESPONDE --}}
+                <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
+                    <label for="sector_pertenece">Línea de Investigación</label>
+                    <select class="form-control select2 select2-hidden-accessible" id="sector_pertenece" name="sector_pertenece" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('sector_pertenece') }}">
+                        <option disabled selected>Seleccione una opción</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                    @error('sector_pertenece')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
-                  </div>
-
-                  <div class="col-md-3 mb-3">
-                      <label for="fecha_fin">Fecha Final</label>
-                      <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="fecha_fin" id="fecha_fin" value="{{ old('fecha_fin') }}">
-                      @error('fecha_fin')
-                      <span class="text-danger">{{ $message }}</span>
-                      @enderror
-                  </div>
-
-                  <div class="col-lg-3 col-md-3 mb-3">
-                    <label for="pais">País</label>
-                    <input type="text" name="pais" class="form-control" id="pais" value="{{ old('pais') }}" placeholder="Inserte la Institución">
-                    @error('pais')
-                    <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                  </div>
+                </div>
                 </div> {{-- end row --}}
+      
+                <div class="row">
+                               {{-- PROGRAMA ADSCRIBE - TRAER DE LA BD - RELACIONAR --}}    
+                <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
+                    <label for="sector_pertenece">Programa adscrito</label>
+                    <select class="form-control select2 select2-hidden-accessible" id="sector_pertenece" name="sector_pertenece" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('sector_pertenece') }}">
+                        <option disabled selected>Seleccione una opción</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                    @error('sector_pertenece')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
+                    <label for="estado_actual">Estado</label>
+                    <select class="form-control select2 select2-hidden-accessible" id="estado_actual" name="estado_actual" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('estado_actual') }}">
+                        <option disabled selected>Seleccione una opción</option>
+                        <option value="">Publicado</option>
+                        <option value="">Completo</option>
+                        <option value="">etcc ver opciones para poner</option>
+                    </select>
+                    @error('estado_actual')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+
+                    <div class="col-md-3 mb-3">
+                        <label for="periodo_vigencia_ini">Período de Inicio</label>
+                        <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="periodo_vigencia_ini" id="periodo_vigencia_ini" value="{{ old('periodo_vigencia_ini') }}">
+                        @error('periodo_vigencia_ini')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                      </div>
+
+                      <div class="col-md-3 mb-3">
+                        <label for="periodo_vigencia_fin">Período de Vigencia</label>
+                        <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="periodo_vigencia_fin" id="periodo_vigencia_fin" value="{{ old('periodo_vigencia_fin') }}">
+                        @error('periodo_vigencia_fin')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    </div> {{-- end row --}}
+                    
+
 
                 <div class="row">
+  
+                    <div class="col-lg-3 col-md-3 mb-3">
+                      <label for="entidad_financiera">Entidad Financiadora</label>
+                      <input type="text" name="entidad_financiera" class="form-control" id="entidad_financiera" value="{{ old('entidad_financiera') }}" placeholder="Inserte la Entidad Financiadora">
+                      @error('entidad_financiera')
+                      <span class="text-danger">{{ $message }}</span>
+                      @enderror
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 mb-3">
+                      <label for="monto_asignado">Monto Asignado</label>
+                      <input type="number" name="monto_asignado" class="form-control" id="monto_asignado" value="{{ old('monto_asignado') }}" placeholder="Inserte el Monto Asignado">
+                      @error('monto_asignado')
+                      <span class="text-danger">{{ $message }}</span>
+                      @enderror
+                    </div>
+
+                    {{-- SEDE EJECUTORA - TRAER DE LA BD - RELACIONAR --}}  
                     <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="modalidad">Modalidad</label>
+                        <label for="modalidad">Sede ejecutora</label>
                         <select class="form-control select2 select2-hidden-accessible" id="modalidad" name="modalidad" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('modalidad') }}">
                             <option disabled selected>Seleccione una opción</option>
-                            <option value="Presencial">Presencial</option>
-                            <option value="Virtual">Virtual</option>
-                            <option value="Semi-presencial">Semi-presencial</option>
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
                         </select>
                         @error('modalidad')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <div class="col-lg-3 col-md-3 mb-3">
-                        <label for="lugar">Lugar del Seminario</label>
-                        <input type="text" name="lugar" class="form-control" id="lugar" value="{{ old('lugar') }}" placeholder="Inserte el Lugar">
-                        @error('lugar')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                      </div>
-
-                      <div class="col-lg-3 col-md-3 mb-3">
-                        <label for="horas">Horas</label>
-                        <input type="text" name="horas" class="form-control" id="horas" value="{{ old('horas') }}" placeholder="Inserte las Horas">
-                        @error('horas')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                      </div>
-
-                      <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="tipo_participacion">Tipo de Participación</label>
-                        <select class="form-control select2 select2-hidden-accessible" id="tipo_participacion" name="tipo_participacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('tipo_participacion') }}">
+                    <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
+                        <label for="modalidad">Facultad ejecutora</label>
+                        <select class="form-control select2 select2-hidden-accessible" id="modalidad" name="modalidad" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('modalidad') }}">
                             <option disabled selected>Seleccione una opción</option>
-                            <option value="Presentador Principal">Presentador Principal</option>
-                            <option value="Asistente">Asistente</option>
-                            <option value="Coordinador">Coordinador</option>
-                            <option value="Organizador">Organizador</option>
-                            <option value="Evaluador">Evaluador</option>
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
                         </select>
-                        @error('tipo_participaciones')
+                        @error('modalidad')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                </div> {{-- end row --}}
 
-                    </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 mb-3">
+                        <label for="sitio_web">Sitio Web del Proyecto</label>
+                        <input type="text" name="sitio_web" class="form-control" id="sitio_web" value="{{ old('sitio_web') }}" placeholder="URL del Sitio Web del Proyecto">
+                        @error('sitio_web')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                      </div>
+                    </div> {{-- end row --}}
+
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 mb-3">
+                        <label for="enlace_video">Enlace a Video del Proyecto</label>
+                        <input type="text" name="enlace_video" class="form-control" id="enlace_video" value="{{ old('enlace_video') }}" placeholder="Enlace a Video del Proyecto">
+                        @error('enlace_video')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                      </div>
+                </div> {{-- end row --}}
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-default">
@@ -186,4 +255,38 @@
             $('#successMessage').fadeOut('fast');
         }, 3000); // 3 segundos
         </script>
+
+
+
+
+{{-- SCRIPT PARA TABLA AREA DE INVESTIGACION Y LINEA DE INVESTIGACION --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Definir un objeto que mapee cada área con sus líneas de investigación
+        var areasLineasInvestigacion = {
+            "Agroindustria": ["Innocuidad Alimentaria", "Prospección de Agroindustria", "Procesamiento y Análisis Alimentario", "Tecnología Agroindustrial", "Aprovechamiento de Residuos Agroindustriales", "Tecnología de los Alimentos"],
+            "Biotecnología": ["Bioinformática", "Química Informática", "Ciencias Ómicas (Genómica, Proteómica, Metabolómica, Transcriptómica)", "Ingeniería de Alimentos", "Biología de Sistemas", "Ingeniería Genética y Biología Sintética", "Bioprocesos y Procesos Industriales", "Análisis de Datos y Aprendizaje Automático para Ciencias Biológicas"],
+            // Agrega más áreas y sus líneas de investigación aquí
+        };
+
+        // Cuando cambia la selección del área de investigación
+        $('#areaInvestigacion').change(function() {
+            var areaSeleccionada = $(this).val();
+            var lineasInvestigacion = areasLineasInvestigacion[areaSeleccionada];
+
+            // Limpiar el select de líneas de investigación
+            $('#lineaInvestigacion').empty();
+
+            // Agregar las opciones correspondientes al select de líneas de investigación
+            if (lineasInvestigacion) {
+                lineasInvestigacion.forEach(function(linea) {
+                    $('#lineaInvestigacion').append('<option value="' + linea + '">' + linea + '</option>');
+                });
+            } else {
+                $('#lineaInvestigacion').append('<option value="">No hay líneas de investigación disponibles</option>');
+            }
+        });
+    });
+</script>
 @stop

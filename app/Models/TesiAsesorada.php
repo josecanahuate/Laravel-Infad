@@ -25,12 +25,6 @@ class TesiAsesorada extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-
-    public function areasInvestigacion()
-    {
-    return $this->belongsToMany(AreaInvestigacionTesiAsesorada::class, 'area_investigaciones_tesis_asesoradas', 'id_tesis_asesorada', 'id_area_investigacion');
-    }
-
     public function estatus()
     {
         return $this->belongsTo(Estatus::class, 'idestatus');
@@ -41,19 +35,9 @@ class TesiAsesorada extends Model
         return $this->belongsTo(ProgramaAdscribe::class, 'id_programa_adscribe');
     }
 
-    public function sedeEjecutora()
-    {
-        return $this->belongsTo(SedeEjecutora::class, 'id_sede_ejecutora');
-    }
-
     public function sede()
     {
         return $this->belongsTo(Sede::class, 'id_sede');
-    }
-
-    public function unidadFacultad()
-    {
-        return $this->belongsTo(UnidadFacultad::class, 'id_unidad_facultad');
     }
 
     public function gradoAcademico()
@@ -71,13 +55,9 @@ class TesiAsesorada extends Model
         return $this->belongsTo(EnfasisActualizacion::class, 'idenfasis');
     }
 
-    public function facultadEjecutora()
+    //relacion facultades->tesis
+    public function facultad()
     {
-        return $this->belongsTo(FacultadEjecutora::class, 'idfacultadej');
-    }
-
-    public function tesisAsesoradas()
-    {
-        return $this->hasMany(TesiAsesorada::class, 'id_unidad_facultad');
+    return $this->belongsTo(Facultades::class, 'id_facultad');
     }
 }

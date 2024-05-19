@@ -6,6 +6,7 @@ use App\Models\ParticipacionCongreso;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ParCongresoStore;
+use App\Http\Requests\UpdateParCongreso;
 
 class ParticipacionCongresoController extends Controller
 {
@@ -47,19 +48,8 @@ class ParticipacionCongresoController extends Controller
     }
 
 
-    public function update(Request $request, ParticipacionCongreso $participacion_congreso)
+    public function update(UpdateParCongreso $request, ParticipacionCongreso $participacion_congreso)
     {
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'fecha_inicio' => 'nullable | date',
-            'fecha_fin' => 'nullable | date',
-            'lugar_congreso' => 'nullable|string',
-            'pais' => 'nullable',
-            'publicacion_proceeding' => 'nullable|in:Presentado y Aceptado,Presentado pero no Aceptado,No Presentado,Provisional',
-            'tipo_participaciones' => 'required|in:Presentador Principal,Asistente,Coordinador,Organizador,Evaluador'
-            /* 'ruta' => $request->ruta */
-        ]);
-
         $participacion_congreso->update([
             'titulo' => $request->titulo,
             'fecha_inicio' => $request->fecha_inicio,

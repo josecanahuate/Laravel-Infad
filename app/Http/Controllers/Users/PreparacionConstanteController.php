@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Users;
 use App\Models\PreparacionConstante;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PartConstanteStore;
+use App\Http\Requests\UpdatePartConstante;
 
 class PreparacionConstanteController extends Controller
 {
@@ -21,21 +23,8 @@ class PreparacionConstanteController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(PartConstanteStore $request)
     {
-
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'centro_estudio' => 'required',
-            'modalidad' => 'required|in:Presencial,Virtual,Semi-presencial',
-            'pais' => 'required|string|max:255',
-            'estatus_prepconstante' => 'required|in:Cursando Actualmente,Completo',
-            'duracion' => 'required',
-            'ano_titulo' => 'nullable',
-            /* 'ruta' => 'required' */
-        ]);
-
-
         $preparacionconstante = new PreparacionConstante([
             'titulo' => $request->titulo,
             'centro_estudio' => $request->centro_estudio,
@@ -59,19 +48,8 @@ class PreparacionConstanteController extends Controller
     }
 
 
-    public function update(Request $request, PreparacionConstante $preparacion_constante)
+    public function update(UpdatePartConstante $request, PreparacionConstante $preparacion_constante)
     {
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'centro_estudio' => 'required',
-            'modalidad' => 'required|in:Presencial,Virtual,Semi-presencial',
-            'pais' => 'required|string|max:255',
-            'estatus_prepconstante' => 'required|in:Cursando Actualmente,Completo',
-            'duracion' => 'required',
-            'ano_titulo' => 'nullable'
-            /* 'ruta' => 'required' */
-        ]);
-
         $preparacion_constante->update([
             'titulo' => $request->titulo,
             'centro_estudio' => $request->centro_estudio,

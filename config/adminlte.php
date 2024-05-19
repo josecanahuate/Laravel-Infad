@@ -373,7 +373,8 @@ return [
                 ],
                 [
                     'text' => 'Otras Publicaciones',
-                    'url' => '#',
+                    'route' => 'users.otras_publicaciones.index',
+                    'icon' => 'fa fa-fw fa-university'
                 ],
             ],
         ],

@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Users;
 use App\Models\PreparacionFormal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\PartFormalStore;
+use App\Http\Requests\UpdatePartFormal;
 
 class PreparacionFormalController extends Controller
 {
@@ -22,7 +23,7 @@ class PreparacionFormalController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(PartFormalStore $request)
     {
         $preparacionformal = new PreparacionFormal([
             'estatus_prepformal' => $request->estatus_prepformal,
@@ -48,19 +49,8 @@ class PreparacionFormalController extends Controller
     }
 
 
-    public function update(Request $request, PreparacionFormal $preparacion_formal)
+    public function update(UpdatePartFormal $request, PreparacionFormal $preparacion_formal)
     {
-        $request->validate([
-            'estatus_prepformal' => 'required',
-            'titulo' => 'required|string|max:255',
-            'ano_titulo' => 'nullable',
-            'pais' => 'nullable|string',
-            'tipo' => 'required|in:Nacional,Extranjero',
-            'modalidad' => 'required|in:Presencial,Virtual,Semi-presencial',
-            'institucion_superior' => 'required|string|max:255',
-            'financiamiento' => 'required|in:Recursos Propios,Beca,Financiamiento',
-        ]);
-
         $preparacion_formal->update([
             'estatus_prepformal' => $request->estatus_prepformal,
             'titulo' => $request->titulo,

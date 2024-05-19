@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('preparacion_constante', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            //$table->foreignId('id_enfasis_actualizacion')->constrained('enfasis_actualizacion')->onDelete('cascade');
+            $table->unsignedBigInteger('id_enfasis_actualizacion');
+            $table->foreign('id_enfasis_actualizacion')->references('idenfasis')->on('enfasis_actualizacion');
             $table->string('titulo', 120);
             $table->string('centro_estudio', 120);
             $table->enum('modalidad', ['Presencial', 'Virtual', 'Semi-presencial']);
-            $table->string('pais', 120)->nullable();
+            $table->string('pais', 120);
             $table->enum('estatus_prepconstante', ['Cursando Actualmente', 'Completo']);
-            $table->string('ano_titulo', 120)->nullable();
+            $table->string('ano_titulo', 120);
             $table->string('duracion', 120);
             //$table->string('ruta', 250)->nullable();;
             $table->timestamps();

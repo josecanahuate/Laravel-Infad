@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Users;
 use App\Models\ProyectoInscrito;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AreaInvestigacion;
 
 class ProyectoInscritoController extends Controller
 {
@@ -14,10 +15,19 @@ class ProyectoInscritoController extends Controller
         return view('users.proyectos_inscritos.index', compact('proyectos'));
     }
 
-
+/* 
     public function create()
     {
         return view('users.proyectos_inscritos.create');
+    }
+ */
+
+    public function create()
+    {
+        //$areas = AreaInvestigacion::pluck('nombreainvest', 'id_areainv'); //pluck->relacion
+        $areas = AreaInvestigacion::all();
+        return view('users.proyectos_inscritos.create', compact('areas'));
+        //return view('admin.posts.create', compact('categories', 'areas'));
     }
 
 
@@ -25,7 +35,7 @@ class ProyectoInscritoController extends Controller
     {
         $proyectosinscritos = new ProyectoInscrito([
             'titulo_investigacion' => $request->titulo_investigacion,
-            'sector_pertenece' => $request->sector_pertenece, //enum
+            'sector_pertenece' => $request->sector_pertenece,
             'linea_investigacion' => $request->linea_investigacion,
             'periodo_vigencia_ini' => $request->periodo_vigencia_ini,
             'periodo_vigencia_fin' => $request->periodo_vigencia_fin,
@@ -35,7 +45,16 @@ class ProyectoInscritoController extends Controller
             'sitio_web' => $request->sitio_web,
             'enlace_video,' => $request->enlace_video,
             /* 'ruta,' => $request->ruta, */
+
+            //PARA CAMPOS RELACIONADOS QUE SE RECUPERAN EN EL FORMULARIO
+/*             $departamento = Departamento::find($request->departamento_id); // Suponiendo que el campo de selección se llama "departamento_id"
+            $modelo->departamento()->associate($departamento); // Asociar el departamento al modelo */
         ]);
+
+        /*if($request->areas) {
+            $proyectosinscritos->areas()->attach($request->areas);
+        }*/
+
         $proyectosinscritos->user_id = auth()->id();
         $proyectosinscritos->save();
 
@@ -52,29 +71,29 @@ class ProyectoInscritoController extends Controller
     public function update(Request $request, ProyectoInscrito $proyectos_inscrito)
     {
         $request->validate([
-            'titulo' => 'required|string|max:255',
-            'institucion' => 'required|string|max:255',
-            'facilitador' => 'required|string|max:255',
-            'fecha_ini' => 'required|date',
-            'fecha_fin' => 'required|date',
-            'pais' => 'string|max:255',
-            'modalidad' => 'required|in:Presencial,Virtual,Semi-presencial',
-            'lugar' => 'string|max:255',
-            'horas' => 'integer',
-            'tipo_participacion' => 'required|in:Presentador Principal,Asistente,Coordinador,Organizador,Evaluador'
+            'titulo_investigacion' => 'required|string|max:255',
+            /* 'sector_pertenece' => 'required|string|max:255',
+            'linea_investigacion' => 'required|string|max:255', */
+            'periodo_vigencia_ini' => 'required|date',
+            'periodo_vigencia_fin' => 'required|date',
+            /* 'estado_actual' => 'nullable|string|max:255', */
+            'entidad_financiera' => 'nullable|string',
+            'monto_asignado' => 'integer',
+            'sitio_web' => 'nullable|string',
+            'enlace_video' => 'nullable|string',
         ]);
 
         $proyectos_inscrito->update([
-            'titulo' => $request->titulo,
-            'institucion' => $request->institucion,
-            'facilitador' => $request->facilitador,
-            'fecha_ini' => $request->fecha_ini,
-            'fecha_fin' => $request->fecha_fin,
-            'pais' => $request->pais,
-            'modalidad' => $request->modalidad,
-            'lugar' => $request->lugar,
-            'horas' => $request->horas,
-            'tipo_participacion,' => $request->tipo_participacion,
+            'titulo_investigacion' => $request->titulo_investigacion,
+            'sector_pertenece' => $request->sector_pertenece, //enum
+            'linea_investigacion' => $request->linea_investigacion,
+            'periodo_vigencia_ini' => $request->periodo_vigencia_ini,
+            'periodo_vigencia_fin' => $request->periodo_vigencia_fin,
+            'estado_actual' => $request->estado_actual,
+            'entidad_financiera' => $request->entidad_financiera,
+            'monto_asignado' => $request->monto_asignado,
+            'sitio_web' => $request->sitio_web,
+            'enlace_video,' => $request->enlace_video,
         ]);
 
         return redirect()->route('users.proyectos_inscritos.index')->with('success', 'Registro actualizado con éxito!!');

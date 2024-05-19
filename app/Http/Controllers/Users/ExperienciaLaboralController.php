@@ -6,9 +6,9 @@ use App\Models\ExperienciaLaboral;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEmpleo;
+use App\Http\Requests\UpdateEmpleo;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
 
 
 class ExperienciaLaboralController extends Controller
@@ -62,20 +62,9 @@ class ExperienciaLaboralController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ExperienciaLaboral $experienciaLaboral)
+    public function update(UpdateEmpleo $request, ExperienciaLaboral $experienciaLaboral)
     {
-        $request->validate([
-            'empresa' => 'required|max:255',
-            'cargo' => 'required|string',
-            'estatus_empleo' => 'required|in:Concluido,Actualmente laborando',
-            'sector_empresa' => 'required',
-            'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'date|after_or_equal:fecha_inicio',
-            'pais' => 'string'
-            /* 'estatus' => 'required|string|in:pendiente,aprobado,rechazado', */
-        ]);
 
-        // Actualizar la experiencia laboral
         $experienciaLaboral->update([
             'empresa' => $request->empresa,
             'cargo' => $request->cargo,

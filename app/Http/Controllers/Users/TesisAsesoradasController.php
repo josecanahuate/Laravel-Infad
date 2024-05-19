@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Users;
 use App\Models\TesiAsesorada;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\TesiStore;
+use App\Http\Requests\UpdateTesis;
+use App\Models\AreaInvestigacion;
 
 class TesisAsesoradasController extends Controller
 {
@@ -17,11 +19,14 @@ class TesisAsesoradasController extends Controller
 
     public function create()
     {
-        return view('users.tesis_asesoradas.create');
+        //$areas = AreaInvestigacion::pluck('nombreainvest', 'id_areainv'); //pluck->relacion
+        $areas = AreaInvestigacion::all();
+        return view('users.tesis_asesoradas.create', compact('areas'));
+        //return view('admin.posts.create', compact('categories', 'areas'));
     }
 
 
-    public function store(Request $request)
+    public function store(TesiStore $request)
     {
         $tesisasesoradas = new TesiAsesorada([
             'titulo' => $request->titulo,
@@ -40,21 +45,15 @@ class TesisAsesoradasController extends Controller
 
     public function edit(TesiAsesorada $tesis_asesorada)
     {
-    return view('users.tesis_asesoradas.edit', compact('tesis_asesorada'));
+        //$categories = Category::pluck('name', 'id'); //pluck->relacion
+        $areas = AreaInvestigacion::all();
+        return view('users.tesis_asesoradas.edit', compact('tesis_asesorada','areas'));
     }
 
+    
 
-    public function update(Request $request, TesiAsesorada $tesis_asesorada)
+    public function update(UpdateTesis $request, TesiAsesorada $tesis_asesorada)
     {
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'fecha_sustentacion' => 'nullable | date',
-            'pais' => 'nullable',
-            'publicacion_revista' => 'nullable|in:No,Si',
-            'financiacion_externa' => 'nullable|in:No,Si',
-            /* 'ruta' => $request->ruta */
-        ]);
-
         $tesis_asesorada->update([
             'titulo' => $request->titulo,
             'fecha_sustentacion' => $request->fecha_sustentacion,

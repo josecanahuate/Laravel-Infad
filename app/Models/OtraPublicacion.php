@@ -9,12 +9,14 @@ class OtraPublicacion extends Model
 {
     use HasFactory;
 
+    protected $table = 'otras_publicaciones';
+
     protected $fillable = [
         'titulo',
         'fecha',
         'isbn',
         'editorial',
-        'ruta',
+        /* 'ruta', */
     ];
 
     public function user()

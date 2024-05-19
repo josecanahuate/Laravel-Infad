@@ -7,16 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class DatoPersonal extends Model
 {
+    protected $table = 'datos_personales';
+
     use HasFactory;
 
-/*     protected $fillable = [
+     protected $fillable = [
         'cedula', 'nombres', 'apellidos', 'fecha_nacimiento', 'genero', 'estado_civil', 'nacionalidad',
         'dir_postal', 'correo_inst', 'tel_oficina', 'tel_residencia', 'email', 'tel_celular',
         'nivel_academico', 'id_sede', 'id_facultad', 'id_categoria', 'id_area_investigacion',
         'cargo', 'id_funcion_principal', 'area_interes', 'imgprofile'
-    ]; */
+    ];
 
-    protected $guarded = ['id', 'token'];
+    //protected $guarded = ['id', 'token'];
 
 
     public function user()
@@ -44,9 +46,10 @@ class DatoPersonal extends Model
     return $this->belongsTo(FuncionPrincipal::class, 'id_funcion_principal');
     }
 
-/*     public function areaInvestigacion()
+    //area investigacion
+    public function areaInvestigacion()
     {
     return $this->belongsTo(AreaInvestigacion::class, 'id_area_investigacion');
-    } */
+    } 
 
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SeminarioStore extends FormRequest
+class UpdateSeminarios extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,13 @@ class SeminarioStore extends FormRequest
         return [
             'titulo' => 'required|string|max:255',
             'institucion' => 'required|string|max:255',
-            'facilitador' => 'nullable|string|max:255',
+            'facilitador' => 'required|string|max:255',
             'fecha_ini' => 'required|date',
             'fecha_fin' => 'required|date',
-            'pais' => 'required|string|max:255',
+            'pais' => 'nullable|string|max:255',
             'modalidad' => 'required|in:Presencial,Virtual,Semi-presencial',
-            'lugar' => 'required|string|max:255',
-            'horas' => 'required|integer',
+            'lugar' => 'nullable|string|max:255',
+            'horas' => 'nullable|integer',
             'tipo_participacion' => 'required|in:Presentador Principal,Asistente,Coordinador,Organizador,Evaluador',
             /* 'ruta' => '' */
         ];
@@ -52,19 +52,13 @@ class SeminarioStore extends FormRequest
             'fecha_ini.date' => 'La fecha de inicio debe ser una fecha válida.',
             'fecha_fin.required' => 'La fecha de fin es obligatoria.',
             'fecha_fin.date' => 'La fecha de fin debe ser una fecha válida.',
-
-            'pais.required' => 'El país es requerido.',
             'pais.string' => 'El país debe ser una cadena de caracteres.',
             'pais.max' => 'El país no puede tener más de :max caracteres.',
             'modalidad.required' => 'La modalidad es obligatoria.',
             'modalidad.in' => 'La modalidad seleccionada no es válida.',
-
-            'lugar.required' => 'El lugar es requerido.',
             'lugar.string' => 'El lugar debe ser una cadena de caracteres.',
             'lugar.max' => 'El lugar no puede tener más de :max caracteres.',
             'horas.integer' => 'Las horas debe ser un número entero.',
-
-
             'tipo_participacion.required' => 'El tipo de participación es requerido.',
             'tipo_participacion.in' => 'El tipo de participación seleccionado no es válido.',
         ];

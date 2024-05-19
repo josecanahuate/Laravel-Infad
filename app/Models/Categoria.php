@@ -24,4 +24,9 @@ class Categoria extends Model
     {
         return $this->hasMany(TesiAsesorada::class, 'idcategoria');
     }
+
+    public function datosPersonales()
+    {
+        return $this->hasMany(DatoPersonal::class, 'id_categoria');
+    }
 }

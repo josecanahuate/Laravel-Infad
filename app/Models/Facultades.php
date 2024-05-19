@@ -26,10 +26,13 @@ class Facultades extends Model
         return $this->hasMany(DatoPersonal::class, 'id_facultad');
     }
 
-    public function facultadesEjecutoras()
+    public function tesisAsesoradas()
     {
-        return $this->hasMany(FacultadEjecutora::class, 'idfacultad');
+        return $this->hasMany(TesiAsesorada::class, 'id_facultad');
     }
 
-
+    public function proyectosInscritos()
+    {
+        return $this->hasMany(ProyectoInscrito::class, 'id_facultad');
+    }
 }

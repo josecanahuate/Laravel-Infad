@@ -15,22 +15,46 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('titulo_investigacion');
-            $table->string('sector_pertenece');
-            //$table->foreignId('id_area_investigacion')->constrained('area_investigaciones_proyectos_inscritos')->onDelete('cascade');
+            $table->enum('sector_pertenece', [
+                'Tecnología',
+                'Salud',
+                'Educación',
+                'Finanzas',
+                'Manufactura',
+                'Comercio minorista',
+                'Agricultura',
+                'Construcción',
+                'Energía',
+                'Medios de comunicación',
+                'Servicios profesionales',
+                'Bienes raíces',
+                'Transporte',
+                'Hotelería y turismo',
+                'Entretenimiento',
+                'Consultoría',
+                'ONGs y organizaciones sin fines de lucro',
+                'Gobierno y sector público',
+                'Investigación y desarrollo (I+D)'
+            ]);
+            $table->unsignedBigInteger('id_area_investigacion');
             $table->string('linea_investigacion')->nullable(); //enum
-            //$table->foreignId('id_programa_adscribe')->constrained('programa_adscribe')->onDelete('cascade');
-            $table->year('periodo_vigencia_ini')->nullable();
-            $table->year('periodo_vigencia_fin')->nullable();
+            $table->date('periodo_vigencia_ini')->nullable();
+            $table->date('periodo_vigencia_fin')->nullable();
             $table->enum('estado_actual', ['Cursando Actualmente', 'Completo']);
             $table->string('entidad_financiera')->nullable();
             $table->integer('monto_asignado')->nullable();
-            //$table->foreignId('id_sede_ejecutora')->constrained('sede_ejecutora')->onDelete('cascade');
-            //$table->foreignId('idfacultadej')->constrained('facultad_ejecutora')->onDelete('cascade');
+            $table->unsignedBigInteger('id_facultad');
+            $table->unsignedBigInteger('id_sede'); 
+            $table->unsignedBigInteger('id_programa_adscribe'); 
             $table->string('sitio_web')->nullable()->url();
             $table->string('enlace_video')->nullable()->url();            
             //$table->string('ruta')->nullable();
-            //$table->foreignId('id_sede')->constrained('sedes')->onDelete('cascade'); //revisar
             $table->timestamps();
+
+            $table->foreign('id_area_investigacion')->references('id_areainv')->on('areas_investigacion');
+            $table->foreign('id_facultad')->references('idfacultad')->on('facultades'); // facultades
+            $table->foreign('id_sede')->references('idsede')->on('sedes'); // sedes
+            $table->foreign('id_programa_adscribe')->references('idadscribe')->on('programa_adscribe'); // programa adscribe
         });
     }
 
