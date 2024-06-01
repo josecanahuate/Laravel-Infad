@@ -54,14 +54,14 @@ class StoreEmpleo extends FormRequest
     public function attributes(): array
     {
         return [
-            'empresa' => 'Empresa',
-            'cargo' => 'Cargo',
-            'estatus_empleo' => 'Estatus de empleo',
-            'sector_empresa' => 'Sector de la empresa',
-            'fecha_inicio' => 'Fecha de inicio',
-            'fecha_fin' => 'Fecha de fin',
-            'pais' => 'País',
-            'estatus' => 'Estatus'
+            'empresa' => 'empresa',
+            'cargo' => 'cargo',
+            'estatus_empleo' => 'estatus de empleo',
+            'sector_empresa' => 'sector de la empresa',
+            'fecha_inicio' => 'fecha de inicio',
+            'fecha_fin' => 'fecha de fin',
+            'pais' => 'país',
+            'estatus' => 'estatus'
         ];
     }
 

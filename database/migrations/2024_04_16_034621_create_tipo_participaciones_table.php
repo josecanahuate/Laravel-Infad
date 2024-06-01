@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('tipo_participaciones', function (Blueprint $table) {
             $table->id('idparticipaciones');
             $table->string('nombparticipaciones', 100);
-            $table->string('descripcion', 100)->nullable();
             $table->timestamps();
         });
     }

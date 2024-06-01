@@ -52,22 +52,13 @@
                   
                 <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
                     <label for="tipo_participaciones">Grado Académico</label>
-                    <select class="form-control select2 select2-hidden-accessible" id="tipo_participaciones" name="tipo_participaciones" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('tipo_participaciones') }}">
+                    <select class="form-control select2 select2-hidden-accessible" id="id_grado_academico" name="id_grado_academico" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_grado_academico') }}">
                         <option disabled selected>Seleccione una opción</option>
-     {{--                    @foreach ($areas as $area)
-                        <option value="{{$area->id}}">{{$area->nombreainvest}}</option>
-                        @endforeach --}}
-
-
-                        
-                        {{-- COLOCAR DE FORMA DINAMICA --}}
-{{--                         <option value="Licenciatura">Licenciatura</option>
-                        <option value="Maestria">Maestria</option>
-                        <option value="Doctorado">Doctorado</option> --}}
-
-
+                        @foreach ($grados as $grado)
+                        <option value="{{$grado->id}}">{{$grado->nombgradoacademico}}</option>
+                        @endforeach
                     </select>
-                    @error('tipo_participaciones')
+                    @error('id_grado_academico')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
@@ -77,18 +68,13 @@
                 <div class="row">
                     <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
                         <label for="tipo_participaciones">Unidad / Facultad</label>
-                        <select class="form-control select2 select2-hidden-accessible" id="tipo_participaciones" name="tipo_participaciones" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('tipo_participaciones') }}">
+                        <select class="form-control select2 select2-hidden-accessible" id="id_facultad" name="id_facultad" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_facultad') }}">
                             <option disabled selected>Seleccione una opción</option>
-     {{--                        @foreach ($unidades as $unidad)
-                            <option value="{{$unidad->id}}">{{$unidad->nombre}}</option>
-                            @endforeach --}}
-       {{--                      Facultad de Ing. Civil
-                            Facultad de Ing. Eléctrica
-                            Facultad de Ing. Industrial
-                            Facultad de Ing. Mecánica
-                            Facultad de Ing. de Sistemas Computacionales --}}
+                            @foreach ($facultades as $facultad)
+                            <option value="{{$facultad->id}}">{{$facultad->nombfacultad}}</option>
+                            @endforeach
                         </select>
-                        @error('tipo_participaciones')
+                        @error('id_facultad')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

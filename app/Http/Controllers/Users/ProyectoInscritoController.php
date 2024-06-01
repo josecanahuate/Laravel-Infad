@@ -6,6 +6,9 @@ use App\Models\ProyectoInscrito;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AreaInvestigacion;
+use App\Models\Facultades;
+use App\Models\ProgramaAdscribe;
+use App\Models\Sede;
 
 class ProyectoInscritoController extends Controller
 {
@@ -24,10 +27,11 @@ class ProyectoInscritoController extends Controller
 
     public function create()
     {
-        //$areas = AreaInvestigacion::pluck('nombreainvest', 'id_areainv'); //pluck->relacion
         $areas = AreaInvestigacion::all();
-        return view('users.proyectos_inscritos.create', compact('areas'));
-        //return view('admin.posts.create', compact('categories', 'areas'));
+        $sedes = Sede::all();
+        $facultades = Facultades::all();
+        $programas = ProgramaAdscribe::all();
+        return view('users.proyectos_inscritos.create', compact('areas', 'sedes', 'facultades', 'programas'));
     }
 
 

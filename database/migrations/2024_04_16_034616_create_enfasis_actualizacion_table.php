@@ -14,6 +14,7 @@ return new class extends Migration
     Schema::create('enfasis_actualizacion', function (Blueprint $table) {
         $table->id('idenfasis');
         $table->string('nombrenfasis', 75);
+        $table->timestamps();
     });
     }
 

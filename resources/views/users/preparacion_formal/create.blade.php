@@ -21,17 +21,14 @@
         <div class="row">            
                 {{-- COLOCAR DE FORMA DINAMICA - TRAER DE TABLA DINAMICA --}}
               <div class="form-group col-lg-3 col-md-3 mb-3">
-                <label for="idioma">Grado Académico</label>
-                <select class="form-control" id="idioma" name="idioma" value="{{ old('idioma') }}">
+                <label for="grados">Grado Académico</label>
+                <select class="form-control" id="id_grado_academico" name="id_grado_academico" value="{{ old('id_grado_academico') }}">
                     <option disabled selected>Seleccione una opción</option>
-                    <option value="Tecnico">Técnico</option>
-                    <option value="Licenciatura">Licenciatura</option>
-                    <option value="Especializacion">Especialización</option>
-                    <option value="Maestria">Maestría</option>
-                    <option value="Doctorado">Doctorado</option>
-                    <option value="Post Doctorado">Post Doctorado</option>
+                    @foreach ($grados as $grado)
+                    <option value="{{$grado->id}}">{{$grado->nombgradoacademico}}</option>
+                    @endforeach
                 </select>
-                @error('idioma')
+                @error('id_grado_academico')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>

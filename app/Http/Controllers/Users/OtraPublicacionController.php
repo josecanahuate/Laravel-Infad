@@ -6,6 +6,7 @@ use App\Models\OtraPublicacion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AreaInvestigacion;
+use App\Models\TipoPublicacion;
 
 class OtraPublicacionController extends Controller
 {
@@ -19,7 +20,8 @@ class OtraPublicacionController extends Controller
     
     public function create()
     {
-        return view('users.otras_publicaciones.create');
+        $publicaciones = TipoPublicacion::all();
+        return view('users.otras_publicaciones.create', compact('publicaciones'));
     }
     
 

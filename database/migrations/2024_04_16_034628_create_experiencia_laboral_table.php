@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('empresa');
             $table->string('cargo');
-            $table->enum('estatus_empleo', ['Terminado', 'Actualmente laborando']);
+            $table->enum('estatus_empleo', ['Concluido', 'Actualmente laborando']);
             $table->enum('sector_empresa', [
                 'Tecnología',
                 'Salud',
@@ -36,8 +36,7 @@ return new class extends Migration
                 'Consultoría',
                 'ONGs y organizaciones sin fines de lucro',
                 'Gobierno y sector público',
-                'Investigación y desarrollo (I+D)',
-                'Otros (especificar)'
+                'Investigación y desarrollo (I+D)'
             ]);
             $table->date('fecha_inicio');
             $table->date('fecha_fin');

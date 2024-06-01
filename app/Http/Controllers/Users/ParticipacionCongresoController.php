@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ParCongresoStore;
 use App\Http\Requests\UpdateParCongreso;
+use App\Models\TipoParticipacion;
 
 class ParticipacionCongresoController extends Controller
 {
@@ -19,7 +20,8 @@ class ParticipacionCongresoController extends Controller
 
     public function create()
     {
-        return view('users.participacion_congreso.create');
+        $participaciones = TipoParticipacion::all();
+        return view('users.participacion_congreso.create', compact('participaciones'));
     }
 
 

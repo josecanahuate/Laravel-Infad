@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SeminarioStore;
 use App\Http\Requests\UpdateSeminarios;
+use App\Models\TipoParticipacion;
 
 class SeminariosDictadosController extends Controller
 {
@@ -19,7 +20,8 @@ class SeminariosDictadosController extends Controller
 
     public function create()
     {
-        return view('users.seminarios_dictados.create');
+        $participaciones = TipoParticipacion::all();
+        return view('users.seminarios_dictados.create', compact('participaciones'));
     }
 
 

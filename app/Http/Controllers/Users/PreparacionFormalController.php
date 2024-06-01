@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PartFormalStore;
 use App\Http\Requests\UpdatePartFormal;
+use App\Models\GradoAcademico;
 
 class PreparacionFormalController extends Controller
 {
@@ -19,7 +20,8 @@ class PreparacionFormalController extends Controller
 
     public function create()
     {
-        return view('users.preparacion_formal.create');
+        $grados = GradoAcademico::all();
+        return view('users.preparacion_formal.create', compact('grados'));
     }
 
 

@@ -10,6 +10,7 @@ class TipoParticipacion extends Model
     use HasFactory;
 
     protected $primaryKey = 'idparticipaciones';
+    protected $table = 'tipo_participaciones';
 
     //relaciones
     public function participaciones()

@@ -100,17 +100,15 @@
                         @enderror
                       </div>
 
-                      <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="tipo_participacion">Tipo de Participación</label>
-                        <select class="form-control select2 select2-hidden-accessible" id="tipo_participacion" name="tipo_participacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('tipo_participacion') }}">
+                    <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
+                        <label for="tipo_participaciones">Tipo de Participación</label>
+                        <select class="form-control select2 select2-hidden-accessible" id="id_tipo_participacion" name="id_tipo_participacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_tipo_participacion') }}">
                             <option disabled selected>Seleccione una opción</option>
-                            <option value="Presentador Principal">Presentador Principal</option>
-                            <option value="Asistente">Asistente</option>
-                            <option value="Coordinador">Coordinador</option>
-                            <option value="Organizador">Organizador</option>
-                            <option value="Evaluador">Evaluador</option>
+                            @foreach ($participaciones as $participacion)
+                            <option value="{{$participacion->id}}">{{$participacion->nombparticipaciones}}</option>
+                            @endforeach
                         </select>
-                        @error('tipo_participaciones')
+                        @error('id_tipo_participacion')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

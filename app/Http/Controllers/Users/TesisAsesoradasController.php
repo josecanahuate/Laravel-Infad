@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TesiStore;
 use App\Http\Requests\UpdateTesis;
 use App\Models\AreaInvestigacion;
+use App\Models\Facultades;
+use App\Models\GradoAcademico;
+use App\Models\ProgramaAdscribe;
+use App\Models\Sede;
 
 class TesisAsesoradasController extends Controller
 {
@@ -19,10 +23,10 @@ class TesisAsesoradasController extends Controller
 
     public function create()
     {
-        //$areas = AreaInvestigacion::pluck('nombreainvest', 'id_areainv'); //pluck->relacion
         $areas = AreaInvestigacion::all();
-        return view('users.tesis_asesoradas.create', compact('areas'));
-        //return view('admin.posts.create', compact('categories', 'areas'));
+        $grados = GradoAcademico::all();
+        $facultades = Facultades::all();
+        return view('users.tesis_asesoradas.create', compact('areas', 'grados', 'facultades'));
     }
 
 

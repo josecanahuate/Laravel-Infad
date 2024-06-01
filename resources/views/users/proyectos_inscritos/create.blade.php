@@ -74,14 +74,14 @@
                 <div class="row">
                                {{-- PROGRAMA ADSCRIBE - TRAER DE LA BD - RELACIONAR --}}    
                 <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                    <label for="sector_pertenece">Programa adscrito</label>
-                    <select class="form-control select2 select2-hidden-accessible" id="sector_pertenece" name="sector_pertenece" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('sector_pertenece') }}">
+                    <label for="Programas">Programa adscrito</label>
+                    <select class="form-control select2 select2-hidden-accessible" id="id_programa_adscribe" name="id_programa_adscribe" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_programa_adscribe') }}">
                         <option disabled selected>Seleccione una opción</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
+                        @foreach ($programas as $programa)
+                        <option value="{{$programa->id}}">{{$programa->nombadscribe}}</option>
+                        @endforeach
                     </select>
-                    @error('sector_pertenece')
+                    @error('id_programa_adscribe')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
@@ -139,27 +139,27 @@
 
                     {{-- SEDE EJECUTORA - TRAER DE LA BD - RELACIONAR --}}  
                     <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="modalidad">Sede ejecutora</label>
-                        <select class="form-control select2 select2-hidden-accessible" id="modalidad" name="modalidad" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('modalidad') }}">
+                        <label for="sede">Sede ejecutora</label>
+                        <select class="form-control select2 select2-hidden-accessible" id="id_sede" name="id_sede" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_sede') }}">
                             <option disabled selected>Seleccione una opción</option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
+                            @foreach ($sedes as $sede)
+                            <option value="{{$sede->id}}">{{$sede->nombsede}}</option>
+                            @endforeach
                         </select>
-                        @error('modalidad')
+                        @error('id_sede')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="modalidad">Facultad ejecutora</label>
-                        <select class="form-control select2 select2-hidden-accessible" id="modalidad" name="modalidad" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('modalidad') }}">
+                        <label for="facultad">Facultad ejecutora</label>
+                        <select class="form-control select2 select2-hidden-accessible" id="id_facultad" name="id_facultad" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_facultad') }}">
                             <option disabled selected>Seleccione una opción</option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
+                            @foreach ($facultades as $facultad)
+                            <option value="{{$facultad->id}}">{{$facultad->nombfacultad}}</option>
+                            @endforeach
                         </select>
-                        @error('modalidad')
+                        @error('id_facultad')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

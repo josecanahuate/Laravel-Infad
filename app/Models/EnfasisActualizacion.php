@@ -9,9 +9,8 @@ class EnfasisActualizacion extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nombrenfasis'
-    ];
+    protected $table = 'enfasis_actualizacion';
+    protected $fillable = ['nombrenfasis'];
 
     public function preparacionConstante()
     {

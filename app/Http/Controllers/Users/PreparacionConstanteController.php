@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PartConstanteStore;
 use App\Http\Requests\UpdatePartConstante;
+use App\Models\EnfasisActualizacion;
 
 class PreparacionConstanteController extends Controller
 {
@@ -19,7 +20,8 @@ class PreparacionConstanteController extends Controller
 
     public function create()
     {
-        return view('users.preparacion_constante.create');
+        $enfasis = EnfasisActualizacion::all();
+        return view('users.preparacion_constante.create', compact('enfasis'));
     }
 
 

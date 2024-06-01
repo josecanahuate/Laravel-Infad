@@ -65,14 +65,14 @@
 
                     {{-- TIPO DE PUBLICACION - TRAER DE LA BD - RELACIONAR --}}  
                     <div class="form-group col-lg-6 col-md-6 mb-3" data-select2-id="29">
-                        <label for="modalidad">Tipo de Publicación</label>
-                        <select class="form-control select2 select2-hidden-accessible" id="modalidad" name="modalidad" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('modalidad') }}">
+                        <label for="publicacion">Tipo de Publicación</label>
+                        <select class="form-control select2 select2-hidden-accessible" id="id_publicacion" name="id_publicacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_publicacion') }}">
                             <option disabled selected>Seleccione una opción</option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
+                            @foreach ($publicaciones as $publicacion)
+                            <option value="{{$publicacion->id}}">{{$publicacion->nombpublicacion}}</option>
+                            @endforeach
                         </select>
-                        @error('modalidad')
+                        @error('id_publicacion')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
