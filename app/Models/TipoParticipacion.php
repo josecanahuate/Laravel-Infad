@@ -9,13 +9,19 @@ class TipoParticipacion extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'idparticipaciones';
     protected $table = 'tipo_participaciones';
 
-    //relaciones
-    public function participaciones()
+    protected $fillable = [
+        'nombparticipaciones',
+    ];
+    
+    public function participacionesCongresos()
     {
-        return $this->hasMany(ParticipacionCongreso::class, 'id_tipo_participacion');
+        return $this->hasMany(ParticipacionCongreso::class, 'id_tipo_participacion', 'idparticipaciones');
     }
 
+    public function seminariosDictados()
+    {
+        return $this->hasMany(SeminarioDictado::class, 'id_tipo_participacion', 'idparticipaciones');
+    }
 }

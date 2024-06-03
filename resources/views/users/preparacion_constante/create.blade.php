@@ -26,13 +26,15 @@
                         value="{{ old('id_enfasis_actualizacion') }}">
                         <option disabled selected>Seleccione una opción</option>
                         @foreach ($enfasis as $enfasi)
-                        <option value="{{$enfasi->id}}">{{$enfasi->nombrenfasis}}</option>
+                        <option value="{{$enfasi->idenfasis}}">{{$enfasi->nombrenfasis}}</option>
                         @endforeach
                     </select>
                     @error('id_enfasis_actualizacion')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+
+                
 
                 <div class="col-lg-6 col-md-6 mb-3">
                     <label for="titulo">Titulo</label>
@@ -74,7 +76,7 @@
                 <div class="col-lg-3 col-md-3 mb-3">
                     <label for="pais">País</label>
                     <input type="text" name="pais" class="form-control" id="pais" value="{{ old('pais') }}"
-                        placeholder="Inserte la Institución">
+                        placeholder="Inserte el País">
                     @error('pais')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -82,8 +84,8 @@
 
                 <div class="col-lg-3 col-md-3 mb-3">
                     <label for="duracion">Duración</label>
-                    <input type="text" name="duracion" class="form-control" id="duracion" value="{{ old('duracion') }}"
-                        placeholder="Inserte el Titulo">
+                    <input type="number" name="duracion" class="form-control" id="duracion" value="{{ old('duracion') }}"
+                        placeholder="Inserte las Horas">
                     @error('duracion')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -108,7 +110,7 @@
                 <div class="col-lg-6 col-md-6 mb-3">
                     <label for="ano_titulo">Año Fin</label>
                     <input type="text" name="ano_titulo" class="form-control" id="ano_titulo"
-                        value="{{ old('ano_titulo') }}" placeholder="Inserte el año">
+                        value="{{ old('ano_titulo') }}" placeholder="Inserte año fin">
                     @error('ano_titulo')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

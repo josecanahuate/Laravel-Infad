@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('preparacion_formal', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); //si esta en ondelete se elimina todo lo referente a ese usuario            
-            $table->unsignedBigInteger('id_grado_academico');    
+            $table->unsignedBigInteger('id_grado_academico');
+            $table->foreign('id_grado_academico')->references('idgradoacademico')->on('grado_academico')->onDelete('cascade');
             $table->enum('estatus_prepformal', ['Cursando Actualmente', 'Completo']);
             $table->string('titulo', 120);
             $table->string('ano_titulo', 120)->nullable();
@@ -26,9 +27,6 @@ return new class extends Migration
             $table->string('ruta', 150)->nullable();
             /* $table->enum('estatus', ['pendiente', 'aprobado', 'rechazado'])->default('pendiente'); */
             $table->timestamps();
-
-            $table->foreign('id_grado_academico')->references('idgradoacademico')->on('grado_academico');
-            //$table->foreignId('id_grado_academico')->constrained('grado_academico')->onDelete('cascade');    
         });
     }
 

@@ -28,6 +28,7 @@ class PreparacionFormalController extends Controller
     public function store(PartFormalStore $request)
     {
         $preparacionformal = new PreparacionFormal([
+            'id_grado_academico' => $request->id_grado_academico,
             'estatus_prepformal' => $request->estatus_prepformal,
             'titulo' => $request->titulo,
             'ano_titulo' => $request->ano_titulo,
@@ -54,6 +55,7 @@ class PreparacionFormalController extends Controller
     public function update(UpdatePartFormal $request, PreparacionFormal $preparacion_formal)
     {
         $preparacion_formal->update([
+            'id_grado_academico' => $request->id_grado_academico,
             'estatus_prepformal' => $request->estatus_prepformal,
             'titulo' => $request->titulo,
             'ano_titulo' => $request->ano_titulo,

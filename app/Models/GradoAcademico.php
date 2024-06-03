@@ -10,22 +10,19 @@ class GradoAcademico extends Model
     use HasFactory;
 
     protected $table = 'grado_academico';
-    protected $primaryKey = 'idgradoacademico';
 
     protected $fillable = [
         'nombgradoacademico',
     ];
 
+
     public function tesisAsesoradas()
     {
-        return $this->hasMany(TesiAsesorada::class, 'id_grado_academico');
+        return $this->hasMany(TesiAsesorada::class, 'id_grado_academico', 'idgradoacademico');
     }
 
-    public function preparacionFormales()
+    public function preparacionesFormales()
     {
-    return $this->hasMany(PreparacionFormal::class, 'id_grado_academico');
+        return $this->hasMany(PreparacionFormal::class, 'id_grado_academico', 'idgradoacademico');
     }
-
-    
-
 }

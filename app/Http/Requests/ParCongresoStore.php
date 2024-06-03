@@ -22,19 +22,21 @@ class ParCongresoStore extends FormRequest
     public function rules(): array
     {
         return [
+                'id_tipo_participacion' => 'required|exists:tipo_participaciones,idparticipaciones',
                 'titulo' => 'required|string|max:255',
                 'fecha_inicio' => 'required|date|date_format:Y-m-d',
                 'fecha_fin' => 'required|date|date_format:Y-m-d|after_or_equal:fecha_inicio',
                 'lugar_congreso' => 'required|string|max:255',
                 'pais' => 'nullable|string|max:255',
                 'publicacion_proceeding' => 'required|in:Presentado y Aceptado,Presentado pero no Aceptado,No Presentado,Provisional',
-                'tipo_participaciones' => 'required|in:Presentador Principal,Asistente,Coordinador,Organizador,Evaluador'
             ];
     }
 
     public function messages(): array
     {
         return [
+            'id_tipo_participacion.required' => 'El tipo de participación es obligatorio.',
+            'id_tipo_participacion.exists' => 'El tipo de participación seleccionado no es válido.',
             'titulo.required' => 'El título es requerido.',
             'titulo.string' => 'El título debe ser una cadena de caracteres.',
             'titulo.max' => 'El título no puede exceder los 255 caracteres.',
@@ -52,21 +54,20 @@ class ParCongresoStore extends FormRequest
             'pais.max' => 'El país no puede exceder los 255 caracteres.',
             'publicacion_proceeding.required' => 'El estado de publicación en proceedings es requerido.',
             'publicacion_proceeding.in' => 'El estado de publicación en proceedings seleccionado no es válido.',
-            'tipo_participaciones.required' => 'El tipo de participación es requerido.',
-            'tipo_participaciones.in' => 'El tipo de participación seleccionado no es válido.'
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'titulo' => 'Título',
-            'fecha_inicio' => 'Fecha de inicio',
-            'fecha_fin' => 'Fecha de fin',
-            'lugar_congreso' => 'Lugar del congreso',
-            'pais' => 'País',
-            'publicacion_proceeding' => 'Publicación en Proceedings',
-            'tipo_participaciones' => 'Tipo de participación'
+            'id_tipo_participacion' => 'tipo de participación',
+            'titulo' => 'título',
+            'fecha_inicio' => 'fecha de inicio',
+            'fecha_fin' => 'fecha de fin',
+            'lugar_congreso' => 'lugar del congreso',
+            'pais' => 'país',
+            'publicacion_proceeding' => 'publicación en proceedings',
+            'tipo_participaciones' => 'tipo de participación'
         ];        
     }
 }

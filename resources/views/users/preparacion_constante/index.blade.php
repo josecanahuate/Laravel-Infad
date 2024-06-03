@@ -26,7 +26,7 @@
                     <th class="text-center">ID</th>
                     <th class="text-center">TITULO</th>
                     <th class="text-center">CENTRO DE ESTUDIO</th>
-                    <th class="text-center">MODALIDAD</th>
+                    <th class="text-center">ENFASIS</th>
                     <th class="text-center">ESTADO</th>
                     <th class="text-center">ESTATUS</th>
                     <th class="text-center">ACCIONES</th>
@@ -37,10 +37,9 @@
                 @foreach ($constantes as $constante)
                     <tr>
                         <td class="text-center">{{$constante->id}}</td>
-                        {{-- <td class="text-center">{{$constante->id_enfasis_actualizacion}}</td> --}}
                         <td class="text-center">{{$constante->titulo}}</td>
                         <td class="text-center">{{$constante->centro_estudio}}</td>
-                        <td class="text-center">{{$constante->modalidad}}</td>
+                        <td class="text-center">{{$constante->enfasisActualizacion->nombrenfasis}}</td>
                         <td class="text-center">{{$constante->estatus_prepconstante}}</td>
                         <td class="text-center"><span class="badge bg-warning">Pendiente</span></a></td>
                         <td>

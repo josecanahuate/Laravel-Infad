@@ -19,15 +19,14 @@
         <form method="POST" action="{{route('users.preparacion_formal.store') }}">
         @csrf
         <div class="row">            
-                {{-- COLOCAR DE FORMA DINAMICA - TRAER DE TABLA DINAMICA --}}
               <div class="form-group col-lg-3 col-md-3 mb-3">
-                <label for="grados">Grado Académico</label>
-                <select class="form-control" id="id_grado_academico" name="id_grado_academico" value="{{ old('id_grado_academico') }}">
+                <label for="id_grado_academico">Grado Académico</label>
+                 <select class="form-control" id="id_grado_academico" name="id_grado_academico">
                     <option disabled selected>Seleccione una opción</option>
                     @foreach ($grados as $grado)
-                    <option value="{{$grado->id}}">{{$grado->nombgradoacademico}}</option>
+                    <option value="{{$grado->idgradoacademico}}">{{$grado->nombgradoacademico}}</option>
                     @endforeach
-                </select>
+                </select> 
                 @error('id_grado_academico')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror

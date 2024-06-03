@@ -22,12 +22,13 @@ class PartConstanteStore extends FormRequest
     public function rules(): array
     {
         return [
+            'id_enfasis_actualizacion' => 'required|exists:enfasis_actualizacion,idenfasis',
             'titulo' => 'required|string|max:255',
             'centro_estudio' => 'required',
             'modalidad' => 'required|in:Presencial,Virtual,Semi-presencial',
             'pais' => 'required|string|max:255',
             'estatus_prepconstante' => 'required|in:Cursando Actualmente,Completo',
-            'duracion' => 'required',
+            'duracion' => 'required|numeric|min:1|max:1000',
             'ano_titulo' => 'required|date_format:Y',
             /* 'ruta' => 'required|file|max:5120', */ // Máximo 5MB
         ];
@@ -37,6 +38,8 @@ class PartConstanteStore extends FormRequest
     public function messages(): array
     {
         return [
+            'id_enfasis_actualizacion.required' => 'El énfasis de actualización es obligatorio.',
+            'id_enfasis_actualizacion.exists' => 'El énfasis de actualización seleccionado no es válido.',
             'titulo.required' => 'El título es requerido.',
             'titulo.string' => 'El título debe ser una cadena de caracteres.',
             'titulo.max' => 'El título no puede tener más de :max caracteres.',
@@ -48,6 +51,9 @@ class PartConstanteStore extends FormRequest
             'estatus_prepconstante.required' => 'El estatus de la preparación constante es requerido.',
             'estatus_prepconstante.in' => 'El estatus de la preparación constante seleccionado no es válido.',
             'duracion.required' => 'La duración es requerida.',
+            'duracion.numeric' => 'La duración debe ser un valor numérico.',
+            'duracion.min' => 'La duración debe ser al menos :min.',
+            'duracion.max' => 'La duración no puede ser mayor a :max.',
             'titulo.required' => 'El año del título es requerido.',
             'ano_titulo.date_format' => 'El año del título debe tener el formato YYYY.',
  /*            'ruta.required' => 'El archivo es requerido.',
@@ -59,6 +65,7 @@ class PartConstanteStore extends FormRequest
     public function attributes(): array
     {
         return [
+            'id_enfasis_actualizacion' => 'énfasis actualización',
             'titulo' => 'título',
             'centro_estudio' => 'centro de estudio',
             'modalidad' => 'modalidad de estudio',

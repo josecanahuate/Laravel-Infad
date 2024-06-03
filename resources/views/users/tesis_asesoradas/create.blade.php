@@ -50,16 +50,16 @@
                     @enderror
                   </div>
                   
-                <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
-                    <label for="tipo_participaciones">Grado Académico</label>
-                    <select class="form-control select2 select2-hidden-accessible" id="id_grado_academico" name="id_grado_academico" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_grado_academico') }}">
+                <div class="form-group col-lg-4 col-md-4 mb-3">
+                    <label for="id_grado_academico">Grado Académico</label>
+                     <select class="form-control" id="id_grado_academico" name="id_grado_academico">
                         <option disabled selected>Seleccione una opción</option>
                         @foreach ($grados as $grado)
-                        <option value="{{$grado->id}}">{{$grado->nombgradoacademico}}</option>
+                        <option value="{{$grado->idgradoacademico}}">{{$grado->nombgradoacademico}}</option>
                         @endforeach
-                    </select>
+                    </select> 
                     @error('id_grado_academico')
-                    <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 </div>

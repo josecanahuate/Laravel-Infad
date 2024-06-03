@@ -14,6 +14,7 @@ class PreparacionConstanteController extends Controller
     public function index()
     {
         $constantes = PreparacionConstante::where('user_id', auth()->id())->get();
+        //$constantes = PreparacionConstante::where('user_id', auth()->id())->with('enfasisActualizacion')->get();
         return view('users.preparacion_constante.index', compact('constantes'));
     }
 
@@ -28,6 +29,7 @@ class PreparacionConstanteController extends Controller
     public function store(PartConstanteStore $request)
     {
         $preparacionconstante = new PreparacionConstante([
+            'id_enfasis_actualizacion' => $request->id_enfasis_actualizacion,
             'titulo' => $request->titulo,
             'centro_estudio' => $request->centro_estudio,
             'modalidad' => $request->modalidad,
@@ -53,6 +55,7 @@ class PreparacionConstanteController extends Controller
     public function update(UpdatePartConstante $request, PreparacionConstante $preparacion_constante)
     {
         $preparacion_constante->update([
+            'id_enfasis_actualizacion' => $request->id_enfasis_actualizacion,
             'titulo' => $request->titulo,
             'centro_estudio' => $request->centro_estudio,
             'modalidad' => $request->modalidad,

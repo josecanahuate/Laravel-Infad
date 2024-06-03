@@ -24,7 +24,6 @@ return new class extends Migration
             $table->enum('financiacion_externa', ['No', 'Si']);
             //$table->string('ruta');
             $table->timestamps();
-
             $table->foreign('id_area_investigacion')->references('id_areainv')->on('areas_investigacion');  //area investigacion
             $table->foreign('id_facultad')->references('idfacultad')->on('facultades'); // facultades
             $table->foreign('id_grado_academico')->references('idgradoacademico')->on('grado_academico'); // grado academico

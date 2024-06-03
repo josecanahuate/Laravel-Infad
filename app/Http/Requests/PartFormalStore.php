@@ -22,6 +22,7 @@ class PartFormalStore extends FormRequest
     public function rules(): array
     {
         return [
+            'id_grado_academico' => 'required|exists:grado_academico,idgradoacademico',
             'estatus_prepformal' => 'required',
             'titulo' => 'required|string|max:255',
             'ano_titulo' => 'nullable|date_format:Y',
@@ -36,6 +37,8 @@ class PartFormalStore extends FormRequest
     public function messages(): array
     {
         return [
+            'id_grado_academico.required' => 'El grado académico es obligatorio.',
+            'id_grado_academico.exists' => 'El grado académico seleccionado no es válido.',
             'estatus_prepformal.required' => 'El estatus de la preparación formal es requerido.',
             'titulo.required' => 'El título es requerido.',
             'titulo.max' => 'El título no puede tener más de 255 caracteres.',
@@ -51,12 +54,14 @@ class PartFormalStore extends FormRequest
             'institucion_superior.max' => 'La institución superior no puede tener más de :max caracteres.',
             'financiamiento.required' => 'El financiamiento es requerido.',
             'financiamiento.in' => 'El tipo de financiamiento seleccionado no es válido.',
+            // 'ruta' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:5120',
         ];
     }
 
     public function attributes(): array
     {
         return [
+            'id_grado_academico' => 'grado académico',
             'estatus_prepformal' => 'estatus de la preparación formal',
             'titulo' => 'título',
             'ano_titulo' => 'año del título',

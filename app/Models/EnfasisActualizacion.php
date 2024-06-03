@@ -14,16 +14,17 @@ class EnfasisActualizacion extends Model
 
     public function preparacionConstante()
     {
-        return $this->hasMany(PreparacionConstante::class, 'id_enfasis_actualizacion');
+        return $this->hasMany(PreparacionConstante::class, 'id_enfasis_actualizacion', 'idenfasis');
     }
 
     public function tesisAsesoradas()
     {
-        return $this->hasMany(TesiAsesorada::class, 'idenfasis');
+        return $this->hasMany(TesiAsesorada::class, 'id_enfasis_actualizacion', 'idenfasis');
     }
 
     public function proyectosInscritos()
     {
-        return $this->hasMany(ProyectoInscrito::class, 'idenfasis');
+        return $this->hasMany(ProyectoInscrito::class, 'id_enfasis_actualizacion', 'idenfasis');
     }
+
 }

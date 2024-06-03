@@ -28,6 +28,7 @@ class SeminariosDictadosController extends Controller
     public function store(SeminarioStore $request)
     {
         $seminariosdictados = new SeminarioDictado([
+            'id_tipo_participacion' => $request->id_tipo_participacion,
             'titulo' => $request->titulo,
             'institucion' => $request->institucion,
             'facilitador' => $request->facilitador,
@@ -56,6 +57,7 @@ class SeminariosDictadosController extends Controller
     public function update(UpdateSeminarios $request, SeminarioDictado $seminarios_dictado)
     {
         $seminarios_dictado->update([
+            'id_tipo_participacion' => $request->id_tipo_participacion,
             'titulo' => $request->titulo,
             'institucion' => $request->institucion,
             'facilitador' => $request->facilitador,

@@ -28,13 +28,13 @@ class ParticipacionCongresoController extends Controller
     public function store(ParCongresoStore $request)
     {
         $participacioncongreso = new ParticipacionCongreso([
+            'id_tipo_participacion' => $request->id_tipo_participacion,
             'titulo' => $request->titulo,
             'fecha_inicio' => $request->fecha_inicio,
             'fecha_fin' => $request->fecha_fin,
             'lugar_congreso' => $request->lugar_congreso,
             'pais' => $request->pais,
             'publicacion_proceeding' => $request->publicacion_proceeding,
-            'tipo_participaciones' => $request->tipo_participaciones
             /* 'ruta' => $request->ruta */
         ]);
         $participacioncongreso->user_id = auth()->id();
@@ -53,13 +53,13 @@ class ParticipacionCongresoController extends Controller
     public function update(UpdateParCongreso $request, ParticipacionCongreso $participacion_congreso)
     {
         $participacion_congreso->update([
+            'id_tipo_participacion' => $request->id_tipo_participacion,
             'titulo' => $request->titulo,
             'fecha_inicio' => $request->fecha_inicio,
             'fecha_fin' => $request->fecha_fin,
             'lugar_congreso' => $request->lugar_congreso,
             'pais' => $request->pais,
             'publicacion_proceeding' => $request->publicacion_proceeding,
-            'tipo_participaciones' => $request->tipo_participaciones
             /* 'ruta' => $request->ruta */
         ]);
 

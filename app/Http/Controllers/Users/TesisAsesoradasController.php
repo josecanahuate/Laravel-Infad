@@ -33,6 +33,7 @@ class TesisAsesoradasController extends Controller
     public function store(TesiStore $request)
     {
         $tesisasesoradas = new TesiAsesorada([
+            'id_grado_academico' => $request->id_grado_academico,
             'titulo' => $request->titulo,
             'fecha_sustentacion' => $request->fecha_sustentacion,
             'pais' => $request->pais,
@@ -59,6 +60,7 @@ class TesisAsesoradasController extends Controller
     public function update(UpdateTesis $request, TesiAsesorada $tesis_asesorada)
     {
         $tesis_asesorada->update([
+            'id_grado_academico' => $request->id_grado_academico,
             'titulo' => $request->titulo,
             'fecha_sustentacion' => $request->fecha_sustentacion,
             'pais' => $request->pais,

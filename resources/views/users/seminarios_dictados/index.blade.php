@@ -25,9 +25,9 @@
                 <tr>
                     <th class="text-center">ID</th>
                     <th class="text-center">TITULO</th>
+                    <th class="text-center">PARTICIPACION</th>
                     <th class="text-center">PAIS</th>
                     <th class="text-center">LUGAR</th>
-                    <th class="text-center">PARTICIPACION</th>
                     <th class="text-center">ESTATUS</th>
                     <th class="text-center">ACCIONES</th>
                 </tr>
@@ -38,9 +38,9 @@
                     <tr>
                         <td class="text-center">{{$seminario->id}}</td>
                         <td class="text-center">{{$seminario->titulo}}</td>
+                        <td class="text-center">{{$congreso->tipoParticipaciones->nombparticipaciones}}</td>
                         <td class="text-center">{{$seminario->pais}}</td>
                         <td class="text-center">{{$seminario->lugar}}</td>
-                        <td class="text-center">{{$seminario->tipo_participacion}}</td>
                         <td class="text-center"><span class="badge bg-warning">Pendiente</span></a></td>
                         <td>
                             <div class="d-flex justify-content-center">

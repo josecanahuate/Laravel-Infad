@@ -11,6 +11,7 @@ class PreparacionConstante extends Model
 
     protected $table = 'preparacion_constante';
     protected $fillable = [
+        'id_enfasis_actualizacion',
         'titulo',
         'centro_estudio',
         'modalidad',
@@ -28,6 +29,6 @@ class PreparacionConstante extends Model
 
     public function enfasisActualizacion()
     {
-        return $this->belongsTo(EnfasisActualizacion::class, 'id_enfasis_actualizacion');
+        return $this->belongsTo(EnfasisActualizacion::class, 'id_enfasis_actualizacion', 'idenfasis');
     }
 }

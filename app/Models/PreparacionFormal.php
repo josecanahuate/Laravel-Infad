@@ -11,7 +11,7 @@ class PreparacionFormal extends Model
 
     protected $table = 'preparacion_formal';
     protected $fillable = [
-        /* 'id_grado_academico', */
+        'id_grado_academico',
         'estatus',
         'titulo',
         'ano_titulo',
@@ -35,6 +35,6 @@ class PreparacionFormal extends Model
 
     public function gradoAcademico()
     {
-        return $this->belongsTo(GradoAcademico::class, 'id_grado_academico');
+        return $this->belongsTo(GradoAcademico::class, 'id_grado_academico', 'idgradoacademico');
     }
 }

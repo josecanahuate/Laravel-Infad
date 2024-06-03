@@ -64,7 +64,7 @@ class ProyectoInscrito extends Model
         return $this->belongsTo(GradoAcademico::class, 'id_grado_academico');
     }
 
-    public function tipoParticipacion()
+    public function tipoParticipaciones()
     {
         return $this->morphToMany(TipoParticipacion::class, 'id_tipo_participacion');
     }

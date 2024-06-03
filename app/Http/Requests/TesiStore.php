@@ -22,6 +22,7 @@ class TesiStore extends FormRequest
     public function rules(): array
     {
         return [
+            'id_grado_academico' => 'required|exists:grado_academico,idgradoacademico',
             'titulo' => 'required|string|max:255',
             'fecha_sustentacion' => 'required|date',
             'pais' => 'nullable|string',
@@ -34,6 +35,8 @@ class TesiStore extends FormRequest
     public function messages(): array
     {
         return [
+            'id_grado_academico.required' => 'El grado académico es obligatorio.',
+            'id_grado_academico.exists' => 'El grado académico seleccionado no es válido.',
             'titulo.required' => 'El título es requerido.',
             'titulo.string' => 'El título debe ser una cadena de caracteres.',
             'titulo.max' => 'El título no puede tener más de :max caracteres.',
@@ -52,6 +55,7 @@ class TesiStore extends FormRequest
     public function attributes(): array
     {
         return [
+            'id_grado_academico' => 'grado académico',
             'titulo' => 'título',
             'fecha_sustentacion' => 'fecha de sustentación',
             'pais' => 'país',

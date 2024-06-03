@@ -10,7 +10,9 @@ class SeminarioDictado extends Model
     use HasFactory;
 
     protected $table = 'seminarios_dictados';
+
     protected $fillable = [
+        'id_tipo_participacion',
         'institucion',
         'titulo',
         'facilitador',
@@ -39,8 +41,8 @@ class SeminarioDictado extends Model
         return $this->belongsTo(Sede::class, 'id_sede');
     }
 
-    public function tipoParticipacion()
+    public function tipoParticipaciones()
     {
-        return $this->morphToMany(TipoParticipacion::class, 'id_tipo_participacion');
+        return $this->belongsTo(TipoParticipacion::class, 'id_tipo_participacion', 'idparticipaciones');
     }
 }

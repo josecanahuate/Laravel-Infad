@@ -25,7 +25,7 @@
                 <tr>
                     <th class="text-center">ID</th>
                     <th class="text-center">TITULO</th>
-                    <th class="text-center">PAIS</th>
+                    <th class="text-center">PARTICIPACION</th>
                     <th class="text-center">LUGAR CONGRESO</th>
                     <th class="text-center">PARTICIPACION</th>
                     <th class="text-center">ESTADO</th>
@@ -38,9 +38,9 @@
                     <tr>
                         <td class="text-center">{{$congreso->id}}</td>
                         <td class="text-center">{{$congreso->titulo}}</td>
+                        <td class="text-center">{{$congreso->tipoParticipaciones->nombparticipaciones}}</td>
                         <td class="text-center">{{$congreso->pais}}</td>
                         <td class="text-center">{{$congreso->lugar_congreso}}</td>
-                        <td class="text-center">{{$congreso->tipo_participaciones}}</td>
                         <td class="text-center"><span class="badge bg-warning">Pendiente</span></a></td>
                         <td>
                             <div class="d-flex justify-content-center">

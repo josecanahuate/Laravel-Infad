@@ -12,6 +12,7 @@ class TesiAsesorada extends Model
 
     protected $table = 'tesis_asesoradas';
     protected $fillable = [
+        'id_grado_academico',
         'titulo',
         'fecha_sustentacion',
         'pais',
@@ -42,7 +43,7 @@ class TesiAsesorada extends Model
 
     public function gradoAcademico()
     {
-        return $this->belongsTo(GradoAcademico::class, 'id_grado_academico');
+        return $this->belongsTo(GradoAcademico::class, 'id_grado_academico', 'idgradoacademico');
     }
 
     public function categoria()
