@@ -12,27 +12,26 @@ class Facultades extends Model
     protected $table = 'facultades';
 
     protected $fillable = [
-        'nombfacultad',
-        'descripcion'
+        'nombfacultad'
     ];
 
      public function programasAdscribe()
     {
-        return $this->hasMany(ProgramaAdscribe::class, 'id_facultad');
+        return $this->hasMany(ProgramaAdscribe::class, 'id_facultad', 'idfacultad');
     } 
 
     public function datosPersonales()
     {
-        return $this->hasMany(DatoPersonal::class, 'id_facultad');
+        return $this->hasMany(DatoPersonal::class, 'id_facultad', 'idfacultad');
     }
 
     public function tesisAsesoradas()
     {
-        return $this->hasMany(TesiAsesorada::class, 'id_facultad');
+        return $this->hasMany(TesiAsesorada::class, 'id_facultad', 'idfacultad');
     }
 
     public function proyectosInscritos()
     {
-        return $this->hasMany(ProyectoInscrito::class, 'id_facultad');
+        return $this->hasMany(ProyectoInscrito::class, 'id_facultad', 'idfacultad');
     }
 }

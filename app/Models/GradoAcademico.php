@@ -15,7 +15,6 @@ class GradoAcademico extends Model
         'nombgradoacademico',
     ];
 
-
     public function tesisAsesoradas()
     {
         return $this->hasMany(TesiAsesorada::class, 'id_grado_academico', 'idgradoacademico');

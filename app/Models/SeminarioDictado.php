@@ -22,15 +22,21 @@ class SeminarioDictado extends Model
         'pais',
         'lugar',
         'horas',
-        'tp_participacion',
-        'ruta'
+        /* 'ruta' */
     ];
     
     public function user()
     {
-    return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function tipoParticipaciones()
+    {
+        return $this->belongsTo(TipoParticipacion::class, 'id_tipo_participacion', 'idparticipaciones');
+    }
+
+    
+    ############################################################################
     public function programaAdscribe()
     {
     return $this->belongsTo(ProgramaAdscribe::class, 'id_programa_adscribe');
@@ -39,10 +45,5 @@ class SeminarioDictado extends Model
     public function sede()
     {
         return $this->belongsTo(Sede::class, 'id_sede');
-    }
-
-    public function tipoParticipaciones()
-    {
-        return $this->belongsTo(TipoParticipacion::class, 'id_tipo_participacion', 'idparticipaciones');
     }
 }

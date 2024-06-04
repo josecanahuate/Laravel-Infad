@@ -9,10 +9,11 @@ class TesiAsesorada extends Model
 {
     use HasFactory;
 
-
     protected $table = 'tesis_asesoradas';
     protected $fillable = [
+        'id_area_investigacion',
         'id_grado_academico',
+        'id_facultad',
         'titulo',
         'fecha_sustentacion',
         'pais',
@@ -31,6 +32,26 @@ class TesiAsesorada extends Model
         return $this->belongsTo(Estatus::class, 'idestatus');
     }
 
+    
+    public function areaInvestigacion()
+    {
+        return $this->belongsTo(AreaInvestigacion::class, 'id_area_investigacion', 'id_areainv');
+    }
+
+    public function gradoAcademico()
+    {
+        return $this->belongsTo(GradoAcademico::class, 'id_grado_academico', 'idgradoacademico');
+    }
+
+    public function facultad()
+    {
+    return $this->belongsTo(Facultades::class, 'id_facultad', 'idfacultad');
+    }
+
+
+    
+
+
     public function programaAdscribe()
     {
         return $this->belongsTo(ProgramaAdscribe::class, 'id_programa_adscribe');
@@ -41,10 +62,6 @@ class TesiAsesorada extends Model
         return $this->belongsTo(Sede::class, 'id_sede');
     }
 
-    public function gradoAcademico()
-    {
-        return $this->belongsTo(GradoAcademico::class, 'id_grado_academico', 'idgradoacademico');
-    }
 
     public function categoria()
     {
@@ -56,9 +73,5 @@ class TesiAsesorada extends Model
         return $this->belongsTo(EnfasisActualizacion::class, 'idenfasis');
     }
 
-    //relacion facultades->tesis
-    public function facultad()
-    {
-    return $this->belongsTo(Facultades::class, 'id_facultad');
-    }
 }
+

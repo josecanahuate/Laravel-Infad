@@ -10,12 +10,14 @@ class ProgramaAdscribe extends Model
     use HasFactory;
 
     protected $table = 'programa_adscribe';
+    protected $fillable = 'nombadscribe';
     
+
     public function proyectosInscritos()
     {
-        return $this->hasMany(ProyectoInscrito::class, 'id_programa_adscribe');
+        return $this->hasMany(ProgramaAdscribe::class, 'id_programa_adscribe', 'idadscribe');
     }
-
+    
     public function tesisAsesoradas()
     {
         return $this->hasMany(TesiAsesorada::class, 'id_programa_adscribe');

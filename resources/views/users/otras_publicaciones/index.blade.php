@@ -25,6 +25,7 @@
                 <tr>
                     <th class="text-center">ID</th>
                     <th class="text-center">TITULO</th>
+                    <th class="text-center">TIPO</th>
                     <th class="text-center">FECHA</th>
                     <th class="text-center">ISBN</th>
                     <th class="text-center">EDITORIAL</th>
@@ -38,6 +39,7 @@
                     <tr>
                         <td class="text-center">{{$publicacion->id}}</td>
                         <td class="text-center">{{$publicacion->titulo}}</td>
+                        <td class="text-center">{{$publicacion->tpPublicacion->nombpublicacion}}</td>
                         <td class="text-center">{{$publicacion->fecha}}</td>
                         <td class="text-center">{{$publicacion->isbn}}</td>
                         <td class="text-center">{{$publicacion->editorial}}</td>

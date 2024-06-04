@@ -12,6 +12,7 @@ class OtraPublicacion extends Model
     protected $table = 'otras_publicaciones';
 
     protected $fillable = [
+        'id_publicacion',
         'titulo',
         'fecha',
         'isbn',
@@ -26,7 +27,7 @@ class OtraPublicacion extends Model
     
     public function tpPublicacion()
     {
-        return $this->belongsTo(TipoPublicacion::class, 'id_publicacion');
+        return $this->belongsTo(TipoPublicacion::class, 'id_publicacion', 'idpublicacion');
     }
 
 }

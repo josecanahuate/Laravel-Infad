@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->unsignedBigInteger('id_area_investigacion');
-            $table->unsignedBigInteger('id_facultad');
             $table->unsignedBigInteger('id_grado_academico');
+            $table->unsignedBigInteger('id_facultad');
             $table->string('titulo')->nullable();
             $table->date('fecha_sustentacion');
             $table->string('pais');
@@ -25,8 +25,8 @@ return new class extends Migration
             //$table->string('ruta');
             $table->timestamps();
             $table->foreign('id_area_investigacion')->references('id_areainv')->on('areas_investigacion');  //area investigacion
-            $table->foreign('id_facultad')->references('idfacultad')->on('facultades'); // facultades
             $table->foreign('id_grado_academico')->references('idgradoacademico')->on('grado_academico'); // grado academico
+            $table->foreign('id_facultad')->references('idfacultad')->on('facultades'); // facultades
         }); 
     }
 

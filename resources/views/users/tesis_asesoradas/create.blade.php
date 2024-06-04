@@ -34,13 +34,14 @@
                     <select class="form-control select2 select2-hidden-accessible" id="id_area_investigacion" name="id_area_investigacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_area_investigacion') }}">
                         <option disabled selected>Seleccione una opción</option>
                         @foreach ($areas as $area)
-                        <option value="{{$area->id}}">{{$area->nombreainvest}}</option>
+                        <option value="{{$area->id_areainv}}">{{$area->nombreainvest}}</option>
                         @endforeach
                     </select>
                     @error('id_area_investigacion')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+
 
                 <div class="col-md-4 mb-3">
                     <label for="fecha_sustentacion">Fecha de Sustentación</label>
@@ -49,7 +50,7 @@
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                   </div>
-                  
+                
                 <div class="form-group col-lg-4 col-md-4 mb-3">
                     <label for="id_grado_academico">Grado Académico</label>
                      <select class="form-control" id="id_grado_academico" name="id_grado_academico">
@@ -67,11 +68,11 @@
 
                 <div class="row">
                     <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="tipo_participaciones">Unidad / Facultad</label>
+                        <label for="id_facultad">Unidad / Facultad</label>
                         <select class="form-control select2 select2-hidden-accessible" id="id_facultad" name="id_facultad" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_facultad') }}">
                             <option disabled selected>Seleccione una opción</option>
                             @foreach ($facultades as $facultad)
-                            <option value="{{$facultad->id}}">{{$facultad->nombfacultad}}</option>
+                            <option value="{{$facultad->idfacultad}}">{{$facultad->nombfacultad}}</option>
                             @endforeach
                         </select>
                         @error('id_facultad')

@@ -10,13 +10,14 @@ class Sede extends Model
     use HasFactory;
 
     protected $table = 'sedes';
+    protected $fillable = ['nombsede'];
 
     /**
      * Relación uno a muchos con ProyectoInscrito
      */
     public function proyectosInscritos()
     {
-        return $this->hasMany(ProyectoInscrito::class, 'id_sede');
+        return $this->hasMany(ProyectoInscrito::class, 'id_sede', 'idsede');
     }
 
     /**
@@ -24,7 +25,7 @@ class Sede extends Model
      */
     public function tesisAsesoradas()
     {
-        return $this->hasMany(TesiAsesorada::class, 'id_sede');
+        return $this->hasMany(TesiAsesorada::class, 'id_sede', 'idsede');
     }
 
     /**
@@ -32,12 +33,12 @@ class Sede extends Model
      */
     public function seminariosDictados()
     {
-        return $this->hasMany(SeminarioDictado::class, 'id_sede');
+        return $this->hasMany(SeminarioDictado::class, 'id_sede', 'idsede');
     }
 
     public function datosPersonales()
     {
-    return $this->hasMany(DatoPersonal::class, 'id_sede');
+    return $this->hasMany(DatoPersonal::class, 'id_sede', 'idsede');
     }
 
 }

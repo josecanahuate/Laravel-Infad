@@ -9,8 +9,6 @@ use App\Http\Requests\UpdateTesis;
 use App\Models\AreaInvestigacion;
 use App\Models\Facultades;
 use App\Models\GradoAcademico;
-use App\Models\ProgramaAdscribe;
-use App\Models\Sede;
 
 class TesisAsesoradasController extends Controller
 {
@@ -33,7 +31,9 @@ class TesisAsesoradasController extends Controller
     public function store(TesiStore $request)
     {
         $tesisasesoradas = new TesiAsesorada([
+            'id_area_investigacion' => $request->id_area_investigacion,
             'id_grado_academico' => $request->id_grado_academico,
+            'id_facultad' => $request->id_facultad,
             'titulo' => $request->titulo,
             'fecha_sustentacion' => $request->fecha_sustentacion,
             'pais' => $request->pais,
@@ -60,7 +60,9 @@ class TesisAsesoradasController extends Controller
     public function update(UpdateTesis $request, TesiAsesorada $tesis_asesorada)
     {
         $tesis_asesorada->update([
+            'id_area_investigacion' => $request->id_area_investigacion,
             'id_grado_academico' => $request->id_grado_academico,
+            'id_facultad' => $request->id_facultad,
             'titulo' => $request->titulo,
             'fecha_sustentacion' => $request->fecha_sustentacion,
             'pais' => $request->pais,

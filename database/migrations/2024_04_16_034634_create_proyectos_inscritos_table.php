@@ -37,15 +37,15 @@ return new class extends Migration
                 'Investigación y desarrollo (I+D)'
             ]);
             $table->unsignedBigInteger('id_area_investigacion');
+            $table->unsignedBigInteger('id_facultad');
+            $table->unsignedBigInteger('id_sede'); 
+            $table->unsignedBigInteger('id_programa_adscribe'); 
             $table->string('linea_investigacion')->nullable(); //enum
             $table->date('periodo_vigencia_ini')->nullable();
             $table->date('periodo_vigencia_fin')->nullable();
             $table->enum('estado_actual', ['Cursando Actualmente', 'Completo']);
             $table->string('entidad_financiera')->nullable();
             $table->integer('monto_asignado')->nullable();
-            $table->unsignedBigInteger('id_facultad');
-            $table->unsignedBigInteger('id_sede'); 
-            $table->unsignedBigInteger('id_programa_adscribe'); 
             $table->string('sitio_web')->nullable()->url();
             $table->string('enlace_video')->nullable()->url();            
             //$table->string('ruta')->nullable();

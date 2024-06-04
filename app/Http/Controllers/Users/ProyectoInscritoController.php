@@ -18,13 +18,6 @@ class ProyectoInscritoController extends Controller
         return view('users.proyectos_inscritos.index', compact('proyectos'));
     }
 
-/* 
-    public function create()
-    {
-        return view('users.proyectos_inscritos.create');
-    }
- */
-
     public function create()
     {
         $areas = AreaInvestigacion::all();
@@ -38,9 +31,14 @@ class ProyectoInscritoController extends Controller
     public function store(Request $request)
     {
         $proyectosinscritos = new ProyectoInscrito([
-            'titulo_investigacion' => $request->titulo_investigacion,
             'sector_pertenece' => $request->sector_pertenece,
+            'id_area_investigacion' => $request->id_area_investigacion,
             'linea_investigacion' => $request->linea_investigacion,
+            'id_programa_adscribe' => $request->id_programa_adscribe,
+            'id_sede' => $request->id_sede,
+            'id_facultad' => $request->id_facultad,
+            
+            'titulo_investigacion' => $request->titulo_investigacion,
             'periodo_vigencia_ini' => $request->periodo_vigencia_ini,
             'periodo_vigencia_fin' => $request->periodo_vigencia_fin,
             'estado_actual' => $request->estado_actual,
@@ -49,16 +47,7 @@ class ProyectoInscritoController extends Controller
             'sitio_web' => $request->sitio_web,
             'enlace_video,' => $request->enlace_video,
             /* 'ruta,' => $request->ruta, */
-
-            //PARA CAMPOS RELACIONADOS QUE SE RECUPERAN EN EL FORMULARIO
-/*             $departamento = Departamento::find($request->departamento_id); // Suponiendo que el campo de selección se llama "departamento_id"
-            $modelo->departamento()->associate($departamento); // Asociar el departamento al modelo */
         ]);
-
-        /*if($request->areas) {
-            $proyectosinscritos->areas()->attach($request->areas);
-        }*/
-
         $proyectosinscritos->user_id = auth()->id();
         $proyectosinscritos->save();
 
@@ -88,9 +77,13 @@ class ProyectoInscritoController extends Controller
         ]);
 
         $proyectos_inscrito->update([
-            'titulo_investigacion' => $request->titulo_investigacion,
-            'sector_pertenece' => $request->sector_pertenece, //enum
+            'sector_pertenece' => $request->sector_pertenece,
+            'id_area_investigacion' => $request->id_area_investigacion,
             'linea_investigacion' => $request->linea_investigacion,
+            'id_programa_adscribe' => $request->id_programa_adscribe,
+            'id_sede' => $request->id_sede,
+            'id_facultad' => $request->id_facultad,
+            'titulo_investigacion' => $request->titulo_investigacion,
             'periodo_vigencia_ini' => $request->periodo_vigencia_ini,
             'periodo_vigencia_fin' => $request->periodo_vigencia_fin,
             'estado_actual' => $request->estado_actual,

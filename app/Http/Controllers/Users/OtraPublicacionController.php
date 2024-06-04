@@ -17,7 +17,6 @@ class OtraPublicacionController extends Controller
     }
 
 
-    
     public function create()
     {
         $publicaciones = TipoPublicacion::all();
@@ -25,13 +24,10 @@ class OtraPublicacionController extends Controller
     }
     
 
-
     public function store(Request $request)
     {
-
-        //$otraspublicaciones = OtraPublicacion::create($request->all());
-        
         $request->validate([
+            'id_publicacion' => 'required|exists:tp_publicacion,idpublicacion',
             'titulo' => 'required|string|max:255',
             'fecha' => 'required|date',
             'isbn' => 'nullable|string',
@@ -39,14 +35,11 @@ class OtraPublicacionController extends Controller
         ]);
 
         $otraspublicaciones = new OtraPublicacion([
+            'id_publicacion' => $request->id_publicacion,
             'titulo' => $request->titulo,
             'fecha' => $request->fecha,
             'isbn' => $request->isbn,
             'editorial' => $request->editorial
-
-            //PARA CAMPOS RELACIONADOS QUE SE RECUPERAN EN EL FORMULARIO
-/*             $departamento = Departamento::find($request->departamento_id); // Suponiendo que el campo de selección se llama "departamento_id"
-            $modelo->departamento()->associate($departamento); // Asociar el departamento al modelo */
         ]);
 
         $otraspublicaciones->user_id = auth()->id();
@@ -67,6 +60,7 @@ class OtraPublicacionController extends Controller
     {
 
         $otras_publicacione->update([
+            'id_publicacion' => $request->id_publicacion,
             'titulo' => $request->titulo,
             'fecha' => $request->fecha,
             'isbn' => $request->isbn,

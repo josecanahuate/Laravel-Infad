@@ -25,9 +25,8 @@
                 <tr>
                     <th class="text-center">ID</th>
                     <th class="text-center">TITULO</th>
-                    <th class="text-center">PAIS</th>
-                    <th class="text-center">LUGAR CONGRESO</th>
-                    <th class="text-center">PARTICIPACION</th>
+                    <th class="text-center">AREA</th>
+                    <th class="text-center">GRADO</th>
                     <th class="text-center">ESTADO</th>
                     <th class="text-center">ACCIONES</th>
                 </tr>
@@ -38,9 +37,8 @@
                     <tr>
                         <td class="text-center">{{$tesi->id}}</td>
                         <td class="text-center">{{$tesi->titulo}}</td>
-                        <td class="text-center">{{$tesi->pais}}</td>
-                        <td class="text-center">{{$tesi->lugar_congreso}}</td>
-                        <td class="text-center">{{$tesi->tipo_participaciones}}</td>
+                        <td class="text-center">{{$tesi->areaInvestigacion->nombreainvest}}</td>
+                        <td class="text-center">{{$tesi->gradoAcademico->nombgradoacademico}}</td>
                         <td class="text-center"><span class="badge bg-warning">Pendiente</span></a></td>
                         <td>
                             <div class="d-flex justify-content-center">

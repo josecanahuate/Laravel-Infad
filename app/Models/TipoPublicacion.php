@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class TipoPublicacion extends Model
 {
     use HasFactory;
-
-    protected $primaryKey = 'idpublicacion';
     protected $table = 'tp_publicacion';
+    protected $fillable = ['nombpublicacion'];
 
+    
     public function otrasPublicaciones()
     {
-        return $this->hasMany(OtraPublicacion::class, 'id_publicacion');
+        return $this->hasMany(OtraPublicacion::class, 'id_publicacion', 'idpublicacion');
     }
 }

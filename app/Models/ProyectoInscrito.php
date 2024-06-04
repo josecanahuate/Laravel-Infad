@@ -11,9 +11,14 @@ class ProyectoInscrito extends Model
 
     protected $table = 'proyectos_inscritos';
     protected $fillable = [
-        'titulo_investigacion',
         'sector_pertenece',
+        'id_area_investigacion',
         'linea_investigacion',
+        'id_programa_adscribe',
+        'id_sede',
+        'id_facultad',
+
+        'titulo_investigacion',
         'periodo_vigencia',
         'estado_actual',
         'entidad_financiera',
@@ -23,6 +28,10 @@ class ProyectoInscrito extends Model
         /* 'ruta', */
     ];
     
+    public function user()
+    {
+    return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 
     public function categorias()
     {
@@ -31,27 +40,22 @@ class ProyectoInscrito extends Model
 
     public function facultad()
     {
-    return $this->belongsTo(Facultades::class, 'id_facultad');
+    return $this->belongsTo(Facultades::class, 'id_facultad', 'idfacultad');
     }
 
     public function programaAdscribe()
     {
-        return $this->belongsTo(ProgramaAdscribe::class, 'id_programa_adscribe');
+        return $this->belongsTo(ProgramaAdscribe::class, 'id_programa_adscribe', 'idadscribe');
     }
         
-    public function user()
-    {
-    return $this->belongsTo(User::class, 'user_id');
-    }
-
     public function sede()
     {
-        return $this->belongsTo(Sede::class, 'id_sede');
+        return $this->belongsTo(Sede::class, 'id_sede', 'idsede');
     }
 
     public function enfasisActualizacion()
     {
-        return $this->belongsTo(EnfasisActualizacion::class, 'idenfasis');
+        return $this->belongsTo(EnfasisActualizacion::class, 'idenfasis', 'idenfasis');
     }
 
     public function estatus()
@@ -61,12 +65,17 @@ class ProyectoInscrito extends Model
 
     public function gradoAcademico()
     {
-        return $this->belongsTo(GradoAcademico::class, 'id_grado_academico');
+        return $this->belongsTo(GradoAcademico::class, 'id_grado_academico', 'idgradoacademico');
+    }
+
+    public function areaInvestigacion()
+    {
+        return $this->belongsTo(AreaInvestigacion::class, 'id_area_investigacion', 'id_areainv');
     }
 
     public function tipoParticipaciones()
     {
-        return $this->morphToMany(TipoParticipacion::class, 'id_tipo_participacion');
+        return $this->morphToMany(TipoParticipacion::class, 'id_tipo_participacion', 'idparticipaciones');
     }
 
 }

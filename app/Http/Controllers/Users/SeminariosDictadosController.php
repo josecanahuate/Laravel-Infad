@@ -38,7 +38,6 @@ class SeminariosDictadosController extends Controller
             'modalidad' => $request->modalidad,
             'lugar' => $request->lugar,
             'horas' => $request->horas,
-            'tipo_participacion,' => $request->tipo_participacion,
             /* 'ruta,' => $request->ruta, */
         ]);
         $seminariosdictados->user_id = auth()->id();
@@ -67,7 +66,6 @@ class SeminariosDictadosController extends Controller
             'modalidad' => $request->modalidad,
             'lugar' => $request->lugar,
             'horas' => $request->horas,
-            'tipo_participacion,' => $request->tipo_participacion,
         ]);
 
         return redirect()->route('users.seminarios_dictados.index')->with('success', 'Registro actualizado con éxito!!');

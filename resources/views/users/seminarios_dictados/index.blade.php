@@ -38,7 +38,7 @@
                     <tr>
                         <td class="text-center">{{$seminario->id}}</td>
                         <td class="text-center">{{$seminario->titulo}}</td>
-                        <td class="text-center">{{$congreso->tipoParticipaciones->nombparticipaciones}}</td>
+                        <td class="text-center">{{$seminario->tipoParticipaciones->nombparticipaciones}}</td>
                         <td class="text-center">{{$seminario->pais}}</td>
                         <td class="text-center">{{$seminario->lugar}}</td>
                         <td class="text-center"><span class="badge bg-warning">Pendiente</span></a></td>
