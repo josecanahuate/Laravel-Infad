@@ -46,12 +46,14 @@ class ParticipacionCongresoController extends Controller
 
     public function edit(ParticipacionCongreso $participacion_congreso)
     {
-    return view('users.participacion_congreso.edit', compact('participacion_congreso'));
+    $participaciones = TipoParticipacion::all();
+    return view('users.participacion_congreso.edit', compact('participacion_congreso', 'participaciones'));
     }
 
 
     public function update(UpdateParCongreso $request, ParticipacionCongreso $participacion_congreso)
     {
+
         $participacion_congreso->update([
             'id_tipo_participacion' => $request->id_tipo_participacion,
             'titulo' => $request->titulo,
@@ -59,16 +61,13 @@ class ParticipacionCongresoController extends Controller
             'fecha_fin' => $request->fecha_fin,
             'lugar_congreso' => $request->lugar_congreso,
             'pais' => $request->pais,
-            'publicacion_proceeding' => $request->publicacion_proceeding,
+            'publicacion_proceeding' => $request->publicacion_proceeding
             /* 'ruta' => $request->ruta */
         ]);
 
         return redirect()->route('users.participacion_congreso.index')->with('success', 'Registro actualizado con éxito!!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(ParticipacionCongreso $participacion_congreso)
     {
         $participacion_congreso->delete();

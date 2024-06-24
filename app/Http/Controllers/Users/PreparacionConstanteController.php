@@ -48,9 +48,9 @@ class PreparacionConstanteController extends Controller
 
     public function edit(PreparacionConstante $preparacion_constante)
     {
-    return view('users.preparacion_constante.edit', compact('preparacion_constante'));
+    $enfasis = EnfasisActualizacion::all();
+    return view('users.preparacion_constante.edit', compact('preparacion_constante', 'enfasis'));
     }
-
 
     public function update(UpdatePartConstante $request, PreparacionConstante $preparacion_constante)
     {

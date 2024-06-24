@@ -20,23 +20,20 @@
             @csrf
             @method('PUT')
         <div class="row">            
-                {{-- COLOCAR DE FORMA DINAMICA - TRAER DE TABLA DINAMICA --}}
-              <div class="form-group col-lg-3 col-md-3 mb-3">
-                <label for="idioma">Grado Académico</label>
-                <select class="form-control" id="idioma" name="idioma">
-                    <option disabled selected>Seleccione una opción</option>
-                    <option value="Tecnico">Técnico</option>
-                    <option value="Licenciatura">Licenciatura</option>
-                    <option value="Especializacion">Especialización</option>
-                    <option value="Maestria">Maestría</option>
-                    <option value="Doctorado">Doctorado</option>
-                    <option value="Post Doctorado">Post Doctorado</option>
+            <div class="form-group col-lg-3 col-md-3 mb-3">
+                <label for="id_grado_academico">Grado Académico</label>
+                <select class="form-control" id="id_grado_academico" name="id_grado_academico">
+                    <option disabled>Seleccione una opción</option>
+                    @foreach ($grados as $grado)
+                    <option value="{{ $grado->idgradoacademico }}" {{ $grado->idgradoacademico == $preparacion_formal->id_grado_academico ? 'selected' : '' }}>{{ $grado->nombgradoacademico }}</option>
+                    @endforeach
                 </select>
-                @error('idioma')
+                @error('id_grado_academico')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
-            </div>
+            </div> 
 
+        
             <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
                 <label for="modalidad">Modalidad</label>
                 <select class="form-control select2 select2-hidden-accessible" id="modalidad" name="modalidad" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" 
@@ -60,15 +57,15 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-8 col-md-8 mb-3">
+                <div class="col-lg-6 col-md-6 mb-3">
                     <label for="titulo">Titulo Obtenido / Por Obtener</label>
                     <input type="text" name="titulo" class="form-control" id="titulo" value="{{ $preparacion_formal->titulo }}">
                     @error('titulo')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                   </div>
-
-              <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
+{{-- 
+              <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
                 <label for="estatus_prepformal">Estatus</label>
                 <select class="form-control select2 select2-hidden-accessible" id="estatus_prepformal" name="estatus_prepformal" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" 
                 value="{{ $preparacion_formal->estatus_prepformal }}">
@@ -79,40 +76,55 @@
                 @error('estatus_prepformal')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
+            </div> --}}
+
+            <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
+                <label for="tipo">Lugar de Preparacion</label>
+                <select class="form-control select2 select2-hidden-accessible" id="tipo" name="tipo" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" 
+                value="{{ $preparacion_formal->tipo }}">
+                    @foreach(['Nacional', 'Extranjero'] as $extranjeria)
+                    <option value="{{ $extranjeria }}" {{ $preparacion_formal->tipo == $extranjeria ? 'selected' : '' }}>{{ $extranjeria }}</option>
+                    @endforeach
+                </select>
+                @error('tipo')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
+
+            <div class="col-lg-3 col-md-3 mb-3">
+                <label for="pais">País</label>
+                <input type="text" name="pais" class="form-control" id="pais" value="{{ $preparacion_formal->pais }}">
+                @error('pais')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
+              </div>
                 </div>
 
                 <div class="row">
-                    <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="tipo">Tipo</label>
-                        <select class="form-control select2 select2-hidden-accessible" id="tipo" name="tipo" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" 
-                        value="{{ $preparacion_formal->tipo }}">
-                            @foreach(['Nacional', 'Extranjero'] as $extranjeria)
-                            <option value="{{ $extranjeria }}" {{ $preparacion_formal->tipo == $extranjeria ? 'selected' : '' }}>{{ $extranjeria }}</option>
-                            @endforeach
-                        </select>
-                        @error('tipo')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="col-lg-3 col-md-3 mb-3">
-                        <label for="pais">País</label>
-                        <input type="text" name="pais" class="form-control" id="pais" value="{{ $preparacion_formal->pais }}">
-                        @error('pais')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                      </div>
-
-                      <div class="col-lg-3 col-md-3 mb-3">
+         {{--              <div class="col-lg-3 col-md-3 mb-3">
                         <label for="ano_titulo">Año</label>
                         <input type="text" name="ano_titulo" class="form-control" id="ano_titulo" value="{{ $preparacion_formal->ano_titulo }}">
                         @error('ano_titulo')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
+                      </div> --}}
+
+                      <div class="col-md-3 mb-3">
+                        <label for="fecha_inicio">Fecha Inicio</label>
+                        <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="fecha_inicio" id="fecha_inicio" value="{{ $preparacion_formal->fecha_inicio }}">
+                        @error('fecha_inicio')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                       </div>
 
-                        {{-- DECLARAR CAMPO COMO ENUM --}}
+                      <div class="col-md-3 mb-3">
+                          <label for="fecha_fin">Fecha Fin</label>
+                          <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="fecha_fin" id="fecha_fin" value="{{ $preparacion_formal->fecha_fin }}">
+                          @error('fecha_fin')
+                          <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                      </div>
+
                       <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
                         <label for="financiamiento">Recursos</label>
                         <select class="form-control select2 select2-hidden-accessible" id="financiamiento" name="financiamiento" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" 
@@ -125,7 +137,23 @@
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    <div class="col-lg-3 col-md-3 mb-3">
+                        <label for="monto_asignado">Monto Asignado</label>
+                        <input type="number" name="monto_asignado" class="form-control" id="monto_asignado"  value="{{ $preparacion_formal->monto_asignado }}">
+                        @error('monto_asignado')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                      </div>
                     </div>
+
+                    <div class="row">
+                        <ul class="text-danger">
+                            <li>IMAGEN-ARCHIVOS DEMOSTRACION SERA OBLIGATORIA | REQUIRED </li>
+                            <li>FEHCA INICIO | FECHA FIN</li>
+                            <li>SE OMITIRA (CURSANDO ACTUALMENTE) y AÑO SI SE DESEA COLOCAR SE REINTEGRARA</li>
+                        </ul>
+                </div>
 
                     <div class="row">
                         <div class="col-md-12">

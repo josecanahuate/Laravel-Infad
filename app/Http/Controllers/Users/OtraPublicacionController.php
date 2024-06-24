@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Users;
 use App\Models\OtraPublicacion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\AreaInvestigacion;
+use App\Http\Requests\StorePublicacion;
+use App\Http\Requests\UpdatePublicacion;
 use App\Models\TipoPublicacion;
 
 class OtraPublicacionController extends Controller
@@ -24,22 +25,15 @@ class OtraPublicacionController extends Controller
     }
     
 
-    public function store(Request $request)
+    public function store(StorePublicacion $request)
     {
-        $request->validate([
-            'id_publicacion' => 'required|exists:tp_publicacion,idpublicacion',
-            'titulo' => 'required|string|max:255',
-            'fecha' => 'required|date',
-            'isbn' => 'nullable|string',
-            'editorial' => 'string'
-        ]);
-
         $otraspublicaciones = new OtraPublicacion([
-            'id_publicacion' => $request->id_publicacion,
             'titulo' => $request->titulo,
             'fecha' => $request->fecha,
             'isbn' => $request->isbn,
-            'editorial' => $request->editorial
+            'editorial' => $request->editorial,
+            'entidad_financiera' => $request->entidad_financiera,
+            'id_publicacion' => $request->id_publicacion
         ]);
 
         $otraspublicaciones->user_id = auth()->id();
@@ -52,19 +46,21 @@ class OtraPublicacionController extends Controller
 
     public function edit(OtraPublicacion $otras_publicacione)
     {
-    return view('users.otras_publicaciones.edit', compact('otras_publicacione'));
+    $publicaciones = TipoPublicacion::all();
+    return view('users.otras_publicaciones.edit', compact('otras_publicacione', 'publicaciones'));
     }
 
 
-    public function update(Request $request, OtraPublicacion $otras_publicacione)
+    public function update(UpdatePublicacion $request, OtraPublicacion $otras_publicacione)
     {
 
         $otras_publicacione->update([
-            'id_publicacion' => $request->id_publicacion,
             'titulo' => $request->titulo,
             'fecha' => $request->fecha,
             'isbn' => $request->isbn,
-            'editorial' => $request->editorial
+            'editorial' => $request->editorial,
+            'entidad_financiera' => $request->entidad_financiera,
+            'id_publicacion' => $request->id_publicacion
         ]);
 
         return redirect()->route('users.otras_publicaciones.index')->with('success', 'Registro actualizado con éxito!!');

@@ -13,13 +13,13 @@ class ProyectoInscrito extends Model
     protected $fillable = [
         'sector_pertenece',
         'id_area_investigacion',
-        'linea_investigacion',
+        'id_linea_investigacion',
         'id_programa_adscribe',
         'id_sede',
         'id_facultad',
-
         'titulo_investigacion',
-        'periodo_vigencia',
+        'periodo_vigencia_ini',
+        'periodo_vigencia_fin',
         'estado_actual',
         'entidad_financiera',
         'monto_asignado',
@@ -28,6 +28,7 @@ class ProyectoInscrito extends Model
         /* 'ruta', */
     ];
     
+
     public function user()
     {
     return $this->belongsTo(User::class, 'user_id', 'id');

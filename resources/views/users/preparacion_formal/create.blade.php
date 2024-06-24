@@ -55,7 +55,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-8 col-md-8 mb-3">
+                <div class="col-lg-6 col-md-6 mb-3">
                     <label for="titulo">Titulo Obtenido / Por Obtener</label>
                     <input type="text" name="titulo" class="form-control" id="titulo" value="{{ old('titulo') }}" placeholder="Inserte Titulo academico">
                     @error('titulo')
@@ -63,8 +63,7 @@
                     @enderror
                   </div>
 
-            {{-- DECLARAR CAMPO COMO ENUM --}}
-              <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
+{{--               <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
                 <label for="estatus_prepformal">Estatus</label>
                 <select class="form-control select2 select2-hidden-accessible" id="estatus_prepformal" name="estatus_prepformal" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('estatus_prepformal') }}">
                     <option disabled selected>Seleccione una opción</option>
@@ -74,39 +73,54 @@
                 @error('estatus_prepformal')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
+            </div> --}}
+
+            <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
+                <label for="tipo">Lugar de Preparacion</label>
+                <select class="form-control select2 select2-hidden-accessible" id="tipo" name="tipo" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('tipo') }}">
+                    <option disabled selected>Seleccione una opción</option>
+                    <option value="Nacional">Nacional</option>
+                    <option value="Extranjero">Extranjero</option>
+                </select>
+                @error('tipo')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
+
+            <div class="col-lg-3 col-md-3 mb-3">
+                <label for="pais">País</label>
+                <input type="text" name="pais" class="form-control" id="pais" value="{{ old('pais') }}" placeholder="Inserte el País">
+                @error('pais')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
+              </div>
                 </div>
 
                 <div class="row">
-                    <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="tipo">Tipo</label>
-                        <select class="form-control select2 select2-hidden-accessible" id="tipo" name="tipo" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('tipo') }}">
-                            <option disabled selected>Seleccione una opción</option>
-                            <option value="Nacional">Nacional</option>
-                            <option value="Extranjero">Extranjero</option>
-                        </select>
-                        @error('tipo')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="col-lg-3 col-md-3 mb-3">
-                        <label for="pais">País</label>
-                        <input type="text" name="pais" class="form-control" id="pais" value="{{ old('pais') }}" placeholder="Inserte la Institución">
-                        @error('pais')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                      </div>
-
-                      <div class="col-lg-3 col-md-3 mb-3">
+            {{--           <div class="col-lg-3 col-md-3 mb-3">
                         <label for="ano_titulo">Año</label>
                         <input type="text" name="ano_titulo" class="form-control" id="ano_titulo" value="{{ old('ano_titulo') }}" placeholder="Inserte el año">
                         @error('ano_titulo')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
+                      </div> --}}
+    
+                      <div class="col-md-3 mb-3">
+                        <label for="fecha_inicio">Fecha Inicio</label>
+                        <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="fecha_inicio" id="fecha_inicio" value="{{ old('fecha_inicio') }}">
+                        @error('fecha_inicio')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                       </div>
 
-                        {{-- DECLARAR CAMPO COMO ENUM --}}
+                      <div class="col-md-3 mb-3">
+                          <label for="fecha_fin">Fecha Fin</label>
+                          <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="fecha_fin" id="fecha_fin" value="{{ old('fecha_fin') }}">
+                          @error('fecha_fin')
+                          <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                      </div>
+
                       <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
                         <label for="financiamiento">Recursos</label>
                         <select class="form-control select2 select2-hidden-accessible" id="financiamiento" name="financiamiento" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('financiamiento') }}">
@@ -119,7 +133,24 @@
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    <div class="col-lg-3 col-md-3 mb-3">
+                        <label for="monto_asignado">Monto Asignado</label>
+                        <input type="number" name="monto_asignado" class="form-control" id="monto_asignado" value="{{ old('monto_asignado') }}" placeholder="$">
+                        @error('monto_asignado')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                      </div>
                     </div>
+
+                    <div class="row">
+                            <ul class="text-danger">
+                                <li>IMAGEN-ARCHIVOS DEMOSTRACION SERA OBLIGATORIA | REQUIRED </li>
+                                <li>FEHCA INICIO | FECHA FIN</li>
+                                <li>SE OMITIRA (CURSANDO ACTUALMENTE) y AÑO SI SE DESEA COLOCAR SE REINTEGRARA</li>
+                            </ul>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-default">

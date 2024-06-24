@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\AreaInvestigacion as ModelsAreaInvestigacion;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AreaInvestigacion extends Seeder
 {

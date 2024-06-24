@@ -10,7 +10,7 @@ class ProgramaAdscribe extends Model
     use HasFactory;
 
     protected $table = 'programa_adscribe';
-    protected $fillable = 'nombadscribe';
+    protected $fillable = ['nombadscribe'];
     
 
     public function proyectosInscritos()

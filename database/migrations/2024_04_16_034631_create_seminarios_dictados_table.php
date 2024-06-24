@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('institucion');
             $table->string('titulo');
             $table->string('facilitador')->nullable();
-            $table->date('fecha_ini');
+            $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->string('pais');
             $table->enum('modalidad', ['Presencial', 'Virtual', 'Semi-presencial']);

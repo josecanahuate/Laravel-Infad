@@ -6,8 +6,18 @@
     <h1>Proyectos Inscritos</h1>
 @stop
 {{-- <a class="btn btn-primary mr-3" href="{{route('users.proyectos_inscritos.index')}}">Volver</a> --}}
-
 @section('content')
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 
 @if (session ('success'))
     <div id="successMessage" class="alert alert-success">
@@ -30,13 +40,29 @@
             </div>{{-- end row --}}
 
             <div class="row">
-              <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
-                <label for="sector_pertenece">Sector al que Pertenece</label>
+            <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
+                <label for="sector_pertenece">Sector Empresa</label>
                 <select class="form-control select2 select2-hidden-accessible" id="sector_pertenece" name="sector_pertenece" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('sector_pertenece') }}">
-                    <option disabled selected>Seleccione una opción</option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
+                    <option value="" disabled selected>Seleccionar opción</option>
+                    <option value="Tecnología">Tecnología</option>
+                    <option value="Salud">Salud</option>
+                    <option value="Educación">Educación</option>
+                    <option value="Finanzas">Finanzas</option>
+                    <option value="Manufactura">Manufactura</option>
+                    <option value="Comercio minorista">Comercio minorista</option>
+                    <option value="Agricultura">Agricultura</option>
+                    <option value="Construcción">Construcción</option>
+                    <option value="Energía">Energía</option>
+                    <option value="Medios de comunicación">Medios de comunicación</option>
+                    <option value="Servicios profesionales">Servicios profesionales</option>
+                    <option value="Bienes raíces">Bienes raíces</option>
+                    <option value="Transporte">Transporte</option>
+                    <option value="Hotelería y turismo">Hotelería y turismo</option>
+                    <option value="Entretenimiento">Entretenimiento</option>
+                    <option value="Consultoría">Consultoría</option>
+                    <option value="ONGs y organizaciones sin fines de lucro">ONGs y organizaciones sin fines de lucro</option>
+                    <option value="Gobierno y sector público">Gobierno y sector público</option>
+                    <option value="Investigación y desarrollo (I+D)">Investigación y desarrollo (I+D)</option>
                 </select>
                 @error('sector_pertenece')
                 <span class="text-danger">{{ $message }}</span>
@@ -45,10 +71,10 @@
 
                 <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
                     <label for="id_area_investigacion">Área de Investigación</label>
-                    <select class="form-control select2 select2-hidden-accessible" id="id_area_investigacion" name="id_area_investigacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_area_investigacion') }}">
+                    <select class="form-control select2 select2-hidden-accessible area" id="id_area_investigacion" name="id_area_investigacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_area_investigacion') }}">
                         <option disabled selected>Seleccione una opción</option>
                         @foreach ($areas as $area)
-                        <option value="{{$area->id}}">{{$area->nombreainvest}}</option>
+                        <option value="{{$area->id_areainv}}">{{$area->nombreainvest}}</option>
                         @endforeach
                     </select>
                     @error('id_area_investigacion')
@@ -56,29 +82,27 @@
                     @enderror
                 </div>
 
-                {{-- LINEA DE INVESTIGACION - TRAER DE LA BD - AL SELECCIONAR AREA SE DEBE MOSTRAR UNICAMENTE LA LINEA QUE LE CORRESPONDE --}}
                 <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
-                    <label for="sector_pertenece">Línea de Investigación</label>
-                    <select class="form-control select2 select2-hidden-accessible" id="sector_pertenece" name="sector_pertenece" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('sector_pertenece') }}">
+                    <label for="id_linea_investigacion">Línea de Investigación</label>
+                    <select class="form-control select2 select2-hidden-accessible" id="id_linea_investigacion" name="id_linea_investigacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_linea_investigacion') }}">
                         <option disabled selected>Seleccione una opción</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
+                        @foreach ($lineas as $linea)
+                        <option value="{{$linea->id_linea}}">{{$linea->nombre_linea}}</option>
+                        @endforeach
                     </select>
-                    @error('sector_pertenece')
+                    @error('id_linea_investigacion')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 </div> {{-- end row --}}
       
-                <div class="row">
-                               {{-- PROGRAMA ADSCRIBE - TRAER DE LA BD - RELACIONAR --}}    
+                <div class="row">   
                 <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                    <label for="Programas">Programa adscrito</label>
+                    <label for="id_programa_adscribe">Programa adscrito</label>
                     <select class="form-control select2 select2-hidden-accessible" id="id_programa_adscribe" name="id_programa_adscribe" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_programa_adscribe') }}">
                         <option disabled selected>Seleccione una opción</option>
                         @foreach ($programas as $programa)
-                        <option value="{{$programa->id}}">{{$programa->nombadscribe}}</option>
+                        <option value="{{$programa->idadscribe}}">{{$programa->nombadscribe}}</option>
                         @endforeach
                     </select>
                     @error('id_programa_adscribe')
@@ -90,9 +114,10 @@
                     <label for="estado_actual">Estado</label>
                     <select class="form-control select2 select2-hidden-accessible" id="estado_actual" name="estado_actual" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('estado_actual') }}">
                         <option disabled selected>Seleccione una opción</option>
-                        <option value="">Publicado</option>
-                        <option value="">Completo</option>
-                        <option value="">etcc ver opciones para poner</option>
+                        <option value="En Progreso">En Progreso</option>
+                        <option value="Completado">Completado</option>
+                        <option value="Completado">Completado</option>
+                        <option value="Aprobado">Aprobado</option>
                     </select>
                     @error('estado_actual')
                     <span class="text-danger">{{ $message }}</span>
@@ -120,7 +145,6 @@
 
 
                 <div class="row">
-  
                     <div class="col-lg-3 col-md-3 mb-3">
                       <label for="entidad_financiera">Entidad Financiadora</label>
                       <input type="text" name="entidad_financiera" class="form-control" id="entidad_financiera" value="{{ old('entidad_financiera') }}" placeholder="Inserte la Entidad Financiadora">
@@ -137,13 +161,12 @@
                       @enderror
                     </div>
 
-                    {{-- SEDE EJECUTORA - TRAER DE LA BD - RELACIONAR --}}  
                     <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="sede">Sede ejecutora</label>
+                        <label for="id_sede">Sede ejecutora</label>
                         <select class="form-control select2 select2-hidden-accessible" id="id_sede" name="id_sede" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_sede') }}">
                             <option disabled selected>Seleccione una opción</option>
                             @foreach ($sedes as $sede)
-                            <option value="{{$sede->id}}">{{$sede->nombsede}}</option>
+                            <option value="{{$sede->idsede}}">{{$sede->nombsede}}</option>
                             @endforeach
                         </select>
                         @error('id_sede')
@@ -152,11 +175,11 @@
                     </div>
 
                     <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="facultad">Facultad ejecutora</label>
+                        <label for="id_facultad">Facultad ejecutora</label>
                         <select class="form-control select2 select2-hidden-accessible" id="id_facultad" name="id_facultad" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_facultad') }}">
                             <option disabled selected>Seleccione una opción</option>
                             @foreach ($facultades as $facultad)
-                            <option value="{{$facultad->id}}">{{$facultad->nombfacultad}}</option>
+                            <option value="{{$facultad->idfacultad}}">{{$facultad->nombfacultad}}</option>
                             @endforeach
                         </select>
                         @error('id_facultad')
@@ -245,7 +268,6 @@
 
 @section('css')
     {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
 
 @section('js')
@@ -256,12 +278,40 @@
         }, 3000); // 3 segundos
         </script>
 
-
-
-
 {{-- SCRIPT PARA TABLA AREA DE INVESTIGACION Y LINEA DE INVESTIGACION --}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+{{-- funciona con la ruta get --}}
 <script>
+    $(document).ready(function() {
+        //$('.select2.area').select2();
+
+        $('#id_area_investigacion').change(function() {
+            var areaId = $(this).val();
+            $('#id_linea_investigacion').empty();
+            $('#id_linea_investigacion').append('<option disabled selected>Seleccione una opción</option>');
+
+            if (areaId) {
+                $.ajax({
+                    url: '/lineas-investigacion/' + areaId,
+                    type: 'GET',
+                    success: function(data) {
+                        data.forEach(function(linea) {
+                            $('#id_linea_investigacion').append('<option value="' + linea.id + '">' + linea.nombre_linea + '</option>');
+                        });
+                    },
+                    error: function() {
+                        $('#id_linea_investigacion').append('<option>No hay líneas de investigación disponibles</option>');
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+
+{{-- <script>
     $(document).ready(function() {
         // Definir un objeto que mapee cada área con sus líneas de investigación
         var areasLineasInvestigacion = {
@@ -271,22 +321,22 @@
         };
 
         // Cuando cambia la selección del área de investigación
-        $('#areaInvestigacion').change(function() {
+        $('#id_area_investigacion').change(function() {
             var areaSeleccionada = $(this).val();
             var lineasInvestigacion = areasLineasInvestigacion[areaSeleccionada];
 
             // Limpiar el select de líneas de investigación
-            $('#lineaInvestigacion').empty();
+            $('#id_linea_investigacion').empty();
 
             // Agregar las opciones correspondientes al select de líneas de investigación
             if (lineasInvestigacion) {
                 lineasInvestigacion.forEach(function(linea) {
-                    $('#lineaInvestigacion').append('<option value="' + linea + '">' + linea + '</option>');
+                    $('#id_linea_investigacion').append('<option value="' + linea + '">' + linea + '</option>');
                 });
             } else {
-                $('#lineaInvestigacion').append('<option value="">No hay líneas de investigación disponibles</option>');
+                $('#id_linea_investigacion').append('<option value="">No hay líneas de investigación disponibles</option>');
             }
         });
     });
-</script>
+</script> --}}
 @stop

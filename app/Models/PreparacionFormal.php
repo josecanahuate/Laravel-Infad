@@ -12,14 +12,17 @@ class PreparacionFormal extends Model
     protected $table = 'preparacion_formal';
     protected $fillable = [
         'id_grado_academico',
-        'estatus',
+        //'estatus_prepformal',
+        //'ano_titulo',
         'titulo',
-        'ano_titulo',
+        'fecha_inicio',
+        'fecha_fin',
         'pais',
         'tipo',
         'modalidad',
         'institucion_superior',
         'financiamiento',
+        'monto_asignado',
         /* 'ruta', */
     ];
 

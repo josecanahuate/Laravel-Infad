@@ -48,10 +48,10 @@
                   </div>
 
                   <div class="col-md-3 mb-3">
-                    <label for="fecha_ini">Fecha Inicio</label>
-                    <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="fecha_ini" id="fecha_ini" 
-                    value="{{ $seminarios_dictado->fecha_ini }}">
-                    @error('fecha_ini')
+                    <label for="fecha_inicio">Fecha Inicio</label>
+                    <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="fecha_inicio" id="fecha_inicio" 
+                    value="{{ $seminarios_dictado->fecha_inicio }}">
+                    @error('fecha_inicio')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                   </div>
@@ -106,16 +106,15 @@
                         @enderror
                       </div>
 
-    
-                    <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="tipo_participacion">Tipo de Participación</label>
-                        <select class="form-control select2 select2-hidden-accessible" id="tipo_participacion" name="tipo_participacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" 
-                        value="{{ $seminarios_dictado->tipo_participacion }}">
-                            @foreach(['Presentador Principal', 'Asistente', 'Coordinador', 'Organizador', 'Evaluador'] as $participacion)
-                            <option value="{{ $participacion }}" {{ $seminarios_dictado->tipo_participacion == $participacion ? 'selected' : '' }}>{{ $participacion }}</option>
+
+                      <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
+                        <label for="id_tipo_participacion">Tipo de Participación</label>
+                        <select class="form-control select2 select2-hidden-accessible" id="id_tipo_participacion" name="id_tipo_participacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            @foreach ($participaciones as $participacion)
+                            <option value="{{ $participacion->idparticipaciones }}" {{ $participacion->idparticipaciones == $seminarios_dictado->id_tipo_participacion ? 'selected' : '' }}>{{ $participacion->nombparticipaciones }}</option>
                             @endforeach
                         </select>
-                        @error('tipo_participacion')
+                        @error('id_tipo_participacion')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

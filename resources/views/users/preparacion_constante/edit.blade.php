@@ -20,17 +20,14 @@
             @csrf
             @method('PUT')
             <div class="row">
-                {{-- COLOCAR DE FORMA DINAMICA - TRAER DE TABLA DINAMICA --}}
+
                 <div class="form-group col-lg-3 col-md-3 mb-3">
                     <label for="enfasis">Enfasis Actualización</label>
-                    <select class="form-control" id="id_enfasis_actualizacion" name="id_enfasis_actualizacion"
-                        value="{{ $preparacion_constante->id_enfasis_actualizacion }}">
+                    <select class="form-control" id="id_enfasis_actualizacion" name="id_enfasis_actualizacion">
                         <option disabled selected>Seleccione una opción</option>
-                        <option value="Diplomado">Diplomado</option>
-                        <option value="Curso">Curso</option>
-                        <option value="Pasantía">Pasantía</option>
-                        <option value="Seminarios">Seminarios</option>
-                        <option value="Talleres">Talleres</option>
+                        @foreach ($enfasis as $enfasi)
+                        <option value="{{ $enfasi->idenfasis }}" {{ $enfasi->idenfasis == $preparacion_constante->id_enfasis_actualizacion ? 'selected' : '' }}>{{ $enfasi->nombrenfasis }}</option>
+                        @endforeach
                     </select>
                     @error('id_enfasis_actualizacion')
                         <span class="text-danger">{{ $message }}</span>

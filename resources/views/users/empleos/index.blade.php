@@ -6,8 +6,8 @@
 {{-- @can('users.empleos.create')
 <a class="btn btn-primary float-right" href="{{route('admin.tags.create')}}">Nuevo Empleo</a>
 @endcan --}}
-<a class="btn btn-primary float-right" href="{{route('users.empleos.create')}}">Nuevo Empleo</a>
-    <h1>Lista de Empleos</h1>
+<a class="btn btn-primary float-right" href="{{route('users.empleos.create')}}">Nuevo</a>
+    <h1>Historial Laboral</h1>
 @stop
 
 @section('content')

@@ -3,9 +3,8 @@
 @section('title', 'Empleos')
 
 @section('content_header')
-    <h1>Experiencia Laboral</h1>
+<h1>Historia Laboral</h1>  
 @stop
-
 
 @section('content')
 
@@ -14,13 +13,14 @@
         <strong>{{ session ('success') }}</strong>
     </div>
 @endif
-    <p>Welcome to this beautiful admin panel.</p>
+    {{-- <p>Welcome to this beautiful admin panel.</p> --}}
+    <p><a href="{{route('users.empleos.index') }}">Volver</a></p>
     <div class="container mt-2">
         <form method="POST" action="{{route('users.empleos.store') }}">
         @csrf
         <div class="row">
             <div class="col-md-4 mb-3">
-              <label for="empresa">Empresa</label>
+              <label for="empresa">Empresa / Institución</label>
               <input type="text" name="empresa" class="form-control" id="empresa" value="{{ old('empresa') }}" placeholder="Inserte la Empresa">
               @error('empresa')
               <span class="text-danger">{{ $message }}</span>
@@ -28,7 +28,7 @@
             </div>
 
             <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
-                <label for="sector_empresa">Sector Empresa</label>
+                <label for="sector_empresa">Sector</label>
                 <select class="form-control select2 select2-hidden-accessible" id="sector_empresa" name="sector_empresa" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('sector_empresa') }}">
                     <option value="" disabled selected>Seleccionar opción</option>
                     <option value="Tecnología">Tecnología</option>
@@ -50,7 +50,6 @@
                     <option value="ONGs y organizaciones sin fines de lucro">ONGs y organizaciones sin fines de lucro</option>
                     <option value="Gobierno y sector público">Gobierno y sector público</option>
                     <option value="Investigación y desarrollo (I+D)">Investigación y desarrollo (I+D)</option>
-                    <option value="Otros">Otros</option>
                 </select>
                 @error('sector_empresa')
                 <span class="text-danger">{{ $message }}</span>
@@ -88,14 +87,14 @@
                 </div>
 
                 <div class="col-md-3 mb-3">
-                  <label for="fechainicio">Fecha Inicio</label>
+                  <label for="fechainicio">Fecha Ingreso</label>
                   <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="fecha_inicio" id="fecha_inicio" value="{{ old('fechainicio') }}">
                   @error('fecha_inicio')
                   <span class="text-danger">{{ $message }}</span>
                   @enderror
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="fechafinal">Fecha Final</label>
+                    <label for="fechafinal">Fecha Salida</label>
                     <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="fecha_fin" id="fecha_fin" value="{{ old('fecha_fin') }}">
                     @error('fecha_fin')
                     <span class="text-danger">{{ $message }}</span>

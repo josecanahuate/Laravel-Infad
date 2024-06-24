@@ -3,7 +3,7 @@
 @section('title', 'Empleos')
 
 @section('content_header')
-    <h1>Editar Empleo</h1>
+    <h1>Editar Historia Laboral</h1>
 @stop
 {{-- <a class="btn btn-primary mr-3" href="{{route('users.empleos.index')}}">Volver</a> --}}
 
@@ -20,7 +20,7 @@
             @method('PUT')
         <div class="row">
             <div class="col-md-4 mb-3">
-              <label for="empresa">Empresa</label>
+              <label for="empresa">Empresa / Institución</label>
               <input type="text" name="empresa" class="form-control" id="empresa" value="{{ $experienciaLaboral->empresa }}">
               @error('empresa')
               <span class="text-danger">{{ $message }}</span>
@@ -28,7 +28,7 @@
             </div>
 
             <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
-                <label for="sector_empresa">Sector Empresa</label>
+                <label for="sector_empresa">Sector</label>
                 <select class="form-control select2 select2-hidden-accessible" id="sector_empresa" name="sector_empresa" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" 
                 value="{{ $experienciaLaboral->sector_empresa }}">
                     @foreach(['Tecnología', 'Salud', 'Educación', 'Finanzas', 'Manufactura', 'Comercio minorista', 'Agricultura', 'Construcción', 'Energía', 'Medios de comunicación', 'Servicios profesionales', 'Bienes raíces', 'Transporte', 'Hotelería y turismo', 'Entretenimiento', 'Consultoría', 'ONGs y organizaciones sin fines de lucro', 'Gobierno y sector público', 'Investigación y desarrollo (I+D)', 'Otros'] as $sectores)
@@ -73,14 +73,14 @@
                 </div>
 
                 <div class="col-lg-3 col-md-3 mb-3">
-                  <label for="fechainicio">Fecha Inicio</label>
+                  <label for="fechainicio">Fecha Ingreso</label>
                   <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" value="{{ $experienciaLaboral->fecha_inicio }}" name="fecha_inicio" id="fecha_inicio">
                   @error('fecha_inicio')
                   <span class="text-danger">{{ $message }}</span>
                   @enderror
                 </div>
                 <div class="col-lg-3 col-md-3 mb-3">
-                    <label for="fechafinal">Fecha Final</label>
+                    <label for="fechafinal">Fecha Salida</label>
                     <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" value="{{ $experienciaLaboral->fecha_fin }}" name="fecha_fin" id="fecha_inicio">
                     @error('fecha_fin')
                     <span class="text-danger">{{ $message }}</span>

@@ -34,8 +34,7 @@
                     @enderror
                 </div>
 
-                
-
+            
                 <div class="col-lg-6 col-md-6 mb-3">
                     <label for="titulo">Titulo</label>
                     <input type="text" name="titulo" class="form-control" id="titulo" value="{{ old('titulo') }}"

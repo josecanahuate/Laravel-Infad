@@ -12,10 +12,7 @@ class AreaInvestigacion extends Model
     protected $table = 'areas_investigacion';
     protected $fillable = ['nombreainvest'];
 
-    public function lineasInvestigacion()
-    {
-        return $this->hasMany(LineaInvestigacion::class, 'id_area_investigacion', 'id_areainv');
-    }
+
 
     //datos personales
     public function datosPersonales()
@@ -23,12 +20,6 @@ class AreaInvestigacion extends Model
     return $this->hasMany(DatoPersonal::class, 'id_area_investigacion', 'id_areainv');
     }
 
-    //tesis asesoradas
-/*     public function tesisAsesoradas()
-    {
-    return $this->belongsToMany(TesiAsesorada::class, 'id_area_investigacion', 'id_areainv', 'id_grado_academico', 'idgradoacademico', 'id_facultad', 'idfacultad');
-    }
- */
     public function tesisAsesoradas()
     {
     return $this->hasMany(TesiAsesorada::class, 'id_area_investigacion', 'id_areainv');
@@ -38,6 +29,11 @@ class AreaInvestigacion extends Model
     public function proyectosInscritos()
     {
     return $this->hasMany(ProyectoInscrito::class, 'id_area_investigacion', 'id_areainv');
+    }
+
+    public function lineasInvestigacion()
+    {
+        return $this->hasMany(LineaInvestigacion::class, 'id_area_investigacion', 'id_areainv');
     }
 
 }

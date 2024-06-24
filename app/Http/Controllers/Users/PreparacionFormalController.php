@@ -29,14 +29,17 @@ class PreparacionFormalController extends Controller
     {
         $preparacionformal = new PreparacionFormal([
             'id_grado_academico' => $request->id_grado_academico,
-            'estatus_prepformal' => $request->estatus_prepformal,
+            //'estatus_prepformal' => $request->estatus_prepformal,
+            //'ano_titulo' => $request->ano_titulo,
             'titulo' => $request->titulo,
-            'ano_titulo' => $request->ano_titulo,
+            'fecha_inicio' => $request->fecha_inicio,
+            'fecha_fin' => $request->fecha_fin,
             'pais' => $request->pais,
             'tipo' => $request->tipo,
             'modalidad' => $request->modalidad,
             'institucion_superior' => $request->institucion_superior,
-            'financiamiento' => $request->financiamiento
+            'financiamiento' => $request->financiamiento,
+            'monto_asignado' => $request->monto_asignado,
             /* 'ruta' => $request->ruta */
         ]);
         $preparacionformal->user_id = auth()->id();
@@ -48,7 +51,8 @@ class PreparacionFormalController extends Controller
 
     public function edit(PreparacionFormal $preparacion_formal)
     {
-    return view('users.preparacion_formal.edit', compact('preparacion_formal'));
+    $grados = GradoAcademico::all();
+    return view('users.preparacion_formal.edit', compact('preparacion_formal', 'grados'));
     }
 
 
@@ -56,23 +60,24 @@ class PreparacionFormalController extends Controller
     {
         $preparacion_formal->update([
             'id_grado_academico' => $request->id_grado_academico,
-            'estatus_prepformal' => $request->estatus_prepformal,
+            //'estatus_prepformal' => $request->estatus_prepformal,
+            //'ano_titulo' => $request->ano_titulo,
             'titulo' => $request->titulo,
-            'ano_titulo' => $request->ano_titulo,
+            'fecha_inicio' => $request->fecha_inicio,
+            'fecha_fin' => $request->fecha_fin,
             'pais' => $request->pais,
             'tipo' => $request->tipo,
             'modalidad' => $request->modalidad,
             'institucion_superior' => $request->institucion_superior,
             'financiamiento' => $request->financiamiento,
+            'monto_asignado' => $request->monto_asignado
             /* 'ruta' => $request->ruta */
         ]);
 
         return redirect()->route('users.preparacion_formal.index')->with('success', 'Registro actualizado con éxito!!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(PreparacionFormal $preparacion_formal)
     {
         $preparacion_formal->delete();

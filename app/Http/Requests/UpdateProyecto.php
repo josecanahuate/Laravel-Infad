@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProyectoStore extends FormRequest
+class UpdateProyecto extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -37,8 +37,8 @@ class ProyectoStore extends FormRequest
             'sitio_web' => 'nullable|url|max:255',
             'enlace_video' => 'nullable|url|max:255'
         ];
+        
     }
-    
 
     public function messages(): array
     {
@@ -88,7 +88,6 @@ class ProyectoStore extends FormRequest
             'enlace_video.max' => 'El enlace del video no debe exceder los 255 caracteres.',
         ];
     }
-    
 
     public function attributes(): array
     {
@@ -109,5 +108,4 @@ class ProyectoStore extends FormRequest
             'enlace_video' => 'enlace del video',
         ];
     }
-    
 }

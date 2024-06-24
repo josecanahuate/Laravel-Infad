@@ -30,6 +30,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('tesis-asesoradas', TesisAsesoradasController::class)->except('show')->names('users.tesis_asesoradas');
     Route::resource('seminarios-dictados', SeminariosDictadosController::class)->except('show')->names('users.seminarios_dictados');
     Route::resource('proyectos-inscritos', ProyectoInscritoController::class)->except('show')->names('users.proyectos_inscritos');
+
+    Route::get('/proyectos/create', [ProyectoInscritoController::class, 'create']);
+    Route::get('/lineas-investigacion/{idArea}', [ProyectoInscritoController::class, 'getLineasInvestigacion']);
+
     Route::resource('otras-publicaciones', OtraPublicacionController::class)->except('show')->names('users.otras_publicaciones');
 });
 

@@ -33,9 +33,9 @@
             <div class="row">
                 <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
                     <label for="id_area_investigacion">Area de Investigación</label>
-                    <select class="form-control select2 select2-hidden-accessible" id="id_area_investigacion" name="id_area_investigacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('id_area_investigacion') }}">
+                    <select class="form-control select2 select2-hidden-accessible" id="id_area_investigacion" name="id_area_investigacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
                         @foreach ($areas as $area)
-                        <option value="{{$area->id}}" {{ $tesis_asesorada->id_area_investigacion == $/* tipo_partipacion */->id ? 'selected' : '' }}>{{$area->nombreainvest}}</option>
+                        <option value="{{ $area->id_areainv }}" {{ $area->id_areainv == $tesis_asesorada->id_area_investigacion ? 'selected' : '' }}>{{ $area->nombreainvest }}</option>
                         @endforeach
                     </select>
                     @error('id_area_investigacion')
@@ -53,37 +53,31 @@
                     @enderror
                   </div>
                   
-                <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
-                    <label for="tipo_participaciones">Grado Académico</label>
-                    <select class="form-control select2 select2-hidden-accessible" id="tipo_participaciones" name="tipo_participaciones" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('tipo_participaciones') }}">
-                        <option disabled selected>Seleccione una opción</option>
-                        <option value="Presentador Principal">Presentador Principal</option>
-                        <option value="Asistente">Asistente</option>
-                        <option value="Coordinador">Coordinador</option>
-                        <option value="Organizador">Organizador</option>
-                        <option value="Evaluador">Evaluador</option>
+
+                <div class="form-group col-lg-4 col-md-4 mb-3"  data-select2-id="29">
+                    <label for="id_grado_academico">Grado Académico</label>
+                    <select class="form-control" id="id_grado_academico" name="id_grado_academico">
+                        <option disabled>Seleccione una opción</option>
+                        @foreach ($grados as $grado)
+                        <option value="{{ $grado->idgradoacademico }}" {{ $grado->idgradoacademico == $tesis_asesorada->id_grado_academico ? 'selected' : '' }}>{{ $grado->nombgradoacademico }}</option>
+                        @endforeach
                     </select>
-                    @error('tipo_participaciones')
-                    <span class="text-danger">{{ $message }}</span>
+                    @error('id_grado_academico')
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
-                </div>
+                </div> 
                 </div>
 
                 <div class="row">
                     <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="tipo_participaciones">Unidad / Facultad</label>
-                        <select class="form-control select2 select2-hidden-accessible" id="tipo_participaciones" name="tipo_participaciones" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ old('tipo_participaciones') }}">
-                            <option disabled selected>Seleccione una opción</option>
-     {{--                        @foreach ($unidades as $unidad)
-                            <option value="{{$unidad->id}}">{{$unidad->nombre}}</option>
-                            @endforeach --}}
-       {{--                      Facultad de Ing. Civil
-                            Facultad de Ing. Eléctrica
-                            Facultad de Ing. Industrial
-                            Facultad de Ing. Mecánica
-                            Facultad de Ing. de Sistemas Computacionales --}}
+                        <label for="id_facultad">Unidad / Facultad</label>
+                        <select class="form-control select2 select2-hidden-accessible" id="id_facultad" name="id_facultad" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option disabled>Seleccione una opción</option>
+                            @foreach ($facultades as $facultad)
+                            <option value="{{ $facultad->idfacultad }}" {{ $facultad->idfacultad == $tesis_asesorada->id_facultad ? 'selected' : '' }}>{{ $facultad->nombfacultad }}</option>
+                            @endforeach
                         </select>
-                        @error('tipo_participaciones')
+                        @error('id_facultad')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
@@ -95,7 +89,6 @@
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-
                   
                   <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
                     <label for="publicacion_revista">Publicación en Revista</label>

@@ -17,8 +17,9 @@ return new class extends Migration
             $table->unsignedBigInteger('id_publicacion');
             $table->string('titulo', 255);
             $table->date('fecha');
-            $table->string('isbn', 25)->nullable();
-            $table->string('editorial')->nullable();
+            $table->string('isbn', 25);
+            $table->string('editorial');
+            $table->string('entidad_financiera')->nullable();
             //$table->string('ruta', 255);
             $table->timestamps();
             $table->foreign('id_publicacion')->references('idpublicacion')->on('tp_publicacion');

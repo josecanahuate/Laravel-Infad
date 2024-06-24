@@ -50,12 +50,11 @@ class TesisAsesoradasController extends Controller
 
     public function edit(TesiAsesorada $tesis_asesorada)
     {
-        //$categories = Category::pluck('name', 'id'); //pluck->relacion
         $areas = AreaInvestigacion::all();
-        return view('users.tesis_asesoradas.edit', compact('tesis_asesorada','areas'));
+        $grados = GradoAcademico::all();
+        $facultades = Facultades::all();
+        return view('users.tesis_asesoradas.edit', compact('tesis_asesorada','areas', 'grados', 'facultades'));
     }
-
-    
 
     public function update(UpdateTesis $request, TesiAsesorada $tesis_asesorada)
     {
@@ -74,9 +73,6 @@ class TesisAsesoradasController extends Controller
         return redirect()->route('users.tesis_asesoradas.index')->with('success', 'Registro actualizado con éxito!!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(TesiAsesorada $tesis_asesorada)
     {
         $tesis_asesorada->delete();

@@ -16,7 +16,7 @@ class SeminarioDictado extends Model
         'institucion',
         'titulo',
         'facilitador',
-        'fecha_ini',
+        'fecha_inicio',
         'fecha_fin',
         'modalidad',
         'pais',

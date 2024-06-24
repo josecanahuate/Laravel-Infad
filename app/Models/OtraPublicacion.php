@@ -17,6 +17,7 @@ class OtraPublicacion extends Model
         'fecha',
         'isbn',
         'editorial',
+        'entidad_financiera'
         /* 'ruta', */
     ];
 

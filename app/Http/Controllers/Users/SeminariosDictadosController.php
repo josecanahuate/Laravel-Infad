@@ -27,17 +27,20 @@ class SeminariosDictadosController extends Controller
 
     public function store(SeminarioStore $request)
     {
+
+        //dd($request->all());
+
         $seminariosdictados = new SeminarioDictado([
             'id_tipo_participacion' => $request->id_tipo_participacion,
             'titulo' => $request->titulo,
             'institucion' => $request->institucion,
             'facilitador' => $request->facilitador,
-            'fecha_ini' => $request->fecha_ini,
+            'fecha_inicio' => $request->fecha_inicio,
             'fecha_fin' => $request->fecha_fin,
             'pais' => $request->pais,
             'modalidad' => $request->modalidad,
             'lugar' => $request->lugar,
-            'horas' => $request->horas,
+            'horas' => $request->horas
             /* 'ruta,' => $request->ruta, */
         ]);
         $seminariosdictados->user_id = auth()->id();
@@ -49,7 +52,8 @@ class SeminariosDictadosController extends Controller
 
     public function edit(SeminarioDictado $seminarios_dictado)
     {
-    return view('users.seminarios_dictados.edit', compact('seminarios_dictado'));
+    $participaciones = TipoParticipacion::all();
+    return view('users.seminarios_dictados.edit', compact('seminarios_dictado', 'participaciones'));
     }
 
 
@@ -60,12 +64,12 @@ class SeminariosDictadosController extends Controller
             'titulo' => $request->titulo,
             'institucion' => $request->institucion,
             'facilitador' => $request->facilitador,
-            'fecha_ini' => $request->fecha_ini,
+            'fecha_inicio' => $request->fecha_inicio,
             'fecha_fin' => $request->fecha_fin,
             'pais' => $request->pais,
             'modalidad' => $request->modalidad,
             'lugar' => $request->lugar,
-            'horas' => $request->horas,
+            'horas' => $request->horas
         ]);
 
         return redirect()->route('users.seminarios_dictados.index')->with('success', 'Registro actualizado con éxito!!');

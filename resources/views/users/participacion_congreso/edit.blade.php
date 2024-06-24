@@ -14,6 +14,17 @@
         <strong>{{ session ('success') }}</strong>
     </div>
 @endif
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <p>Welcome to this beautiful admin panel.</p>
     <div class="container">
         <form method="POST" action="{{route('users.participacion_congreso.update', $participacion_congreso) }}">
@@ -30,17 +41,17 @@
                   </div>
 
                 <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
-                    <label for="tipo_participaciones">Tipo de Participación</label>
-                    <select class="form-control select2 select2-hidden-accessible" id="tipo_participaciones" name="tipo_participaciones" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" 
-                    value="{{ $participacion_congreso->tipo_participaciones }}">
-                        @foreach(['Presentador Principal', 'Asistente', 'Coordinador', 'Organizador', 'Evaluador'] as $participacion)
-                        <option value="{{ $participacion }}" {{ $participacion_congreso->tipo_participaciones == $participacion ? 'selected' : '' }}>{{ $participacion }}</option>
+                    <label for="id_tipo_participacion">Tipo de Participación</label>
+                    <select class="form-control select2 select2-hidden-accessible" id="id_tipo_participacion" name="id_tipo_participacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        @foreach ($participaciones as $participacion)
+                        <option value="{{ $participacion->idparticipaciones }}" {{ $participacion->idparticipaciones == $participacion_congreso->id_tipo_participacion ? 'selected' : '' }}>{{ $participacion->nombparticipaciones }}</option>
                         @endforeach
                     </select>
-                    @error('tipo_participaciones')
+                    @error('id_tipo_participacion')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+                
 
                 <div class="col-lg-3 col-md-3 mb-3">
                     <label for="pais">País</label>
@@ -53,7 +64,6 @@
             </div>
 
             <div class="row">
-
                 <div class="col-lg-5 col-md-5 mb-3">
                     <label for="lugar_congreso">Lugar del Congreso</label>
                     <input type="text" name="lugar_congreso" class="form-control" id="lugar_congreso" value="{{ $participacion_congreso->lugar_congreso }}">
@@ -79,7 +89,7 @@
                   </div>
 
                 <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                    <label for="publicacion_proceeding">Tipo de Participación</label>
+                    <label for="publicacion_proceeding">Tipo de Asistencia</label>
                     <select class="form-control select2 select2-hidden-accessible" id="publicacion_proceeding" name="publicacion_proceeding" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true"
                     value="{{ $participacion_congreso->publicacion_proceeding }}">
                     @foreach(['Presentado y Aceptado', 'Presentado pero no Aceptado', 'No Presentado', 'Provisional'] as $proceeding)

@@ -46,18 +46,16 @@
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
-
-                {{-- AREA DE INVESTIGACION - TRAER DE LA BD --}}
+            
                 <div class="form-group col-lg-4 col-md-4 mb-3" data-select2-id="29">
-                    <label for="sector_pertenece">Área de Investigación</label>
-                    <select class="form-control select2 select2-hidden-accessible" id="sector_pertenece" name="sector_pertenece" style="width: 100%;" 
-                    data-select2-id="1" tabindex="-1" aria-hidden="true" value="{{ $proyectos_inscritos->sector_pertenece }}">
-                        <option disabled selected>Seleccione una opción</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
+                    <label for="id_area_investigacion">Area de Investigación</label>
+                    <select class="form-control select2 select2-hidden-accessible" id="id_area_investigacion" name="id_area_investigacion" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        <option disabled>Seleccione una opción</option>
+                        @foreach ($areas as $area)
+                        <option value="{{ $area->id_areainv }}" {{ $area->id_areainv == $proyectos_inscritos->id_area_investigacion ? 'selected' : '' }}>{{ $area->nombreainvest }}</option>
+                        @endforeach
                     </select>
-                    @error('sector_pertenece')
+                    @error('id_area_investigacion')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
@@ -166,15 +164,14 @@
                     </div>
 
                     <div class="form-group col-lg-3 col-md-3 mb-3" data-select2-id="29">
-                        <label for="modalidad">Unidad o Facultad ejecutora</label>
-                        <select class="form-control select2 select2-hidden-accessible" id="modalidad" name="modalidad" style="width: 100%;" data-select2-id="1" 
-                        tabindex="-1" aria-hidden="true" value="{{ $proyectos_inscritos->modalidad }}">
-                            <option disabled selected>Seleccione una opción</option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
+                        <label for="id_facultad">Unidad o Facultad ejecutora</label>
+                        <select class="form-control select2 select2-hidden-accessible" id="id_facultad" name="id_facultad" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option disabled>Seleccione una opción</option>
+                            @foreach ($facultades as $facultad)
+                            <option value="{{ $facultad->idfacultad }}" {{ $facultad->idfacultad == $proyectos_inscritos->id_facultad ? 'selected' : '' }}>{{ $facultad->nombfacultad }}</option>
+                            @endforeach
                         </select>
-                        @error('modalidad')
+                        @error('id_facultad')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

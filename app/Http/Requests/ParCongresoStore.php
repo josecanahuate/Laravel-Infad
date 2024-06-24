@@ -22,14 +22,14 @@ class ParCongresoStore extends FormRequest
     public function rules(): array
     {
         return [
-                'id_tipo_participacion' => 'required|exists:tipo_participaciones,idparticipaciones',
-                'titulo' => 'required|string|max:255',
-                'fecha_inicio' => 'required|date|date_format:Y-m-d',
-                'fecha_fin' => 'required|date|date_format:Y-m-d|after_or_equal:fecha_inicio',
-                'lugar_congreso' => 'required|string|max:255',
-                'pais' => 'nullable|string|max:255',
-                'publicacion_proceeding' => 'required|in:Presentado y Aceptado,Presentado pero no Aceptado,No Presentado,Provisional',
-            ];
+            'id_tipo_participacion' => 'required|exists:tipo_participaciones,idparticipaciones',
+            'titulo' => 'required|string|max:255',
+            'fecha_inicio' => 'required|date|date_format:Y-m-d',
+            'fecha_fin' => 'required|date|date_format:Y-m-d|after_or_equal:fecha_inicio',
+            'lugar_congreso' => 'required|string|max:255',
+            'pais' => 'nullable|string|max:255',
+            'publicacion_proceeding' => 'required|in:Presentado y Aceptado,Presentado pero no Aceptado,No Presentado,Provisional',
+        ];
     }
 
     public function messages(): array
@@ -53,7 +53,7 @@ class ParCongresoStore extends FormRequest
             'pais.string' => 'El país debe ser una cadena de caracteres.',
             'pais.max' => 'El país no puede exceder los 255 caracteres.',
             'publicacion_proceeding.required' => 'El estado de publicación en proceedings es requerido.',
-            'publicacion_proceeding.in' => 'El estado de publicación en proceedings seleccionado no es válido.',
+            'publicacion_proceeding.in' => 'El estado de publicación en proceedings seleccionado no es válido.'
         ];
     }
 
@@ -67,7 +67,6 @@ class ParCongresoStore extends FormRequest
             'lugar_congreso' => 'lugar del congreso',
             'pais' => 'país',
             'publicacion_proceeding' => 'publicación en proceedings',
-            'tipo_participaciones' => 'tipo de participación'
         ];        
     }
 }

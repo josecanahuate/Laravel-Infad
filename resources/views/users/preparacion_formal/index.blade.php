@@ -24,10 +24,10 @@
             <thead>
                 <tr>
                     <th class="text-center">ID</th>
-                    <th class="text-center">TITULO</th> {{-- modificar para que solo se muestre una cantidad exacta de palabras y no todo --}}
+                    <th class="text-center">TITULO</th>
+                    <th class="text-center">INSTITUCIÓN</th>
                     <th class="text-center">GRADO</th>
-                    <th class="text-center">AÑO</th>
-                    <th class="text-center">ESTADO</th>
+                    <th class="text-center">FECHA FIN</th>
                     <th class="text-center">ESTATUS</th>
                     <th class="text-center">ACCIONES</th>
                 </tr>
@@ -38,9 +38,9 @@
                     <tr>
                         <td class="text-center">{{$formal->id}}</td>
                         <td class="text-center">{{$formal->titulo}}</td>
+                        <td class="text-center">{{$formal->institucion_superior}}</td>
                         <td class="text-center">{{$formal->gradoAcademico->nombgradoacademico }}</td>
-                        <td class="text-center">{{$formal->ano_titulo}}</td>
-                        <td class="text-center">{{$formal->estatus_prepformal}}</td>
+                        <td class="text-center">{{$formal->fecha_fin}}</td>
                         <td class="text-center"><span class="badge bg-warning">Pendiente</span></a></td>
                         <td>
                             <div class="d-flex justify-content-center">

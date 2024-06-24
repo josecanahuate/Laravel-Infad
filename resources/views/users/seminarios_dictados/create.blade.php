@@ -9,6 +9,17 @@
 
 @section('content')
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
 @if (session ('success'))
     <div id="successMessage" class="alert alert-success">
         <strong>{{ session ('success') }}</strong>
@@ -46,9 +57,9 @@
                   </div>
 
                   <div class="col-md-3 mb-3">
-                    <label for="fecha_ini">Fecha Inicio</label>
-                    <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="fecha_ini" id="fecha_ini" value="{{ old('fecha_ini') }}">
-                    @error('fecha_ini')
+                    <label for="fecha_inicio">Fecha Inicio</label>
+                    <input type="date" class="form-control datetimepicker-input" data-target-input="nearest" name="fecha_inicio" id="fecha_inicio" value="{{ old('fecha_inicio') }}">
+                    @error('fecha_inicio')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                   </div>
@@ -112,8 +123,8 @@
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-
                     </div>
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-default">

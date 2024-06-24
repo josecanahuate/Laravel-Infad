@@ -40,10 +40,16 @@ return new class extends Migration
             $table->unsignedBigInteger('id_facultad');
             $table->unsignedBigInteger('id_sede'); 
             $table->unsignedBigInteger('id_programa_adscribe'); 
-            $table->string('linea_investigacion')->nullable(); //enum
+            $table->unsignedBigInteger('id_linea_investigacion');
             $table->date('periodo_vigencia_ini')->nullable();
             $table->date('periodo_vigencia_fin')->nullable();
-            $table->enum('estado_actual', ['Cursando Actualmente', 'Completo']);
+            $table->enum('estado_actual', 
+            [
+                'En Progreso',
+                'Completado',
+                'Pendiente de Aprobación',
+                'Aprobado'
+            ]);            
             $table->string('entidad_financiera')->nullable();
             $table->integer('monto_asignado')->nullable();
             $table->string('sitio_web')->nullable()->url();
@@ -55,6 +61,7 @@ return new class extends Migration
             $table->foreign('id_facultad')->references('idfacultad')->on('facultades'); // facultades
             $table->foreign('id_sede')->references('idsede')->on('sedes'); // sedes
             $table->foreign('id_programa_adscribe')->references('idadscribe')->on('programa_adscribe'); // programa adscribe
+            $table->foreign('id_linea_investigacion')->references('id_linea')->on('lineas_investigacion'); // linea investigacion
         });
     }
 
