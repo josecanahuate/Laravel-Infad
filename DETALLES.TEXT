@@ -1,0 +1,112 @@
+PASOS PARA RELACIONAR LOS CAMPOS Y ALMACENARLOS DE FORMA CORRECTA: VER LOS FORMULARIOS YA RELACIONADOS Y QUE ESTAN ALMACENANDO CON LOS RELACIONES BIEN HECHAS
+
+ME QUEDE EN EL FORMULARIO DE PARTICIPACION EN CONGRESOS.
+
+
+1) CONTROLLER (STORE) & (UPDATE) -> 
+
+COLOCAR ID DE RELACION MODELOS EN 
+
+A) STORE -> 'id_tipo_participacion' => $request->id_tipo_participacion,
+
+B) UPDATE -> 'id_tipo_participacion' => $request->id_tipo_participacion,
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+2) FORM REQUEST -> VALIDACIONES
+
+A) ++++++ rules:
+
+'id_enfasis_actualizacion' => 'required|exists:enfasis_actualizacion,idenfasis',
+
+
+
+B) ++++++ messages:
+
+    'id_enfasis_actualizacion.required' => 'El énfasis de actualización es obligatorio.',
+    'id_enfasis_actualizacion.exists' => 'El énfasis de actualización seleccionado no es válido.',
+
+
+C) ++++++ attributes:
+
+ 'id_enfasis_actualizacion' => 'énfasis actualización',
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2) MIGRACIONES 
+
+++++++ MIGRACION TABLA INTERMEDIA: 
+
+SE COPIARA EL ID Y SE REFENCIARA EN LOS MODELOS PARA LAS RELACIONES -> $table->id('idenfasis');
+
+
+++++++ MIGRACION TABLA NORMAL:
+
+       $table->unsignedBigInteger('id_enfasis_actualizacion');
+       $table->foreign('id_enfasis_actualizacion')->references('idenfasis')->on('enfasis_actualizacion');
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3) MODELOS
+
+++++++++ MODELO TABLA INTERMEDIA: EN LAS RELACIONES SE DEBE COLOCAR TANTO EN ID DE RELACION DE MODELOS COMO EL ID DE LLAVE PRIMARIA DE LA TABLA INTERMEDIA
+
+ID DE RELACION DE MODELOS: id_enfasis_actualizacion
+ID DE LLAVE PRIMARIA DE LA TABLA INTERMEDIA: idenfasis
+
+    public function preparacionConstante()
+    {
+        return $this->hasMany(PreparacionConstante::class, 'id_enfasis_actualizacion', 'idenfasis');
+    }
+
+
+MODELO TABLA NORMAL - SE COLOCA EL ID EN FILLABLE Y SE COLOCA TANTO EL ID DE MODELOS COMO EL ID DE LLAVE PRIMARIA:
+
+a) protected $fillable = [
+        'id_enfasis_actualizacion',
+
+
+
+ b)   public function enfasisActualizacion()
+    {
+        return $this->belongsTo(EnfasisActualizacion::class, 'id_enfasis_actualizacion', 'idenfasis');
+    }
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5) VISTAS: CREATE: SE COLOCA EL ID DE LLAVE PRIMARIA DE LA TABLA INTERMEDIA Y EL NOMBRE DEL CAMPO QUE CONTIENE EL NOMBRE
+
+          <div class="form-group col-lg-3 col-md-3 mb-3">
+                    <label for="enfasis">Enfasis Actualización</label>
+                    <select class="form-control" id="id_enfasis_actualizacion" name="id_enfasis_actualizacion"
+                        value="{{ old('id_enfasis_actualizacion') }}">
+                        <option disabled selected>Seleccione una opción</option>
+                        @foreach ($enfasis as $enfasi)
+                        <option value="{{$enfasi->idenfasis}}">{{$enfasi->nombrenfasis}}</option>
+                        @endforeach
+                    </select>
+                    @error('id_enfasis_actualizacion')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+
+
+
+VISTAS INDEX: PARA MOSTRAR CAMPO INTERMEDIO RELACIONADO - SE LLAMA METODO DE RELACION Y NOMBRE DEL CAMPO INTERMEDIO
+
+<td class="text-center">{{$formal->gradoAcademico->nombgradoacademico }}</td>
+
+<td class="text-center">{{$constante->enfasisActualizacion->nombrenfasis}}</td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
